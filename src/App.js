@@ -9,23 +9,21 @@ import {Container} from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
+
   return (
-      <AuthProvider>
-        <Router>
-          <NavBar/>
-          <Routes>
-            <Route exact path="/" element={<Dashboard/>}></Route>
-            <Route path="/signin" element={<SignIn/>}></Route>
-            <Route path="/signup" element={<SignUp/>}></Route>
-          </Routes>
-        </Router>
-      <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"60vh"}}>
-      
-        <SignUp/>
-        <SignIn/>
-      </Container>
-      </AuthProvider>
-  );
+    <AuthProvider>
+    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"60vh"}}>
+      <Router>
+        <NavBar/>
+        <Routes>
+          <Route exact path="/" element={<Dashboard/>}></Route>
+          <Route path="/signin" element={<SignIn/>}></Route>
+          <Route path="/signup" element={<SignUp/>}></Route>
+        </Routes>
+      </Router>
+    </Container>
+    </AuthProvider>
+);
 }
 
 export default App;
