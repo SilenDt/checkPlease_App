@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {Form, Card, Button, Alert} from "react-bootstrap"
-
+import {useAuth} from "../../contexts/AuthContext"
 
 const SignUp = () => {
 
@@ -9,6 +9,7 @@ const SignUp = () => {
     const passwordConfirmRef = useRef()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
+    const {SignUp} = useAuth()
 
     async function handleSubmit(e) {
         e.preventDefault()
