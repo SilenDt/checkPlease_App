@@ -13,13 +13,16 @@ const SignUp = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        if (passwordRef.current.value !== passwordConfirmRef.current.value){
+            return setError("password did not match ")  
+        }
         try{
             setError("")
             setLoading(true)
             await SignUp(emailRef.current.value,passwordRef.current.value)
         } catch {
             setError("failed to create an account")
-        } 
+        }
         setLoading(false)
     }
 
