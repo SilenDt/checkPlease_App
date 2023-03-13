@@ -14,8 +14,13 @@ const SignUp = () => {
     async function handleSubmit(e) {
         e.preventDefault()
         if (passwordRef.current.value !== passwordConfirmRef.current.value){
-            return setError("password did not match ")  
+            return setError("passwords did not match ")  
         }
+
+        if (passwordRef.current.value.length < 6 ) {
+            return setError("password must be atleast 6 characters long")
+        }
+
         try{
             setError("")
             setLoading(true)
