@@ -4,22 +4,25 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext"
 import SignUp from "./SignUp";
 
-const SignIn = () => {
+const ForgotPassword = () => {
 
     const emailRef = useRef()
-    const passwordRef = useRef()
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState()
     const [error, setError] = useState()
-    const { SignIn } = useAuth()
+    const { resetPassword } = useAuth()
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
+            setMessage("")
             setError("")
             setLoading(true)
-            await SignIn(emailRef.current.value, passwordRef.current.value)
+            await resetPassword(emailRef.current.value)
+            setMessage("Check you inbox for further instructions")
+            // clear()
         } catch {
-            setError("You do not have an account with us")
+            setError("Failed to reset password")
 
         }
         setLoading(false)
@@ -29,23 +32,19 @@ const SignIn = () => {
         <div>
             <Card>
                 <Card.Body>
-                    <h2>Sign In Below</h2>
+                    <h2>Password Reset</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
+                    {message && <Alert variant="success">{message}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email </Form.Label>
                             <Form.Control type="email" ref={emailRef} required></Form.Control>
 
                         </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password </Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required></Form.Control>
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Sign In</Button>
-
+                        <Button disabled={loading} className="w-100" type="submit">Reset Password</Button>
                     </Form>
                     <div className="w-100 text-center mt-3">
-                        <Link to="/forgot-password">Forgot passowrd?</Link>
+                        <Link to="/signin">Sign In</Link>
                     </div>
 
                 </Card.Body>
@@ -57,4 +56,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+export default ForgotPassword

@@ -7,6 +7,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {Container} from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext";
+import ForgotPassword from "./components/auth/ForgotPassword";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" element={<Dashboard/>}></Route>
           <Route path="/signin" element={<SignIn/>}></Route>
           <Route path="/signup" element={<SignUp/>}></Route>
+          <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
         </Routes>
       </Router>
     </Container>
