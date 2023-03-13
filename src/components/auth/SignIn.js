@@ -33,7 +33,6 @@ const SignIn = () => {
                         <Form.Label>Email </Form.Label>
                         <Form.Control type="email" ref={emailRef} required></Form.Control>
                     </Form.Group>
-                
                     <Form.Group id="password">
                         <Form.Label>Password </Form.Label>
                         <Form.Control type="password" ref={passwordRef} required></Form.Control>
