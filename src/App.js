@@ -15,7 +15,7 @@ function App() {
     <AuthProvider>
     <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"60vh"}}>
       <Router>
-        <NavBar/>
+      <NavBar/>
         <Routes>
           <Route exact path="/" element={<Dashboard/>}></Route>
           <Route path="/signin" element={<SignIn/>}></Route>
