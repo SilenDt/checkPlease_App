@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import { Form, Card, Button, Alert, FormText } from "react-bootstrap"
-import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext"
+import React, {useRef, useState} from "react";
+import {Form, Card, Button, Alert} from "react-bootstrap"
+import {useAuth} from "../../contexts/AuthContext"
+import {useNavigate, Link } from "react-router-dom";
 import SignUp from "./SignUp";
 
 const SignIn = () => {
@@ -10,14 +10,17 @@ const SignIn = () => {
     const passwordRef = useRef()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
-    const { SignIn } = useAuth()
+    const {SignIn} = useAuth()
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
         try {
             setError("")
             setLoading(true)
-            await SignIn(emailRef.current.value, passwordRef.current.value)
+            await SignIn(emailRef.current.value,passwordRef.current.value)
+            navigate("/")
+
         } catch {
             setError("You do not have an account with us")
 
