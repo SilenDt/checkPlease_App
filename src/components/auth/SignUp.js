@@ -13,13 +13,21 @@ const SignUp = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        if (passwordRef.current.value !== passwordConfirmRef.current.value){
+            return setError("passwords did not match ")  
+        }
+
+        if (passwordRef.current.value.length < 6 ) {
+            return setError("password must be atleast 6 characters long")
+        }
+
         try{
             setError("")
             setLoading(true)
             await SignUp(emailRef.current.value,passwordRef.current.value)
         } catch {
             setError("failed to create an account")
-        } 
+        }
         setLoading(false)
     }
 
