@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
         <Navbar.Brand as={Link} to="/">
-          CheckPlease
+          <img src="https://picsum.photos/100/50"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
