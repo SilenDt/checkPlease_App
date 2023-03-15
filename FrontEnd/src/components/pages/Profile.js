@@ -1,26 +1,12 @@
-import React, {useState} from 'react'
-import { Button, Card, Alert } from 'react-bootstrap'
+import React from 'react'
+import { Card } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 export default function Profile() {
-  const [error, setError] = useState()
+//   const [error, setError] = useState()
   const {currentUser, setCurrentUser} = useAuth()
-//   const navigate = useNavigate()
 
-console.log(currentUser)
-
-
-//   async function handleLogout(){
-//     setError("")
-//     try{
-//       await logout()
-//       navigate("/login")
-//     } catch {
-//       setError("error failed to logout")
-//     }
-
-//   }
   return (
   <>    
     <Card>
@@ -33,9 +19,6 @@ console.log(currentUser)
         </Link>
       </Card.Body>
     </Card>
-        {/* <div className = "w-100 text-center mt-2"> */}
-      {/* <Button variant="link" onClick={handleLogout}>Log out</Button> */}
-      {/* </div> */}
   </>
   )
 }
