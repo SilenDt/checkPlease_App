@@ -13,19 +13,21 @@ function App() {
 
   return (
     <AuthProvider>
-    <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"60vh"}}>
-      <Router>
-      <NavBar/>
-        <Routes>
-          <Route exact path="/" element={<Dashboard/>}></Route>
-          <Route path="/signin" element={<SignIn/>}></Route>
-          <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
-        </Routes>
-      </Router>
-    </Container>
-    </AuthProvider>
+        <Container className="d-flex align-items-center justify-content-center" style={{minHeight:"60vh"}}>
+          <Router>
+          <NavBar/>
+            <Routes>
+              <Route exact path="/" element={<Dashboard/>}></Route>
+              <Route path="/signin" element={<SignIn/>}></Route>
+              <Route path="/signup" element={<SignUp/>}></Route>
+              <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
+            </Routes>
+          </Router>
+        </Container>
+        </AuthProvider>
 );
 }
 
 export default App;
+
+
