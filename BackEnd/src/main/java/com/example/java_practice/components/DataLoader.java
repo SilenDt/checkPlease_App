@@ -24,6 +24,9 @@ public class DataLoader  implements  ApplicationRunner{
     @Autowired
     TipOutTypeRepository tipOutTypeRepository;
 
+    @Autowired
+    BenefitRepository benefitRepository;
+
     public DataLoader () {}
 
     public void run(ApplicationArguments args){
@@ -32,6 +35,7 @@ public class DataLoader  implements  ApplicationRunner{
         companyRepository.deleteAll();
         jobTitleRepository.deleteAll();
         tipOutTypeRepository.deleteAll();
+        benefitRepository.deleteAll();
 
         JobType server = new JobType("Server");
         jobTitleRepository.save(server);
@@ -66,7 +70,21 @@ public class DataLoader  implements  ApplicationRunner{
         TipOutType na = new TipOutType("I don't tip out");
         tipOutTypeRepository.save(na);
 
+        Benefit staffMeal = new Benefit("Staff Meal");
+        benefitRepository.save(staffMeal);
+        Benefit employeeFoodDiscount = new Benefit("Employee Food Discount");
+        benefitRepository.save(employeeFoodDiscount);
+        Benefit fofDiscount = new Benefit("Friends and Family Discount");
+        benefitRepository.save(fofDiscount);
+        Benefit health = new Benefit("Health Insurance");
+        benefitRepository.save(health);
+        Benefit tips = new Benefit("Tips");
+        benefitRepository.save(tips);
+        Benefit none = new Benefit("I do not receive benefits");
+        benefitRepository.save(none);
 
+
+        
         Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook, totalSales);
         reviewRepository.save(review1);
         Review review2 = new Review("12-12-2023", "Terrible working environment", company2, user1, busser, discretion);

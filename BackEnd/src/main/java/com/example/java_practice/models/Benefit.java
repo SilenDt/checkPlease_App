@@ -14,8 +14,7 @@ public class Benefit {
     private String benefitType;
 
     //CONSTRUCTOR:
-    public Benefit(Long id, String benefitType) {
-        this.id = id;
+    public Benefit(String benefitType) {
         this.benefitType = benefitType;
     }
 
