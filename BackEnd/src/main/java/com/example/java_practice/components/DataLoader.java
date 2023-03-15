@@ -83,7 +83,10 @@ public class DataLoader  implements  ApplicationRunner{
         Benefit none = new Benefit("I do not receive benefits");
         benefitRepository.save(none);
 
+
         Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook, totalSales);
+        review1.addBenefit(tips);
+        review1.addBenefit(health);
         reviewRepository.save(review1);
         Review review2 = new Review("12-12-2023", "Terrible working environment", company2, user1, busser, discretion);
         reviewRepository.save(review2);

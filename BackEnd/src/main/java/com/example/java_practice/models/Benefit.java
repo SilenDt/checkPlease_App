@@ -13,6 +13,11 @@ public class Benefit {
     @Column(name ="benefitType")
     private String benefitType;
 
+//    @ManyToOne
+//    @JoinColumn(name = "review_id")
+//    private Review review;
+
+
     //CONSTRUCTOR:
     public Benefit(String benefitType) {
         this.benefitType = benefitType;

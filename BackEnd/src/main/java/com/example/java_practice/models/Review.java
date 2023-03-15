@@ -37,7 +37,7 @@ public class Review {
     @OneToOne
     @JoinColumn(name = "tipOutType_id")
     private TipOutType tipOutType;
-
+    
     private List<Benefit> benefits;
 
     public Review(){}
@@ -114,5 +114,10 @@ public class Review {
 
     public void setBenefits(List<Benefit> benefits) {
         this.benefits = benefits;
+    }
+
+    //METHODS:
+    public void addBenefit(Benefit benefit) {
+        benefits.add(benefit);
     }
 }
