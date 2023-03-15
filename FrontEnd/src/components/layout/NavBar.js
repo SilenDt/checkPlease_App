@@ -28,7 +28,7 @@ import { Link } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { useAuth } from '../../contexts/AuthContext';
-import { Navbar, Container, Nav, Button, Row } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, Row, Col } from 'react-bootstrap';
 
 const NavBar = () => {
   const isLoggedIn = useAuth();
