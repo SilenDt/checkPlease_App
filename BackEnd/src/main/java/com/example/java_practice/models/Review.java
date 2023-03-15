@@ -27,13 +27,18 @@ public class Review {
     @JoinColumn (name = "user_id", nullable = false)
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "jobType_id")
+    private JobType jobType;
+
     public Review(){};
 
-    public Review(String date, String text, Company company, User user) {
+    public Review(String date, String text, Company company, User user, JobType jobType) {
         this.date = date;
         this.text = text;
         this.company = company;
         this.user = user;
+        this.jobType = jobType;
     }
 
     public User getUser() {
@@ -74,5 +79,13 @@ public class Review {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
     }
 }
