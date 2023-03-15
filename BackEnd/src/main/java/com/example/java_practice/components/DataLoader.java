@@ -1,12 +1,6 @@
 package com.example.java_practice.components;
-import com.example.java_practice.models.Company;
-import com.example.java_practice.models.JobType;
-import com.example.java_practice.models.Review;
-import com.example.java_practice.models.User;
-import com.example.java_practice.repositories.CompanyRepository;
-import com.example.java_practice.repositories.JobTypeRepository;
-import com.example.java_practice.repositories.ReviewRepository;
-import com.example.java_practice.repositories.UserRepository;
+import com.example.java_practice.models.*;
+import com.example.java_practice.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -27,13 +21,17 @@ public class DataLoader  implements  ApplicationRunner{
     @Autowired
     JobTypeRepository jobTitleRepository;
 
-    public DataLoader (){};
+    @Autowired
+    TipOutTypeRepository tipOutTypeRepository;
+
+    public DataLoader () {}
 
     public void run(ApplicationArguments args){
         reviewRepository.deleteAll();
         userRepository.deleteAll();
         companyRepository.deleteAll();
         jobTitleRepository.deleteAll();
+        tipOutTypeRepository.deleteAll();
 
         JobType server = new JobType("Server");
         jobTitleRepository.save(server);
@@ -56,6 +54,18 @@ public class DataLoader  implements  ApplicationRunner{
         companyRepository.save(company1);
         Company company2 = new Company("Burger King", "Stirling", "More Burgers and frieds", 3);
         companyRepository.save(company2);
+
+        TipOutType totalTips = new TipOutType("A percentage of your total tips");
+        tipOutTypeRepository.save(totalTips);
+        TipOutType totalSales = new TipOutType("A percentage of your total sales");
+        tipOutTypeRepository.save(totalSales);
+        TipOutType fixedAmount = new TipOutType("A fixed amount");
+        tipOutTypeRepository.save(fixedAmount);
+        TipOutType discretion = new TipOutType("At your own discretion");
+        tipOutTypeRepository.save(discretion);
+        TipOutType na = new TipOutType("I don't tip out");
+        tipOutTypeRepository.save(na);
+
 
         Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook);
         reviewRepository.save(review1);
