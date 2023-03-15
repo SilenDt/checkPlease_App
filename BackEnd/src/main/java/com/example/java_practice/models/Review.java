@@ -31,14 +31,19 @@ public class Review {
     @JoinColumn(name = "jobType_id")
     private JobType jobType;
 
-    public Review(){};
+    @OneToOne
+    @JoinColumn(name = "tipOutType_id")
+    private TipOutType tipOutType;
 
-    public Review(String date, String text, Company company, User user, JobType jobType) {
+    public Review(){}
+
+    public Review(String date, String text, Company company, User user, JobType jobType, TipOutType tipOutType) {
         this.date = date;
         this.text = text;
         this.company = company;
         this.user = user;
         this.jobType = jobType;
+        this.tipOutType = tipOutType;
     }
 
     public User getUser() {
@@ -87,5 +92,13 @@ public class Review {
 
     public void setJobType(JobType jobType) {
         this.jobType = jobType;
+    }
+
+    public TipOutType getTipOutType() {
+        return tipOutType;
+    }
+
+    public void setTipOutType(TipOutType tipOutType) {
+        this.tipOutType = tipOutType;
     }
 }

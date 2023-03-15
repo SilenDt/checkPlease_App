@@ -67,11 +67,11 @@ public class DataLoader  implements  ApplicationRunner{
         tipOutTypeRepository.save(na);
 
 
-        Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook);
+        Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook, totalSales);
         reviewRepository.save(review1);
-        Review review2 = new Review("12-12-2023", "Terrible working environment", company2, user1, busser);
+        Review review2 = new Review("12-12-2023", "Terrible working environment", company2, user1, busser, discretion);
         reviewRepository.save(review2);
-        Review review3 = new Review("12-11-2023", "Pish", company2, user2, dishwasher);
+        Review review3 = new Review("12-11-2023", "Pish", company2, user2, dishwasher, totalTips);
         reviewRepository.save(review3);
 
 
