@@ -53,8 +53,8 @@ const NavBar = () => {
             <Button variant="outline-primary" as={Link} to="/signup">
               Sign Up
             </Button>
-            <Button variant="primary" as={Link} to="/login" className="ms-2">
-              Log In
+            <Button variant="primary" as={Link} to="/signin" className="ms-2">
+              Sign In
             </Button>
           </Nav>
         </Navbar.Collapse>
