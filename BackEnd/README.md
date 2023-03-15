@@ -49,6 +49,7 @@ Write queries using the derived method we've shown. Connect these to suitable RE
 * Get all companies with a given rating
 * Get all reviews for a given company
 * Get all users for a given company
+* Get all job roles for a given company
 
 
 ## Extensions
@@ -56,7 +57,7 @@ Write queries using the derived method we've shown. Connect these to suitable RE
 
 ### Extension Queries + Routes
 
-* Get all users in a given town for a given company
+* Get all users in a given company for a given job
 * Get all companies over a certain rating in a given town
 
 
