@@ -20,8 +20,7 @@ public class TipOutType {
     }
 
     //EMPTY CONSTRUCTOR:
-    public TipOutType() {
-    }
+    public TipOutType() {}
 
     //GETTERS AND SETTERS:
 
