@@ -1,46 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { getCompanyInfo } from "../../services/CompanyServices";
 
-const Dashboard = () => {
-
-
-  // const [companyInfo, setCompanyInfo] = useState([])
-  const [typed, setTyped] = useState("")
-  const [chosenCategory, setChosenCategory] = useState("")
-  const [searchResults, setSearchResults] = useState([])
-    
-
-  const companies = [
-    {id: 1, name:"TGI Friday's", location:"Boston"},
-    {id: 2, name:"Olive Garden", location:"Boulder"},
-    {id:3, name: "Taco Bell", location:"New York"},
-    {id: 4, name: "Wasabi", location:"Little Rock"}
-  ]
+const Dashboard = ({chosenCategory, dropdownSelect, typed,
+  searchResults, companyInfo, handleSearch}) => {
   
-  
-  // useEffect(() => {
-  //   getCompanyInfo()
-  //   .then((allCompanyInfo) => {
-  //       setCompanyInfo(allCompanyInfo)
-  //   })
-  // }, [])
-  
-  
-  const dropdownSelect = (category) => {
-    const chosenCategory = category
-    setChosenCategory(chosenCategory)
-  }
   
   const handleSelect = (e) => {
     const category = e.target.value
     dropdownSelect(category)
-  }
-  
-  const handleSearch = () => {
-  const filteredResults = companies.filter(
-    (company) => company.location.toLowerCase().includes(typed.toLowerCase())
-  );
-  setSearchResults(filteredResults);
   }
   
   
