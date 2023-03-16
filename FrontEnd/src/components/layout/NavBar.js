@@ -28,7 +28,7 @@ import { Link } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { useAuth } from '../../contexts/AuthContext';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, Row } from 'react-bootstrap';
 
 const NavBar = () => {
   const isLoggedIn = useAuth();
@@ -36,9 +36,8 @@ const NavBar = () => {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Container>
         <Navbar.Brand as={Link} to="/">
-          CheckPlease
+          <img src="https://picsum.photos/100/50"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -49,16 +48,7 @@ const NavBar = () => {
               <SignedOutLinks />
             )}
           </Nav>
-          <Nav>
-            <Button variant="outline-primary" as={Link} to="/signup">
-              Sign Up
-            </Button>
-            <Button variant="primary" as={Link} to="/signin" className="ms-2">
-              Sign In
-            </Button>
-          </Nav>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
   );
 };

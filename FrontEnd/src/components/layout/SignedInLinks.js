@@ -18,11 +18,10 @@ const SignedInLinks = () => {
 
     }
    return (
-       <ul className='temp'>
-                we are rendering signed in links
+    <>
         <Button variant="link" onClick={handleClick}>Log Out</Button>
         {/* <li><NavLink to='/' className="temp">NN</NavLink></li> */}
-       </ul>
+    </>
    )
 }
 export default SignedInLinks
