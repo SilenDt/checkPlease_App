@@ -22,4 +22,6 @@ public class UserController {
         List<User> foundUsers = userRepository.findAll();
         return new ResponseEntity<>(foundUsers, HttpStatus.OK);
     }
+
+
 }

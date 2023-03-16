@@ -38,7 +38,7 @@ public class Review {
     @JoinColumn(name = "tipOutType_id")
     private TipOutType tipOutType;
 
-    private List<Benefit> benefits;
+//    private List<Benefit> benefits;
 
     public Review(){}
 
@@ -49,7 +49,7 @@ public class Review {
         this.user = user;
         this.jobType = jobType;
         this.tipOutType = tipOutType;
-        this.benefits = new ArrayList<>();
+//        this.benefits = new ArrayList<>();
     }
 
     public User getUser() {
@@ -108,16 +108,16 @@ public class Review {
         this.tipOutType = tipOutType;
     }
 
-    public List<Benefit> getBenefits() {
-        return benefits;
-    }
-
-    public void setBenefits(List<Benefit> benefits) {
-        this.benefits = benefits;
-    }
-
-    //METHODS:
-    public void addBenefit(Benefit benefit) {
-        benefits.add(benefit);
-    }
+//    public List<Benefit> getBenefits() {
+//        return benefits;
+//    }
+//
+//    public void setBenefits(List<Benefit> benefits) {
+//        this.benefits = benefits;
+//    }
+//
+//    //METHODS:
+//    public void addBenefit(Benefit benefit) {
+//        benefits.add(benefit);
+//    }
 }
