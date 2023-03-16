@@ -1,36 +1,39 @@
 import React from "react";
-import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyList from "../pages/CompanyList";
+import { getCompaniesInfo } from "../../services/CompanyServices";
+import {Form, Card, Button, Alert} from "react-bootstrap"
 
-const Dashboard = ({chosenCategory, dropdownSelect, typed,
-  searchResults, companiesInfo, handleSearch}) => {
-  
-  
+const Dashboard = ({ chosenCategory, dropdownSelect, typed,
+  searchResults, companiesInfo, handleSearch }) => {
+
+
   const handleSelect = (e) => {
     const category = e.target.value
     dropdownSelect(category)
   }
-  
-  
-    return(
+
+  return (
+    <div>
       <div>
-        <div>
-          <form id='searchForm'>
-            <select id='selectId' onChange={handleSelect}>
-              <option value="">All categories</option>
-              <option value="company">Company Name</option>
-              <option value="location">Location</option>
-            </select>
-            <input id='input' type='text' placeholder='Search here...' value={typed}/>
-            <>onChange={handleSearch}</>
-          </form>
-        </div>
-        <CompanyList
-          companiesInfo={companiesInfo}
-        />
+        <Card>
+          <Card.Body>
+            <Form>
+              <select id='selectId' onChange={handleSelect}>
+                <option value="">All categories</option>
+                <option value="company">Company Name</option>
+                <option value="location">Location</option>
+              </select>
+              <input id='input' type='text' placeholder='Search here...' defaultValue={typed} onChange={handleSearch} />
+            </Form>
+        </Card.Body>
+        </Card>
       </div>
-    )
-  }
-  
-  export default Dashboard;
+      <CompanyList
+        companiesInfo={companiesInfo}
+      />
+    </div>
+  )
+}
+
+export default Dashboard;
 

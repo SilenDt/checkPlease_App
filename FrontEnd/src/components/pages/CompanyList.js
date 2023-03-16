@@ -1,13 +1,14 @@
 import CompanyItem from "./CompanyItem"
 
-const CompanyList = ({companiesInfo}) => {
+const CompanyList = ({companiesInfo, onCompanyClicked}) => {
 
     const mappedCompaniesInfo = companiesInfo.map((company) => {
         return<CompanyItem
-        company={company}
+        company={company} 
+        onCompanyClicked={onCompanyClicked}
         />
     })
-
+    
     return(
         <div>
             <ul>

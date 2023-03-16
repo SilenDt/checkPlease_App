@@ -19,6 +19,7 @@ const MainContainer = () => {
   const [typed, setTyped] = useState("")
   const [chosenCategory, setChosenCategory] = useState("")
   const [searchResults, setSearchResults] = useState([])
+  const [selectedCompany, setSelectedCompany] = useState(null)
 
   useEffect(() => {
     getCompaniesInfo()
@@ -26,6 +27,10 @@ const MainContainer = () => {
         setCompaniesInfo(allCompaniesInfo)
     })
   }, [])
+
+  const onCompanyClicked = (company) => {
+    setSelectedCompany(company)
+  }
 
   // const companies = [
   //   {id: 1, name:"TGI Friday's", location:"Boston"},
@@ -63,6 +68,8 @@ const MainContainer = () => {
                       searchResults={searchResults}
                       companiesInfo={companiesInfo}
                       handleSearch={handleSearch}
+                      onCompanyClicked={onCompanyClicked}
+                      
                       />
                       
                       </ProtectedRoute>}/>
