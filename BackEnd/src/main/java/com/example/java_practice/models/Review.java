@@ -37,7 +37,7 @@ public class Review {
     @OneToOne
     @JoinColumn(name = "tipOutType_id")
     private TipOutType tipOutType;
-    
+
     private List<Benefit> benefits;
 
     public Review(){}
