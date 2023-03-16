@@ -1,8 +1,9 @@
 import React from "react";
-import { getCompanyInfo } from "../../services/CompanyServices";
+import { getCompaniesInfo } from "../../services/CompanyServices";
+import CompanyList from "../pages/CompanyList";
 
 const Dashboard = ({chosenCategory, dropdownSelect, typed,
-  searchResults, companyInfo, handleSearch}) => {
+  searchResults, companiesInfo, handleSearch}) => {
   
   
   const handleSelect = (e) => {
@@ -14,10 +15,6 @@ const Dashboard = ({chosenCategory, dropdownSelect, typed,
     return(
       <div>
         <div>
-          <image>Company Logo here</image>
-        </div>
-  
-        <div>
           <form id='searchForm'>
             <select id='selectId' onChange={handleSelect}>
               <option value="">All categories</option>
@@ -28,6 +25,9 @@ const Dashboard = ({chosenCategory, dropdownSelect, typed,
             <>onChange={handleSearch}</>
           </form>
         </div>
+        <CompanyList
+          companiesInfo={companiesInfo}
+        />
       </div>
     )
   }

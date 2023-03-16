@@ -9,30 +9,30 @@ import ForgotPassword from "../auth/ForgotPassword";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {Container, Row, Column} from "react-bootstrap"
 import { useState, useEffect } from "react";
-import { getCompanyInfo } from "../../services/CompanyServices";
+import { getCompaniesInfo } from "../../services/CompanyServices";
 
 
 
 const MainContainer = () => {
 
-  const [companyInfo, setCompanyInfo] = useState([])
+  const [companiesInfo, setCompaniesInfo] = useState([])
   const [typed, setTyped] = useState("")
   const [chosenCategory, setChosenCategory] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
-    getCompanyInfo()
-    .then((allCompanyInfo) => {
-        setCompanyInfo(allCompanyInfo)
+    getCompaniesInfo()
+    .then((allCompaniesInfo) => {
+        setCompaniesInfo(allCompaniesInfo)
     })
   }, [])
 
-  const companies = [
-    {id: 1, name:"TGI Friday's", location:"Boston"},
-    {id: 2, name:"Olive Garden", location:"Boulder"},
-    {id:3, name: "Taco Bell", location:"New York"},
-    {id: 4, name: "Wasabi", location:"Little Rock"}
-  ]
+  // const companies = [
+  //   {id: 1, name:"TGI Friday's", location:"Boston"},
+  //   {id: 2, name:"Olive Garden", location:"Boulder"},
+  //   {id:3, name: "Taco Bell", location:"New York"},
+  //   {id: 4, name: "Wasabi", location:"Little Rock"}
+  // ]
 
   const dropdownSelect = (category) => {
     const chosenCategory = category
@@ -40,8 +40,8 @@ const MainContainer = () => {
   }
 
   const handleSearch = () => {
-    const filteredResults = companies.filter(
-      (company) => company.location.toLowerCase().includes(typed.toLowerCase())
+    const filteredResults = companiesInfo.filter(
+      (company) => company.town.toLowerCase().includes(typed.toLowerCase())
     );
     setSearchResults(filteredResults);
     }
@@ -61,7 +61,7 @@ const MainContainer = () => {
                       dropdownSelect={dropdownSelect}
                       typed={typed}
                       searchResults={searchResults}
-                      companyInfo={companyInfo}
+                      companiesInfo={companiesInfo}
                       handleSearch={handleSearch}
                       />
                       

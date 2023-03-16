@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
-import { getCompanyInfo } from "../../services/CompanyServices"
+import CompanyItem from "./CompanyItem"
 
-const CompanyList = () => {
+const CompanyList = ({companiesInfo}) => {
 
-    const [companyInfo, setCompanyInfo] = useState([])
-
-    useEffect(() => {
-        getCompanyInfo()
-        .then((allCompanyInfo) => {
-            setCompanyInfo(allCompanyInfo)
-        }, [])
-    }
-
-    )
-
-    const mappedCompanyInfo = companyInfo.map(company => {
-        return<CompanyItem/>
+    const mappedCompaniesInfo = companiesInfo.map((company) => {
+        return<CompanyItem
+        company={company}
+        />
     })
+
+    return(
+        <div>
+            <ul>
+            {mappedCompaniesInfo}
+            </ul>
+        </div>
+    )
 }
+
+export default CompanyList
