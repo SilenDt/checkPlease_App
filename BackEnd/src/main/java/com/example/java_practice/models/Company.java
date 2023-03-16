@@ -22,14 +22,18 @@ public class Company {
     @Column (name = "rating")
     private int rating;
 
+    @Column (name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "company")
     private List<Review> reviews;
 
     public Company(){}
 
-    public Company(String name, String town, int rating) {
+    public Company(String name, String town, String description, int rating) {
         this.name = name;
         this.town = town;
+        this.description = description;
         this.rating = rating;
         this.reviews = new ArrayList<>();
     }
@@ -72,5 +76,13 @@ public class Company {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

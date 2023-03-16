@@ -1,8 +1,11 @@
 package com.example.java_practice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.BeanIsNotAFactoryException;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "reviews")
@@ -27,13 +30,26 @@ public class Review {
     @JoinColumn (name = "user_id", nullable = false)
     private User user;
 
-    public Review(){};
+    @OneToOne
+    @JoinColumn(name = "jobType_id")
+    private JobType jobType;
 
-    public Review(String date, String text, Company company, User user) {
+    @OneToOne
+    @JoinColumn(name = "tipOutType_id")
+    private TipOutType tipOutType;
+
+    private List<Benefit> benefits;
+
+    public Review(){}
+
+    public Review(String date, String text, Company company, User user, JobType jobType, TipOutType tipOutType) {
         this.date = date;
         this.text = text;
         this.company = company;
         this.user = user;
+        this.jobType = jobType;
+        this.tipOutType = tipOutType;
+        this.benefits = new ArrayList<>();
     }
 
     public User getUser() {
@@ -74,5 +90,34 @@ public class Review {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
+    }
+
+    public TipOutType getTipOutType() {
+        return tipOutType;
+    }
+
+    public void setTipOutType(TipOutType tipOutType) {
+        this.tipOutType = tipOutType;
+    }
+
+    public List<Benefit> getBenefits() {
+        return benefits;
+    }
+
+    public void setBenefits(List<Benefit> benefits) {
+        this.benefits = benefits;
+    }
+
+    //METHODS:
+    public void addBenefit(Benefit benefit) {
+        benefits.add(benefit);
     }
 }
