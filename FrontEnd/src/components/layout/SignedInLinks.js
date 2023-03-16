@@ -19,6 +19,8 @@ const SignedInLinks = () => {
     }
    return (
     <>
+        <NavLink to='/' className='temp'>Home</NavLink>
+        <NavLink to='/profile' className='temp'>Profile</NavLink>
         <Button variant="link" onClick={handleClick}>Log Out</Button>
         {/* <li><NavLink to='/' className="temp">NN</NavLink></li> */}
     </>
