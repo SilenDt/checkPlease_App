@@ -1,44 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { getCompaniesInfo } from "../../services/CompanyServices";
+import CompanyList from "../pages/CompanyList";
 
-const Dashboard = () => {
-
-
-  const companies = [
-    {id: 1, name:"TGI Friday's", location:"Boston"},
-    {id: 2, name:"Olive Garden", location:"Boulder"},
-    {id:3, name: "Taco Bell", location:"New York"},
-    {id: 4, name: "Wasabi", location:"Little Rock"}
-  ]
+const Dashboard = ({chosenCategory, dropdownSelect, typed,
+  searchResults, companiesInfo, handleSearch}) => {
   
-  const [typed, setTyped] = useState("")
-  const [chosenCategory, setChosenCategory] = useState("")
-  const [searchResults, setSearchResults] = useState([])
-  
-  
-  const dropdownSelect = (category) => {
-    const chosenCategory = category
-    setChosenCategory(chosenCategory)
-  }
   
   const handleSelect = (e) => {
     const category = e.target.value
     dropdownSelect(category)
   }
   
-  const handleSearch = () => {
-  const filteredResults = companies.filter(
-    (company) => company.location.toLowerCase().includes(typed.toLowerCase())
-  );
-  setSearchResults(filteredResults);
-  }
-  
   
     return(
       <div>
-        <div>
-          <image>Company Logo here</image>
-        </div>
-  
         <div>
           <form id='searchForm'>
             <select id='selectId' onChange={handleSelect}>
@@ -50,6 +25,9 @@ const Dashboard = () => {
             <>onChange={handleSearch}</>
           </form>
         </div>
+        <CompanyList
+          companiesInfo={companiesInfo}
+        />
       </div>
     )
   }
