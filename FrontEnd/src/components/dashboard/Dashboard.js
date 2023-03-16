@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { getCompanyInfo } from "../../services/CompanyServices";
 
 const Dashboard = () => {
 
+
+  // const [companyInfo, setCompanyInfo] = useState([])
+  const [typed, setTyped] = useState("")
+  const [chosenCategory, setChosenCategory] = useState("")
+  const [searchResults, setSearchResults] = useState([])
+    
 
   const companies = [
     {id: 1, name:"TGI Friday's", location:"Boston"},
@@ -10,9 +17,13 @@ const Dashboard = () => {
     {id: 4, name: "Wasabi", location:"Little Rock"}
   ]
   
-  const [typed, setTyped] = useState("")
-  const [chosenCategory, setChosenCategory] = useState("")
-  const [searchResults, setSearchResults] = useState([])
+  
+  // useEffect(() => {
+  //   getCompanyInfo()
+  //   .then((allCompanyInfo) => {
+  //       setCompanyInfo(allCompanyInfo)
+  //   })
+  // }, [])
   
   
   const dropdownSelect = (category) => {
