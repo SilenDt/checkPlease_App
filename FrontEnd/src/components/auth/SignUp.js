@@ -27,7 +27,7 @@ const SignUp = () => {
             setError("")
             setLoading(true)
             await SignUp(emailRef.current.value,passwordRef.current.value)
-            navigate("/")
+            navigate("/signupform")
         } catch {
             setError("failed to create an account")
         }
