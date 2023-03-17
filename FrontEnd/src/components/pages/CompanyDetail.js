@@ -3,15 +3,20 @@ import { useState, useEffect } from "react";
 import { getOneCompany } from "../../services/CompanyServices";
 import { Tab, Tabs, Image, Button, Card } from "react-bootstrap";
 
-const CompanyDetail = ({ companiesInfo, selectedCompany, onReviewButtonClicked }) => {
+const CompanyDetail = ({ companiesInfo, reviews, selectedCompany, onReviewButtonClicked }) => {
     const { id } = useParams()
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
-    console.log({ oneCompany })
+    // console.log({ oneCompany })
+    console.log(reviews)
 
-    const handleReviewClick = () => {
-        onReviewButtonClicked(reviews.form)
-    } 
+    //filter through reviews to display the ones that match current company id.
+    const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
+    console.log(currentCompanyReviews[0].text)
+
+    // const handleReviewClick = () => {
+    //     onReviewButtonClicked(reviews.form)
+    // } 
 
 
     return (
@@ -36,7 +41,9 @@ const CompanyDetail = ({ companiesInfo, selectedCompany, onReviewButtonClicked }
                         Email:
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
-                    blaaaaaaaaaaa
+                    {currentCompanyReviews[0].user.name} <br></br>
+                    {currentCompanyReviews[0].date} <br></br>
+                    {currentCompanyReviews[0].text} <br></br>
                 </Tab>
                 <Tab eventKey="wages" title="Wages">
                     dollllaaaaassssss $$$$
@@ -45,12 +52,13 @@ const CompanyDetail = ({ companiesInfo, selectedCompany, onReviewButtonClicked }
                 </Tabs>
                 {/* <Card> */}
                     {/* <Card.Header>Write a Review</Card.Header> */}
-                    <Button onClick={handleReviewClick}>Write a Review</Button>
+                    <Button >Write a Review</Button>
                 {/* </Card> */}
                 
                 </>
 
     );
 }
+//onClick={handleReviewClick}
 
 export default CompanyDetail;
