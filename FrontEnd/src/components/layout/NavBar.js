@@ -25,12 +25,14 @@ const NavBar = () => {
           style={{float: "left"}}
           />
         </Navbar.Brand>
-        <Nav></Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
             {isLoggedIn.currentUser ? (
               <SignedInLinks />
               ) : (
                 <SignedOutLinks />
               )}
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

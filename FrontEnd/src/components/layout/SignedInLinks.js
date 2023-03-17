@@ -23,14 +23,11 @@ const SignedInLinks = () => {
             <Nav.Link to='/' className='home-page'>Home</Nav.Link>
             </Nav>
             <Nav className="ml-auto">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
             <NavDropdown title="My account" id="my-account-dropdown">
                 <NavDropdown.Item href='/profile' className='profile-page'>Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <Button variant="link" className="sm" onClick={handleClick}>Log Out</Button>
+                <Button variant="link" onClick={handleClick}>Log Out</Button>
             </NavDropdown>
-            </Navbar.Collapse>
             </Nav>
         </>
     )

@@ -29,12 +29,12 @@ const SignIn = () => {
     }
 
     return (
-        // mt-3 d-flex align-items-center justify-content-center
+        //
         <div>
-            <Card className="mt-3 "
-            style={{maxWidth: "20rem"}}>
+            <Container className="mt-3 d-flex align-items-center justify-content-center">
+            <Card>
                 <Card.Body>
-                    <h2>Sign In</h2>
+                    <h2 className="w-100 text-center">Sign In</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
@@ -46,13 +46,13 @@ const SignIn = () => {
                             <Form.Control type="password" ref={passwordRef} required></Form.Control>
                         </Form.Group>
                         <Button disabled={loading} className="w-100 mt-2" type="submit">Sign In</Button>
-
                     </Form>
                     <div className="w-100 text-center mt-3">
                         <Link to="/forgot-password">Forgot passowrd?</Link>
                     </div>
                 </Card.Body>
             </Card>
+            </Container>
 
             <div className="w-100 text-center mt-3">Don't have an account with us?
                 <Link to={"/signup"} className="w-100 text-center mt-3"> Register</Link>

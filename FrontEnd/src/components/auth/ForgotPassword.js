@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Card, Button, Alert, FormText } from "react-bootstrap"
+import { Container, Form, Card, Button, Alert, FormText } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext"
 import SignUp from "./SignUp";
@@ -30,25 +30,27 @@ const ForgotPassword = () => {
 
     return (
         <div>
-            <Card>
-                <Card.Body>
-                    <h2>Password Reset</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    {message && <Alert variant="success">{message}</Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label>Email </Form.Label>
-                            <Form.Control type="email" ref={emailRef} required></Form.Control>
+            <Container className="mt-3 d-flex align-items-center justify-content-center">
+                <Card>
+                    <Card.Body>
+                        <h2>Password Reset</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        {message && <Alert variant="success">{message}</Alert>}
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group id="email">
+                                <Form.Label>Email </Form.Label>
+                                <Form.Control type="email" ref={emailRef} required></Form.Control>
 
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Reset Password</Button>
-                    </Form>
-                    <div className="w-100 text-center mt-3">
-                        <Link to="/signin">Sign In</Link>
-                    </div>
+                            </Form.Group>
+                            <Button disabled={loading} className="w-100 mt-2" type="submit">Reset Password</Button>
+                        </Form>
+                        <div className="w-100 text-center mt-3">
+                            <Link to="/signin">Sign In</Link>
+                        </div>
 
-                </Card.Body>
-            </Card>
+                    </Card.Body>
+                </Card>
+            </Container>
             <div className="w-100 text-center mt-3">Don't have an account with us?
                 <Link to={"/signup"} className="w-100 text-center mt-3"> Register</Link>
             </div>
