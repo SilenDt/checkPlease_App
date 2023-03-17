@@ -12,18 +12,21 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
     dropdownSelect(category)
   }
 
+  console.log(companiesInfo)
   return (
     <>
-    <Container>
-    <Container>
-      <Row className="g-2">
-    <Col md>
-      <FloatingLabel controlId="floatingInputGrid" label="input-choice">
-        <Form.Control type="Search here..."/>
-      </FloatingLabel>
-    </Col>
-    <Col md>
-      <FloatingLabel
+    <Form>
+      <Row    className="g-2">
+        <Col>
+        <Form.Group className="mb-3" controlId="form-input-choice">
+          <FloatingLabel controlId="floatingInputGrid" label="input-choice">
+          <Form.Control type="search" placeholder="search here..." />
+          </FloatingLabel>
+        </Form.Group>
+        </Col>
+        <Col>
+        <Form.Group>
+        <FloatingLabel
         controlId="floatingSelectGrid"
         label="Open this select menu"
       >
@@ -33,25 +36,14 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
           <option value="3">Job Title</option>
         </Form.Select>
       </FloatingLabel>
-    </Col>
-  </Row>
-  </Container>
-  <Container>
-      <Row>
-        <Col sm={5}>
-        <Image src="https://upload.wikimedia.org/wikipedia/commons/8/85/Burger_King_logo_%281999%29.svg"  className="img-fluid" alt="Burger King logo"/>
+        </Form.Group>
         </Col>
-        <Col sm={7}>
+    </Row>
+    </Form>
         <CompanyList
         companiesInfo={companiesInfo}
         onCompanyClicked={onCompanyClicked}
         />
-
-        </Col>
-      </Row>
-      </Container>
-    </Container>
-  
   </>
   )
 }

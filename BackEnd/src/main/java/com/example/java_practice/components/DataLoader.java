@@ -54,9 +54,9 @@ public class DataLoader  implements  ApplicationRunner{
         User user2 = new User("Jane", "Stirling", "Burger King", "Stirling", server);
         userRepository.save(user2);
 
-        Company company1 = new Company("TGI Fridays", "Edinburgh", "Burgers and stuff", 5);
+        Company company1 = new Company("TGI Fridays", "Edinburgh", "Burgers and stuff", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
         companyRepository.save(company1);
-        Company company2 = new Company("Burger King", "Stirling", "More Burgers and frieds", 3);
+        Company company2 = new Company("Burger King", "Stirling", "More Burgers and frieds", 3, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png");
         companyRepository.save(company2);
 
         TipOutType totalTips = new TipOutType("A percentage of your total tips");
