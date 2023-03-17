@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ReviewForm3 = ()=> {
+const ReviewForm = ()=> {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
     const [formState, setFormState] = useState({
@@ -180,5 +180,5 @@ const ReviewForm3 = ()=> {
 )
 }
 
-export default ReviewForm3
+export default ReviewForm
 

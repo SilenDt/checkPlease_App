@@ -21,7 +21,7 @@ public class JobType {
 
     public JobType() {}
 
-    //GETTERS AND SETTERS:
+    //GETTERS AND SETTERS:  
     public Long getId() {
         return id;
     }

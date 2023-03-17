@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
-import ReviewForm3 from "../pages/ReviewForm3";
+import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
@@ -43,7 +43,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         />
      
       <Container>
-      <ReviewForm3/>
+      <ReviewForm/>
     </Container>
   
   </>
