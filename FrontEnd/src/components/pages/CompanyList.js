@@ -14,6 +14,7 @@ import CompanyItem from "./CompanyItem"
         );
     }
 
+    
 
     // const mappedCompaniesInfo = companiesInfo.map((company) => {
     //     return <CompanyItem
