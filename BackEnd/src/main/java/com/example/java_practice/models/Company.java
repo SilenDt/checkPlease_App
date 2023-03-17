@@ -25,16 +25,20 @@ public class Company {
     @Column (name = "description")
     private String description;
 
+    @Column (name = "img_url")
+    private String imageUrl;
+
     @OneToMany(mappedBy = "company")
     private List<Review> reviews;
 
     public Company(){}
 
-    public Company(String name, String town, String description, int rating) {
+    public Company(String name, String town, String description, int rating, String imageUrl) {
         this.name = name;
         this.town = town;
         this.description = description;
         this.rating = rating;
+        this.imageUrl = imageUrl;
         this.reviews = new ArrayList<>();
     }
 
@@ -84,5 +88,13 @@ public class Company {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

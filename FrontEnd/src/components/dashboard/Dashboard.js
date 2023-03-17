@@ -16,29 +16,32 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
   }
-
-
-
+    
+  console.log(companiesInfo)
   return (
-    <div>
-      <div>
-        <Card>
-          <Card.Body>
-            <h2>Search for a company below using restaurant name or location</h2>
-            <Form>
-              <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
-            </Form>
-            <ul>
-              <SearchDropdown searchResults={searchResults}/>
-            </ul>
-        </Card.Body>
-        </Card>
-      </div>
-      <CompanyList
+    <>
+    <Form>
+      <Row    className="g-2">
+        <Col>
+        <Form.Group className="mb-3" controlId="form-input-choice">
+          <FloatingLabel controlId="floatingInputGrid" label="Search for a company below using restaurant name or location">
+          <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange}/>
+          </FloatingLabel>
+        </Form.Group>
+        </Col>
+        <Col>
+          <ul>
+            <SearchDropdown searchResults={searchResults}/>
+          </ul>
+        </Col>
+    </Row>
+    </Form>
+        <CompanyList
         companiesInfo={companiesInfo}
         onCompanyClicked={onCompanyClicked}
         />
-      </div>
+  </>
+  // <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
   )
 }
 
