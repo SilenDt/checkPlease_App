@@ -16,10 +16,9 @@ import { getCompaniesInfo } from "../../services/CompanyServices";
 const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
-  const [typed, setTyped] = useState("")
-  const [chosenCategory, setChosenCategory] = useState("")
-  const [searchResults, setSearchResults] = useState([])
+  // const [chosenCategory, setChosenCategory] = useState("")
   const [selectedCompany, setSelectedCompany] = useState(null)
+  const [searchbarInput, setSearchbarInput] = useState("")
 
   useEffect(() => {
     getCompaniesInfo()
@@ -32,27 +31,21 @@ const MainContainer = () => {
     setSelectedCompany(company)
   }
 
-  // const companies = [
-  //   {id: 1, name:"TGI Friday's", location:"Boston"},
-  //   {id: 2, name:"Olive Garden", location:"Boulder"},
-  //   {id:3, name: "Taco Bell", location:"New York"},
-  //   {id: 4, name: "Wasabi", location:"Little Rock"}
-  // ]
+  // const dropdownSelect = (category) => {
+  //   const chosenCategory = category
+  //   setChosenCategory(chosenCategory)
+  // }
 
-  const dropdownSelect = (category) => {
-    const chosenCategory = category
-    setChosenCategory(chosenCategory)
+  const saveSearchDetail = (userSearchInput) => {
+    setSearchbarInput(userSearchInput)
   }
 
-  const handleSearch = () => {
-    const filteredResults = companiesInfo.filter(
-      (company) => company.town.toLowerCase().includes(typed.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-    }
+  const searchResults = 
+    companiesInfo.filter(company => company.name.toLowerCase().includes(searchbarInput.toLowerCase())|| company.town.toLowerCase().includes(searchbarInput.toLowerCase())) 
+    console.log(searchResults)
 
 
-
+    // .filter(company => company.town.toLowerCase() === chosenCategory || !chosenCategory)
 
   return(
 <Router>
@@ -61,15 +54,13 @@ const MainContainer = () => {
               className="d-flex align-items-center justify-content-center" 
               style={{minHeight:"60vh"}}>
                 <Routes>
-                      <Route exact path="/" element={<ProtectedRoute><Dashboard 
-                      chosenCategory={chosenCategory}
-                      dropdownSelect={dropdownSelect}
-                      typed={typed}
+                      <Route exact path="/" element={<ProtectedRoute><Dashboard
+                      saveSearchDetail={saveSearchDetail}
+                      searchbarInput={searchbarInput}
                       searchResults={searchResults}
-                      companiesInfo={companiesInfo}
-                      handleSearch={handleSearch}
-                      onCompanyClicked={onCompanyClicked}
                       
+                      companiesInfo={companiesInfo}
+                      onCompanyClicked={onCompanyClicked}
                       />
                       
                       </ProtectedRoute>}/>
