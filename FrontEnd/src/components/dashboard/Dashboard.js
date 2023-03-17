@@ -1,10 +1,10 @@
 import React from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
-import {Form, Card, Button, Alert} from "react-bootstrap"
+import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
 
 const Dashboard = ({ chosenCategory, dropdownSelect, typed,
-  searchResults, companiesInfo, handleSearch }) => {
+  searchResults, companiesInfo, handleSearch, selectedCompany }) => {
 
 
   const handleSelect = (e) => {
@@ -13,25 +13,21 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
   }
 
   return (
-    <div>
-      <div>
-        <Card>
-          <Card.Body>
-            <Form>
-              <select id='selectId' onChange={handleSelect}>
-                <option value="">All categories</option>
-                <option value="company">Company Name</option>
-                <option value="location">Location</option>
-              </select>
-              <input id='input' type='text' placeholder='Search here...' defaultValue={typed} onChange={handleSearch} />
-            </Form>
-        </Card.Body>
-        </Card>
-      </div>
-      <CompanyList
-        companiesInfo={companiesInfo}
-      />
-    </div>
+    <>
+    <Container>
+      <Row>
+        <Col sm={5}>
+        <Image src="https://upload.wikimedia.org/wikipedia/commons/8/85/Burger_King_logo_%281999%29.svg" fluid class="img-fluid" alt="Burger King logo"/>
+        </Col>
+        <Col sm={7}>
+        <CompanyList
+        companiesInfo={companiesInfo}/>
+
+        </Col>
+      </Row>
+    </Container>
+  
+  </>
   )
 }
 

@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {Container, Row, Column} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
+import CompanyDetail from "../pages/CompanyDetail";
 
 
 
@@ -60,6 +61,13 @@ const MainContainer = () => {
             <Container 
               className="d-flex align-items-center justify-content-center" 
               style={{minHeight:"60vh"}}>
+                  
+                    {/* <div class="row">
+                      <div class="col-sm">col-sm</div>
+                      <div class="col-sm">col-sm</div>
+                      <div class="col-sm">col-sm</div>
+                    </div> */}
+                  
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard 
                       chosenCategory={chosenCategory}
@@ -69,10 +77,17 @@ const MainContainer = () => {
                       companiesInfo={companiesInfo}
                       handleSearch={handleSearch}
                       onCompanyClicked={onCompanyClicked}
+                      selectedCompany={selectedCompany}
                       
                       />
+                
                       
                       </ProtectedRoute>}/>
+                      <Route path="/companies/:company.id" element={CompanyDetail} 
+                      selectedCompany={selectedCompany}
+                      companiesInfo={companiesInfo}>
+
+                      </Route>
                       <Route path="/signin" element={<SignIn/>}></Route>
                       <Route path="/signup" element={<SignUp/>}></Route>
                       <Route path="/signupform" element={<ProtectedRoute><SignUpForm/></ProtectedRoute>}></Route>
