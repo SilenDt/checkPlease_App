@@ -28,12 +28,8 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      
     </Navbar>
   );
 };
 
 export default NavBar;
-
-
-
