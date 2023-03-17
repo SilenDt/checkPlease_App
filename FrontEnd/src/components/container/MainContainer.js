@@ -10,13 +10,14 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {Container, Row, Column} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
-
+import CompanyDetail from "../pages/CompanyDetail";
+import { getOneCompany } from "../../services/CompanyServices";
+import { useParams } from "react-router-dom";
 
 
 const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
-  // const [chosenCategory, setChosenCategory] = useState("")
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchbarInput, setSearchbarInput] = useState("")
 
@@ -27,14 +28,11 @@ const MainContainer = () => {
     })
   }, [])
 
+
+
   const onCompanyClicked = (company) => {
     setSelectedCompany(company)
   }
-
-  // const dropdownSelect = (category) => {
-  //   const chosenCategory = category
-  //   setChosenCategory(chosenCategory)
-  // }
 
   const saveSearchDetail = (userSearchInput) => {
     setSearchbarInput(userSearchInput)
@@ -45,14 +43,14 @@ const MainContainer = () => {
     console.log(searchResults)
 
 
-    // .filter(company => company.town.toLowerCase() === chosenCategory || !chosenCategory)
-
   return(
 <Router>
           <NavBar/>
             <Container 
               className="d-flex align-items-center justify-content-center" 
               style={{minHeight:"60vh"}}>
+                
+                  
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard
                       saveSearchDetail={saveSearchDetail}
@@ -61,9 +59,17 @@ const MainContainer = () => {
                       
                       companiesInfo={companiesInfo}
                       onCompanyClicked={onCompanyClicked}
-                      />
                       
+                      />
                       </ProtectedRoute>}/>
+                      {companiesInfo.length > 0 ?
+                      <Route path="/companies/:id" 
+                        element=
+                          {<CompanyDetail
+                          selectedCompany={selectedCompany}
+                          companiesInfo={companiesInfo}
+                        />}
+                      /> : "loading"}
                       <Route path="/signin" element={<SignIn/>}></Route>
                       <Route path="/signup" element={<SignUp/>}></Route>
                       <Route path="/signupform" element={<ProtectedRoute><SignUpForm/></ProtectedRoute>}></Route>
