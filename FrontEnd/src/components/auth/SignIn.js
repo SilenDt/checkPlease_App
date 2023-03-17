@@ -48,7 +48,7 @@ const SignIn = () => {
 
                     </Form>
                     <div className="w-100 text-center mt-3">
-                        <Link to="/forgot-password">Forgot passowrd?</Link>
+                        <Link to="/forgot-password">Forgot password?</Link>
                     </div>
 
                 </Card.Body>

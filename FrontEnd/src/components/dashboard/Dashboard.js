@@ -6,17 +6,17 @@ import SearchDropdown from "./SearchDropdown";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
 
+  // state pertaining to forms can live outwith the top-level, because forms are special
     const [searchbarInput, setSearchbarInput] = useState("")
 
 
-    // the searchinput state can live here :) 
   const handleChange = (e) => {
     const searchInput = e.target.value
     console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
   }
-    
+  
   console.log(companiesInfo)
   return (
     <>
