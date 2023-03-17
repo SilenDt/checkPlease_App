@@ -55,14 +55,13 @@ const MainContainer = () => {
 
 
 
+
   return(
 <Router>
           <NavBar/>
-            <Container 
-              className="d-flex align-items-center justify-content-center" 
-              style={{minHeight:"60vh"}}>
-                
-                  
+            <Container> 
+              {/* className="d-flex align-items-center justify-content-center" 
+              style={{minHeight:"60vh"}}   */}
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard 
                       chosenCategory={chosenCategory}
