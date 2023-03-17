@@ -14,7 +14,6 @@ import CompanyDetail from "../pages/CompanyDetail";
 import { getOneCompany } from "../../services/CompanyServices";
 import { useParams } from "react-router-dom";
 
-
 const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
@@ -42,24 +41,16 @@ const MainContainer = () => {
     }
   }
 
- 
-
-
-
   return(
 <Router>
           <NavBar/>
             <Container> 
-              {/* className="d-flex align-items-center justify-content-center" 
-              style={{minHeight:"60vh"}}   */}
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard
-                      
                       saveSearchDetail={saveSearchDetail}
                       searchResults={searchResults}
                       companiesInfo={companiesInfo}
                       onCompanyClicked={onCompanyClicked}
-                      
                       />
                       </ProtectedRoute>}/>
                       {companiesInfo.length > 0 ?
