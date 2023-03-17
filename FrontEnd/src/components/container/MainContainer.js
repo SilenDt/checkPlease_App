@@ -11,16 +11,15 @@ import {Container, Row, Column} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyDetail from "../pages/CompanyDetail";
-
+import { getOneCompany } from "../../services/CompanyServices";
+import { useParams } from "react-router-dom";
 
 
 const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
-  const [typed, setTyped] = useState("")
-  const [chosenCategory, setChosenCategory] = useState("")
-  const [searchResults, setSearchResults] = useState([])
   const [selectedCompany, setSelectedCompany] = useState(null)
+  const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
     getCompaniesInfo()
@@ -29,60 +28,48 @@ const MainContainer = () => {
     })
   }, [])
 
+
+
   const onCompanyClicked = (company) => {
     setSelectedCompany(company)
   }
 
-  // const companies = [
-  //   {id: 1, name:"TGI Friday's", location:"Boston"},
-  //   {id: 2, name:"Olive Garden", location:"Boulder"},
-  //   {id:3, name: "Taco Bell", location:"New York"},
-  //   {id: 4, name: "Wasabi", location:"Little Rock"}
-  // ]
-
-  const dropdownSelect = (category) => {
-    const chosenCategory = category
-    setChosenCategory(chosenCategory)
+  const saveSearchDetail = (userSearchInput) => {
+    if(userSearchInput){
+      setSearchResults(companiesInfo.filter(company => company.name.toLowerCase().includes(userSearchInput.toLowerCase())|| company.town.toLowerCase().includes(userSearchInput.toLowerCase())))
+    } else {
+      setSearchResults([])
+    }
   }
 
-  const handleSearch = () => {
-    const filteredResults = companiesInfo.filter(
-      (company) => company.town.toLowerCase().includes(typed.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-    }
-
+ 
 
 
 
   return(
 <Router>
           <NavBar/>
-            <Container 
-              className="d-flex align-items-center justify-content-center" 
-              style={{minHeight:"60vh"}}>
-                
-                  
+            <Container> 
+              {/* className="d-flex align-items-center justify-content-center" 
+              style={{minHeight:"60vh"}}   */}
                 <Routes>
-                      <Route exact path="/" element={<ProtectedRoute><Dashboard 
-                      chosenCategory={chosenCategory}
-                      dropdownSelect={dropdownSelect}
-                      typed={typed}
+                      <Route exact path="/" element={<ProtectedRoute><Dashboard
+                      
+                      saveSearchDetail={saveSearchDetail}
                       searchResults={searchResults}
                       companiesInfo={companiesInfo}
-                      handleSearch={handleSearch}
                       onCompanyClicked={onCompanyClicked}
-                      selectedCompany={selectedCompany}
                       
                       />
-                
-                      
                       </ProtectedRoute>}/>
-                      <Route path="/companies/:company.id" element={<CompanyDetail/>} 
-                      selectedCompany={selectedCompany}
-                      companiesInfo={companiesInfo}>
-
-                      </Route>
+                      {companiesInfo.length > 0 ?
+                      <Route path="/companies/:id" 
+                        element=
+                          {<CompanyDetail
+                          selectedCompany={selectedCompany}
+                          companiesInfo={companiesInfo}
+                        />}
+                      /> : "loading"}
                       <Route path="/signin" element={<SignIn/>}></Route>
                       <Route path="/signup" element={<SignUp/>}></Route>
                       <Route path="/signupform" element={<ProtectedRoute><SignUpForm/></ProtectedRoute>}></Route>

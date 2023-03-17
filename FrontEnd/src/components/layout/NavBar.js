@@ -15,7 +15,7 @@ const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-    <img src={logo} width="70" height="70"></img>
+    <img src={logo} width="100" height="70"></img>
     </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -28,12 +28,8 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      
     </Navbar>
   );
 };
 
 export default NavBar;
-
-
-
