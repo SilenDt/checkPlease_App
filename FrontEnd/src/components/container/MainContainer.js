@@ -13,6 +13,7 @@ import { getAllReviews, getCompaniesInfo } from "../../services/CompanyServices"
 import CompanyDetail from "../pages/CompanyDetail";
 import { getOneCompany } from "../../services/CompanyServices";
 import { useParams } from "react-router-dom";
+import ReviewForm from "../pages/ReviewForm";
 
 
 const MainContainer = () => {
@@ -105,6 +106,7 @@ const MainContainer = () => {
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route path="/review-form" element={<ReviewForm/>}></Route>
         </Routes>
       </Container>
     </Router>
