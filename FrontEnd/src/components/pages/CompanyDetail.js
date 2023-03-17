@@ -1,13 +1,18 @@
 import { useParams } from "react-router"
 import { useState, useEffect } from "react";
 import { getOneCompany } from "../../services/CompanyServices";
-import { Tab, Tabs, Image } from "react-bootstrap";
+import { Tab, Tabs, Image, Button, Card } from "react-bootstrap";
 
-const CompanyDetail = ({ companiesInfo, selectedCompany }) => {
+const CompanyDetail = ({ companiesInfo, selectedCompany, onReviewButtonClicked }) => {
     const { id } = useParams()
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
     console.log({ oneCompany })
+
+    const handleReviewClick = () => {
+        onReviewButtonClicked(reviews.form)
+    } 
+
 
     return (
         <>
@@ -36,7 +41,13 @@ const CompanyDetail = ({ companiesInfo, selectedCompany }) => {
                 <Tab eventKey="wages" title="Wages">
                     dollllaaaaassssss $$$$
                 </Tab>
+                
                 </Tabs>
+                {/* <Card> */}
+                    {/* <Card.Header>Write a Review</Card.Header> */}
+                    <Button onClick={handleReviewClick}>Write a Review</Button>
+                {/* </Card> */}
+                
                 </>
 
     );

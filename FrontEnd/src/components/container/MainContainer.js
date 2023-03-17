@@ -20,6 +20,7 @@ const MainContainer = () => {
   const [companiesInfo, setCompaniesInfo] = useState([])
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  
 
   useEffect(() => {
     getCompaniesInfo()
@@ -42,7 +43,11 @@ const MainContainer = () => {
     }
   }
 
- 
+
+  const onReviewButtonClicked =(reviewForm) => {
+    setSelectedReview(review)
+  }
+
 
 
 
@@ -68,6 +73,7 @@ const MainContainer = () => {
                           {<CompanyDetail
                           selectedCompany={selectedCompany}
                           companiesInfo={companiesInfo}
+                          onReviewButtonClicked={onReviewButtonClicked}
                         />}
                       /> : "loading"}
                       <Route path="/signin" element={<SignIn/>}></Route>
