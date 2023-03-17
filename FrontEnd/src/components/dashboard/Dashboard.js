@@ -28,10 +28,9 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
         <Form.Group>
         <FloatingLabel
         controlId="floatingSelectGrid"
-        label="Works with selects"
+        label="Open this select menu"
       >
         <Form.Select aria-label="Floating label select example">
-          <option>Open this select menu</option>
           <option value="1">Company Name</option>
           <option value="2">Location</option>
           <option value="3">Job Title</option>

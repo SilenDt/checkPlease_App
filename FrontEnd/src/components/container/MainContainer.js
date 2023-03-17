@@ -11,7 +11,8 @@ import {Container, Row, Column} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyDetail from "../pages/CompanyDetail";
-
+import { getOneCompany } from "../../services/CompanyServices";
+import { useParams } from "react-router-dom";
 
 
 const MainContainer = () => {
@@ -28,6 +29,8 @@ const MainContainer = () => {
         setCompaniesInfo(allCompaniesInfo)
     })
   }, [])
+
+
 
   const onCompanyClicked = (company) => {
     setSelectedCompany(company)
@@ -64,24 +67,24 @@ const MainContainer = () => {
               style={{minHeight:"60vh"}}   */}
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard 
-                      chosenCategory={chosenCategory}
-                      dropdownSelect={dropdownSelect}
-                      typed={typed}
-                      searchResults={searchResults}
-                      companiesInfo={companiesInfo}
-                      handleSearch={handleSearch}
-                      onCompanyClicked={onCompanyClicked}
-                      selectedCompany={selectedCompany}
-                      
+                        chosenCategory={chosenCategory}
+                        dropdownSelect={dropdownSelect}
+                        typed={typed}
+                        searchResults={searchResults}
+                        companiesInfo={companiesInfo}
+                        handleSearch={handleSearch}
+                        onCompanyClicked={onCompanyClicked}
+                        selectedCompany={selectedCompany}    
                       />
-                
-                      
                       </ProtectedRoute>}/>
-                      <Route path="/companies/:company.id" element={<CompanyDetail/>} 
-                      selectedCompany={selectedCompany}
-                      companiesInfo={companiesInfo}>
-
-                      </Route>
+                      {companiesInfo.length > 0 ?
+                      <Route path="/companies/:id" 
+                        element=
+                          {<CompanyDetail
+                          selectedCompany={selectedCompany}
+                          companiesInfo={companiesInfo}
+                        />}
+                      /> : "loading"}
                       <Route path="/signin" element={<SignIn/>}></Route>
                       <Route path="/signup" element={<SignUp/>}></Route>
                       <Route path="/signupform" element={<ProtectedRoute><SignUpForm/></ProtectedRoute>}></Route>
