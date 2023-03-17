@@ -28,28 +28,7 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      <Container>
-      <Row className="g-2">
-    <Col md>
-      <FloatingLabel controlId="floatingInputGrid" label="input-choice">
-        <Form.Control type="Search here..."/>
-      </FloatingLabel>
-    </Col>
-    <Col md>
-      <FloatingLabel
-        controlId="floatingSelectGrid"
-        label="Works with selects"
-      >
-        <Form.Select aria-label="Floating label select example">
-          <option>Open this select menu</option>
-          <option value="1">Company Name</option>
-          <option value="2">Location</option>
-          <option value="3">Job Title</option>
-        </Form.Select>
-      </FloatingLabel>
-    </Col>
-  </Row>
-  </Container>
+      
     </Navbar>
   );
 };

@@ -3,7 +3,7 @@ import { useParams } from "react-router"
 const CompanyDetail = ({companiesInfo, selectedCompany}) => {
     const {id} = useParams()
     const oneCompany = companiesInfo.find((company) => company.id === selectedCompany(id));
-    console.log(selectedCompany)
+    console.log(selectedCompany(id))
     console.log(oneCompany)
 
     return(
