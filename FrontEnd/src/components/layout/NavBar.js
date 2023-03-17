@@ -14,26 +14,23 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">
-    <img src={logo} width="70" height="70"></img>
-    </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            {isLoggedIn.currentUser ? (
-              <SignedInLinks />
-              ) : (
-                <SignedOutLinks />
-              )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-      
+        <Navbar.Brand 
+        as={Link} to="/">
+      <img src={logo} width="70" height="70"></img>
+      </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              {isLoggedIn.currentUser ? (
+                <SignedInLinks />
+                ) : (
+                  <SignedOutLinks />
+                )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
     </Navbar>
   );
 };
 
 export default NavBar;
-
-
-
