@@ -42,7 +42,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         onCompanyClicked={onCompanyClicked}
         />
      
-      </Container>
+      <Container>
       <ReviewForm3/>
     </Container>
   
