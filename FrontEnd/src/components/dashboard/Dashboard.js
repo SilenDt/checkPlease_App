@@ -1,17 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
+import SearchDropdown from "./SearchDropdown";
 
-const Dashboard = ({ chosenCategory, dropdownSelect, typed,
-  searchResults, companiesInfo, handleSearch, selectedCompany, onCompanyClicked }) => {
+const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
+
+    const [searchbarInput, setSearchbarInput] = useState("")
 
 
-  const handleSelect = (e) => {
-    const category = e.target.value
-    dropdownSelect(category)
+    // the searchinput state can live here :) 
+  const handleChange = (e) => {
+    const searchInput = e.target.value
+    console.log({searchInput})
+    setSearchbarInput(searchInput)
+    saveSearchDetail(searchInput)
   }
-
+    
   console.log(companiesInfo)
   return (
     <>
@@ -19,24 +24,15 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
       <Row    className="g-2">
         <Col>
         <Form.Group className="mb-3" controlId="form-input-choice">
-          <FloatingLabel controlId="floatingInputGrid" label="input-choice">
-          <Form.Control type="search" placeholder="search here..." />
+          <FloatingLabel controlId="floatingInputGrid" label="Search for a company below using restaurant name or location">
+          <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange}/>
           </FloatingLabel>
         </Form.Group>
         </Col>
         <Col>
-        <Form.Group>
-        <FloatingLabel
-        controlId="floatingSelectGrid"
-        label="Open this select menu"
-      >
-        <Form.Select aria-label="Floating label select example">
-          <option value="1">Company Name</option>
-          <option value="2">Location</option>
-          <option value="3">Job Title</option>
-        </Form.Select>
-      </FloatingLabel>
-        </Form.Group>
+          <ul>
+            <SearchDropdown searchResults={searchResults}/>
+          </ul>
         </Col>
     </Row>
     </Form>
@@ -45,6 +41,7 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
         onCompanyClicked={onCompanyClicked}
         />
   </>
+  // <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
   )
 }
 
