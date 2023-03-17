@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
+import ReviewForm3 from "../pages/ReviewForm3";
 import SearchDropdown from "./SearchDropdown";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
@@ -40,6 +41,11 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         companiesInfo={companiesInfo}
         onCompanyClicked={onCompanyClicked}
         />
+     
+      </Container>
+      <ReviewForm3/>
+    </Container>
+  
   </>
   // <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
   )
