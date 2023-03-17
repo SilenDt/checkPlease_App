@@ -19,7 +19,7 @@ const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
   const [selectedCompany, setSelectedCompany] = useState(null)
-  const [searchbarInput, setSearchbarInput] = useState("")
+  const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
     getCompaniesInfo()
@@ -35,12 +35,14 @@ const MainContainer = () => {
   }
 
   const saveSearchDetail = (userSearchInput) => {
-    setSearchbarInput(userSearchInput)
+    if(userSearchInput){
+      setSearchResults(companiesInfo.filter(company => company.name.toLowerCase().includes(userSearchInput.toLowerCase())|| company.town.toLowerCase().includes(userSearchInput.toLowerCase())))
+    } else {
+      setSearchResults([])
+    }
   }
 
-  const searchResults = 
-    companiesInfo.filter(company => company.name.toLowerCase().includes(searchbarInput.toLowerCase())|| company.town.toLowerCase().includes(searchbarInput.toLowerCase())) 
-    console.log(searchResults)
+ 
 
 
   return(
@@ -53,10 +55,9 @@ const MainContainer = () => {
                   
                 <Routes>
                       <Route exact path="/" element={<ProtectedRoute><Dashboard
-                      saveSearchDetail={saveSearchDetail}
-                      searchbarInput={searchbarInput}
-                      searchResults={searchResults}
                       
+                      saveSearchDetail={saveSearchDetail}
+                      searchResults={searchResults}
                       companiesInfo={companiesInfo}
                       onCompanyClicked={onCompanyClicked}
                       
