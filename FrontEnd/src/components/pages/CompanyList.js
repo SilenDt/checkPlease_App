@@ -1,21 +1,36 @@
 import CompanyItem from "./CompanyItem"
 
-const CompanyList = ({companiesInfo, onCompanyClicked}) => {
+// const CompanyList = ({ companiesInfo, onCompanyClicked }) => {
 
-    const mappedCompaniesInfo = companiesInfo.map((company) => {
-        return<CompanyItem
-        company={company} 
-        onCompanyClicked={onCompanyClicked}
-        />
-    })
-    
-    return(
-        <div>
+    function CompanyList({ companiesInfo, onCompanyClicked }) {
+        return (
             <ul>
-            {mappedCompaniesInfo}
+                {companiesInfo.map((company) => (
+                    <CompanyItem key={company.id} 
+                    company={company} 
+                    onCompanyClicked={onCompanyClicked} />
+                ))}
             </ul>
-        </div>
-    )
-}
+        );
+    }
+
+
+    // const mappedCompaniesInfo = companiesInfo.map((company) => {
+    //     return <CompanyItem
+    //     key={company.id}
+    //     company={company} 
+    //     onCompanyClicked={onCompanyClicked}
+    //     />
+    // })
+
+
+    // return(
+    //     <div>
+    //         <ul>
+    //         {mappedCompaniesInfo}
+    //         </ul>
+    //     </div>
+    // )
+// }
 
 export default CompanyList
