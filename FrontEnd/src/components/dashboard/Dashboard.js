@@ -2,6 +2,7 @@ import React from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
+import ReviewForm3 from "../pages/ReviewForm3";
 
 const Dashboard = ({ chosenCategory, dropdownSelect, typed,
   searchResults, companiesInfo, handleSearch, selectedCompany, onCompanyClicked }) => {
@@ -51,6 +52,7 @@ const Dashboard = ({ chosenCategory, dropdownSelect, typed,
         </Col>
       </Row>
       </Container>
+      <ReviewForm3/>
     </Container>
   
   </>
