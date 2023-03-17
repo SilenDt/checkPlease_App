@@ -174,8 +174,7 @@ const ReviewForm3 = ()=> {
         </div>
 
         </div>
-        {/* <input disabled={loading} className="w-100" type="submit">Sign Up</input> */}
-
+        <input type="submit" value="Submit" />
 </form>
 </div>
 )
