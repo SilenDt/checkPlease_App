@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Button, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Button, Navbar, NavDropdown, Nav } from "react-bootstrap"
 import { useAuth } from '../../contexts/AuthContext';
 
 const SignedInLinks = () => {
@@ -20,7 +20,7 @@ const SignedInLinks = () => {
     return (
         <>
             <Nav className="me-auto">
-            <Nav.Link to='/' className='home-page'>Home</Nav.Link>
+            <Nav.Link href='/' className='home-page'>Home</Nav.Link>
             </Nav>
             <Nav className="ml-auto">
             <NavDropdown title="My account" id="my-account-dropdown">
