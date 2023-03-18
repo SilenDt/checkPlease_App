@@ -2,21 +2,22 @@ import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
+import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
 
+  // state pertaining to forms can live outwith the top-level, because forms are special
     const [searchbarInput, setSearchbarInput] = useState("")
 
 
-    // the searchinput state can live here :) 
   const handleChange = (e) => {
     const searchInput = e.target.value
     console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
   }
-    
+  
   console.log(companiesInfo)
   return (
     <>
@@ -40,6 +41,11 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         companiesInfo={companiesInfo}
         onCompanyClicked={onCompanyClicked}
         />
+     
+      <Container>
+      <ReviewForm/>
+    </Container>
+  
   </>
   // <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
   )
