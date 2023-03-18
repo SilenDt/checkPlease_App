@@ -13,17 +13,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (name = "name")
-    private String name;
+    @Column (name = "uid")
+    private  String uid;
+
+    @Column (name = "firstName")
+    private String firstName;
+
+    @Column (name = "lastName")
+    private String lastName;
 
     @Column (name = "userEmail")
     private String userEmail;
-//
-//    @Column (name = "user_password")
-//    private String userPassword;
 
-    @Column (name = "town")
-    private String town;
+    @Column (name = "userTown")
+    private String userTown;
 
     @Column (name = "placeOfWork")
     private String placeOfWork;
@@ -40,15 +43,40 @@ public class User {
 
     public User(){}
 
-    public User(String name, String town, String placeOfWork, String locationOfPlaceOfWork, String userEmail, JobType jobType) {
-        this.name = name;
-        this.town = town;
+    public User(String uid, String firstName, String lastName, String userTown, String placeOfWork, String locationOfPlaceOfWork, String userEmail, JobType jobType) {
+        this.uid = uid;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userTown = userTown;
         this.placeOfWork = placeOfWork;
         this.userEmail = userEmail;
-//        this.userPassword = userPassword;
         this.locationOfPlaceOfWork = locationOfPlaceOfWork;
         this.reviews = new ArrayList<>();
         this.jobType = jobType;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getUserEmail() {
@@ -75,20 +103,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserTown() {
+        return userTown;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
+    public void setUserTown(String town) {
+        this.userTown = town;
     }
 
     public String getPlaceOfWork() {
