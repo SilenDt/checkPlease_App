@@ -15,7 +15,6 @@ import { getOneCompany } from "../../services/CompanyServices";
 import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 
-
 const MainContainer = () => {
 
   const [companiesInfo, setCompaniesInfo] = useState([])
@@ -53,42 +52,16 @@ const MainContainer = () => {
     }
   }
 
-
-
-  // const onVisitedClick = (clickedCountry) => {
-  //   if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
-  //       postVisitedCountry(clickedCountry)
-  //           .then((response) => {
-  //               const copyOfClickedCountry = { ...clickedCountry }
-  //               copyOfClickedCountry._id = response.insertedId
-  //               addToVisited(copyOfClickedCountry)
-  //               deleteBucketCountry(clickedCountry.cca2)
-  //                   .then(() => {
-  //                       removeBucketCountry(clickedCountry.cca2)
-  //                       setCountryAddMessage('Added to list!')
-
-
-  // const onReviewButtonClicked =(reviewForm) => {
-  //   setSelectedReview(review)
-  // }
-
-
-
-
   return (
     <Router>
       <NavBar />
       <Container>
-        {/* className="d-flex align-items-center justify-content-center" 
-              style={{minHeight:"60vh"}}   */}
         <Routes>
           <Route exact path="/" element={<ProtectedRoute><Dashboard
-
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             companiesInfo={companiesInfo}
             onCompanyClicked={onCompanyClicked}
-
           />
           </ProtectedRoute>} />
           {companiesInfo.length > 0 ?
@@ -98,7 +71,6 @@ const MainContainer = () => {
                 selectedCompany={selectedCompany}
                 companiesInfo={companiesInfo}
                 reviews={reviews}
-              // onReviewButtonClicked={onReviewButtonClicked}
               />}
             /> : "loading"}
           <Route path="/signin" element={<SignIn />}></Route>
@@ -106,7 +78,7 @@ const MainContainer = () => {
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/review-form" element={<ReviewForm/>}></Route>
+          <Route path="/review-form" element={<ReviewForm />}></Route>
         </Routes>
       </Container>
     </Router>

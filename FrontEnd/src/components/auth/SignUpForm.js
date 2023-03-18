@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {Form, Card, Button, Alert} from "react-bootstrap"
+import {Container, Form, Card, Button, Alert} from "react-bootstrap"
 import {useAuth} from "../../contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
@@ -32,24 +32,26 @@ const SignUpForm = () => {
 
     return (
         <div>
-            <Card>
-                <Card.Body>
-                <h2>Please enter your details below</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group id="firstName">
-                        <Form.Label>First name </Form.Label>
-                        <Form.Control type="firstName" ref={firstNameRef} required></Form.Control>
-                    </Form.Group>
+            <Container className="mt-3 d-flex align-items-center justify-content-center">
+                <Card>
+                    <Card.Body>
+                    <h2>Please enter your details below</h2>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group id="firstName">
+                            <Form.Label>First name </Form.Label>
+                            <Form.Control type="firstName" ref={firstNameRef} required></Form.Control>
+                        </Form.Group>
 
-                    <Form.Group id="lastName">
-                        <Form.Label>Last name </Form.Label>
-                        <Form.Control type="lastName" ref={lastNameRef} required></Form.Control>
-                    </Form.Group>
-                    <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
-                </Form>
-                </Card.Body>
-            </Card>
+                        <Form.Group id="lastName">
+                            <Form.Label>Last name </Form.Label>
+                            <Form.Control type="lastName" ref={lastNameRef} required></Form.Control>
+                        </Form.Group>
+                        <Button disabled={loading} className="w-100 mt-2" type="submit">Sign Up</Button>
+                    </Form>
+                    </Card.Body>
+                </Card>
+            </Container>
         </div>
     )
 }

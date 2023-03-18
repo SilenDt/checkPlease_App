@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Button } from "react-bootstrap"
+import { Button, Navbar, NavDropdown, Nav } from "react-bootstrap"
 import { useAuth } from '../../contexts/AuthContext';
 
 const SignedInLinks = () => {
@@ -19,11 +19,18 @@ const SignedInLinks = () => {
     }
     return (
         <>
-            <NavLink to='/' className='temp'>Home</NavLink>
-            <NavLink to='/profile' className='temp'>Profile</NavLink>
-            <Button variant="link" onClick={handleClick}>Log Out</Button>
-            {/* <li><NavLink to='/' className="temp">NN</NavLink></li> */}
+            <Nav className="me-auto">
+            <Nav.Link href='/' className='home-page'>Home</Nav.Link>
+            </Nav>
+            <Nav className="ml-auto">
+            <NavDropdown title="My account" id="my-account-dropdown">
+                <NavDropdown.Item href='/profile' className='profile-page'>Profile</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <Button variant="link" onClick={handleClick}>Log Out</Button>
+            </NavDropdown>
+            </Nav>
         </>
     )
 }
+
 export default SignedInLinks

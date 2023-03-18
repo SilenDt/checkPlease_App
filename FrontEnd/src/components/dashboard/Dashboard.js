@@ -22,15 +22,15 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
   return (
     <>
     <Form>
-      <Row    className="g-2">
-        <Col>
+      <Row className="g-2">
+        <Col sm={9}>
         <Form.Group className="mb-3" controlId="form-input-choice">
           <FloatingLabel controlId="floatingInputGrid" label="Search for a company below using restaurant name or location">
           <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange}/>
           </FloatingLabel>
         </Form.Group>
         </Col>
-        <Col>
+        <Col sm={3}>
           <ul>
             <SearchDropdown searchResults={searchResults}/>
           </ul>
