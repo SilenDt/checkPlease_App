@@ -7,7 +7,6 @@ const CompanyItem = ({company, onCompanyClicked}) => {
     onCompanyClicked(company.id)
     }
 
-    https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg
         return(
         <div>
             <div style={{ padding: "0.25rem", marginBottom: "0.5rem" }}>
