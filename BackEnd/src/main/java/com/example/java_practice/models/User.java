@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (name = "uid")
+    @Column (name = "uid", unique = true)
     private  String uid;
 
     @Column (name = "firstName")
@@ -22,7 +22,7 @@ public class User {
     @Column (name = "lastName")
     private String lastName;
 
-    @Column (name = "userEmail")
+    @Column (name = "userEmail", unique = true)
     private String userEmail;
 
     @Column (name = "userTown")
