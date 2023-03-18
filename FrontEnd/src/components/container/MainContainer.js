@@ -9,12 +9,13 @@ import ForgotPassword from "../auth/ForgotPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Container, Row, Column } from "react-bootstrap"
 import { useState, useEffect } from "react";
-import { getAllReviews, getCompaniesInfo } from "../../services/CompanyServices";
+import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyDetail from "../pages/CompanyDetail";
 import { getOneCompany } from "../../services/CompanyServices";
 import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
+import { getAllReviews } from "../../services/ReviewService";
 
 const MainContainer = () => {
 
@@ -38,8 +39,11 @@ const MainContainer = () => {
     getAllReviews()
       .then((allReviews) => {
         setReviews(allReviews)
+        console.log(allReviews)
       })
   }, [])
+
+  
 
 
   const onCompanyClicked = (company) => {
