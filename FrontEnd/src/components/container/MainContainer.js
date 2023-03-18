@@ -26,7 +26,7 @@ const MainContainer = () => {
   const [searchResults, setSearchResults] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
   
-  console.log("This is the current user " + currentUser.uid)
+  // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
     getCompaniesInfo()
