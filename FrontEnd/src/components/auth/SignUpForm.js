@@ -11,11 +11,12 @@ const SignUpForm = () => {
     const lastNameRef = useRef()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
-    // const {SignUpForm} = useAuth()
+    const {currentUser, setCurrentUser} = useAuth()
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault();
+        console.log(currentUser.uid)
         if(firstNameRef === null || lastNameRef === null){
             setError("All fields are required")
         }
@@ -24,7 +25,8 @@ const SignUpForm = () => {
             setLoading(true)
             const userDetails={
                 firstName: firstNameRef.current.value,
-                lastName: lastNameRef.current.value
+                lastName: lastNameRef.current.value,
+                uid: currentUser.uid
             }
             await postUser(userDetails)
             navigate("/")

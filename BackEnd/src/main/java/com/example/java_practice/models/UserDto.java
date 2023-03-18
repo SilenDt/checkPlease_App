@@ -9,9 +9,9 @@ public class UserDto {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-//
-//        @Column (name = "uid")
-//        private String uid;
+
+        @Column (name = "uid")
+        private String uid;
 //
 //        @Column (name = "userEmail")
 //        private String userEmail;
@@ -25,9 +25,10 @@ public class UserDto {
 
         public UserDto(){};
 
-    public UserDto(String firstName, String lastName) {
+    public UserDto(String firstName, String lastName, String uid) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.uid = uid;
     }
 
     public String getFirstName() {
@@ -53,14 +54,14 @@ public class UserDto {
     public void setId(Long id) {
         this.id = id;
     }
-//
-//    public String getUid() {
-//        return uid;
-//    }
-//
-//    public void setUid(String uid) {
-//        this.uid = uid;
-//    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 //
 //    public String getUserEmail() {
 //        return userEmail;
