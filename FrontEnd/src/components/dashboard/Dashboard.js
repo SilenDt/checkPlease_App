@@ -18,7 +18,6 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     saveSearchDetail(searchInput)
   }
   
-  console.log(companiesInfo)
   return (
     <>
     <Form>
@@ -41,7 +40,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         companiesInfo={companiesInfo}
         onCompanyClicked={onCompanyClicked}
         />
-     
+  
       <Container>
       <ReviewForm/>
     </Container>

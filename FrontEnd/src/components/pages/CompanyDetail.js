@@ -10,7 +10,6 @@ const CompanyDetail = ({ companiesInfo, reviews, selectedCompany, onReviewButton
     const navigate = useNavigate()
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
-    // console.log({ oneCompany })
     console.log(reviews)
 
     //filter through reviews to display the ones that match current company id.
@@ -21,31 +20,13 @@ const CompanyDetail = ({ companiesInfo, reviews, selectedCompany, onReviewButton
         navigate("/review-form")
     } 
 
-    
-
-    // async function handleSubmit(e) {
-    //     e.preventDefault()
-    //     try {
-    //         setError("")
-    //         setLoading(true)
-    //         await SignIn(emailRef.current.value,passwordRef.current.value)
-    //         navigate("/")
-
-    //     } catch {
-    //         setError("You do not have an account with us")
-
-    //     }
-    //     setLoading(false)
-    // }
 
     return (
         <>
             <Image
                 src="https://picsum.photos/900/400"
                 fluid
-
             />
-
             <Tabs
                 defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
@@ -69,12 +50,8 @@ const CompanyDetail = ({ companiesInfo, reviews, selectedCompany, onReviewButton
                 </Tab>
             </Tabs>
             <Button onClick={handleWriteReviewClick}>Write a Review</Button>
-
-
         </>
-
     );
 }
-//onClick={handleReviewClick}
 
 export default CompanyDetail;
