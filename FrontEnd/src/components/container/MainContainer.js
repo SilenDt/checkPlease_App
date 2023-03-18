@@ -14,6 +14,7 @@ import CompanyDetail from "../pages/CompanyDetail";
 import { getOneCompany } from "../../services/CompanyServices";
 import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
+import { useAuth } from "../../contexts/AuthContext"
 
 const MainContainer = () => {
 
@@ -21,7 +22,9 @@ const MainContainer = () => {
   const [reviews, setReviews] = useState([])
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  const { currentUser } = useAuth()
 
+  console.log("This is the current user" + currentUser.uid)
 
   useEffect(() => {
     getCompaniesInfo()
@@ -37,7 +40,6 @@ const MainContainer = () => {
         setReviews(allReviews)
       })
   }, [])
-
 
 
   const onCompanyClicked = (company) => {
