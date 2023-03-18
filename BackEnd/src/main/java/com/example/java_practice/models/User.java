@@ -16,8 +16,8 @@ public class User {
     @Column (name = "name")
     private String name;
 
-//    @Column (name = "user_email")
-//    private String userEmail;
+    @Column (name = "userEmail")
+    private String userEmail;
 //
 //    @Column (name = "user_password")
 //    private String userPassword;
@@ -40,15 +40,23 @@ public class User {
 
     public User(){}
 
-    public User(String name, String town, String placeOfWork, String locationOfPlaceOfWork, JobType jobType) {
+    public User(String name, String town, String placeOfWork, String locationOfPlaceOfWork, String userEmail, JobType jobType) {
         this.name = name;
         this.town = town;
         this.placeOfWork = placeOfWork;
-//        this.userEmail = userEmail;
+        this.userEmail = userEmail;
 //        this.userPassword = userPassword;
         this.locationOfPlaceOfWork = locationOfPlaceOfWork;
         this.reviews = new ArrayList<>();
         this.jobType = jobType;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public List<Review> getReviews() {
