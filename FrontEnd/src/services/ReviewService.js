@@ -5,9 +5,9 @@ const baseURL = "http://localhost:8080/reviews"
 //     .then(res => res.json())
 // }
 
-export  function getAllReviews(){
-    return  fetch(baseURL)
-    .then(res => res.json())
+export async function getAllReviews(){
+    const res = await fetch(baseURL)
+    return await res.json()
 }
 
 export async function getOneReview(id){

@@ -3,6 +3,7 @@ import {Container, Form, Card, Button, Alert} from "react-bootstrap"
 import {useAuth} from "../../contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
+import { postUser } from "../../services/UserService";
 
 const SignUpForm = () => {
 
@@ -10,22 +11,25 @@ const SignUpForm = () => {
     const lastNameRef = useRef()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
-    const {SignUpForm} = useAuth()
+    // const {SignUpForm} = useAuth()
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // db.collection('userData').add({
-        //     firstName: firstNameRef.current.value,
-        //     lastName: lastNameRef.current.value
-        // })
+        if(firstNameRef === null || lastNameRef === null){
+            setError("All fields are required")
+        }
         try{
             setError("")
             setLoading(true)
-            await SignUpForm(firstNameRef.current.value,lastNameRef.current.value)
+            const userDetails={
+                firstName: firstNameRef.current.value,
+                lastName: lastNameRef.current.value
+            }
+            await postUser(userDetails)
             navigate("/")
         } catch {
-            setError("failed to create an account")
+            setError("failed to post user details")
         }
         setLoading(false)
     }

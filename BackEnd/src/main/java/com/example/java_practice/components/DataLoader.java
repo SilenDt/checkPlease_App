@@ -49,9 +49,9 @@ public class DataLoader  implements  ApplicationRunner{
         jobTitleRepository.save(busser);
 
 
-        User user1 = new User("Davie", "Edinburgh", "TGI Fridays", "Edinburgh", bartender);
+        User user1 = new User("Davie", "Edinburgh", "TGI Fridays", "Edinburgh", "davie@email.com", bartender);
         userRepository.save(user1);
-        User user2 = new User("Jane", "Stirling", "Burger King", "Stirling", server);
+        User user2 = new User("Jane", "Stirling", "Burger King", "Stirling","jane@email.com", server);
         userRepository.save(user2);
 
         Company company1 = new Company("TGI Fridays", "Edinburgh", "Burgers and stuff", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
