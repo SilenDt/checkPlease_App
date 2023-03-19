@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import { getCompaniesInfo } from "../../services/CompanyServices";
-import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
+import {Dropdown, Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
 import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
 import Profile from "../pages/Profile";
@@ -25,19 +25,17 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
   return (
     <>
     <Form>
-      <Row className="g-2">
-        <Col sm={9}>
-        <Form.Group className="mb-3" controlId="form-input-choice">
-          <FloatingLabel controlId="floatingInputGrid" label="Search for a company below using restaurant name or location">
+      <Row>
+        <Form.Group className="mb-3 mt-3" style={{width: "40%"}} controlId="form-input-choice">
+          <FloatingLabel controlId="floatingInputGrid" label="Search for a company using restaurant name or location">
           <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange}/>
           </FloatingLabel>
         </Form.Group>
-        </Col>
-        <Col sm={3}>
+        </Row>
+        <Row>
           <ul>
             <SearchDropdown searchResults={searchResults}/>
           </ul>
-        </Col>
     </Row>
     </Form>
     <Row>

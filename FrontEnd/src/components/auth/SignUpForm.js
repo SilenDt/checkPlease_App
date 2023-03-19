@@ -16,7 +16,7 @@ const SignUpForm = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     const { currentUser, setCurrentUser } = useAuth()
-    const [dropdownJob, setDropdownJob] = useState("")
+    const [selectJob, setSelectJob] = useState("")
     const navigate = useNavigate()
 
 
@@ -36,10 +36,11 @@ const SignUpForm = () => {
                 lastName: lastNameRef.current.value,
                 userTown: userTownRef.current.value,
                 locationOfPlaceOfWork: locationOfPlaceOfWorkRef.current.value,
-                jobType: jobTypeRef.current.value,
+                // jobType: selectJob.current.value,
                 uid: currentUser.uid,
                 userEmail: currentUser.email
             }
+            console.log(userDetails)
             await postUser(userDetails)
             navigate("/")
         } catch {
@@ -48,11 +49,11 @@ const SignUpForm = () => {
         setLoading(false)
     }
 
-    const handleClick = (e) => {
-        const chosenJob = e.target.value
-        setDropdownJob(chosenJob) 
+    // const handleClick = (e) => {
+    //     const chosenJob = e.target.value
+    //     setSelectJob(chosenJob) 
 
-    }
+    // }
 
     return (
         <div>
@@ -79,19 +80,14 @@ const SignUpForm = () => {
                                 <Form.Label>What town/city do you work in? </Form.Label>
                                 <Form.Control type="placeOfWork" ref={locationOfPlaceOfWorkRef} ></Form.Control>
                             </Form.Group>
-                            <Dropdown>
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic" onSelect={handleClick} value={dropdownJob}>
-                                    Job Title (choose closest match)
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    <Dropdown.Item ref={jobTypeRef} >Server</Dropdown.Item>
-                                    <Dropdown.Item ref={jobTypeRef} >Cook</Dropdown.Item>
-                                    <Dropdown.Item ref={jobTypeRef} >Busser</Dropdown.Item>
-                                    <Dropdown.Item ref={jobTypeRef} >Bartender</Dropdown.Item>
-                                    <Dropdown.Item ref={jobTypeRef} >Dishwasher</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            {/* <Form.Label>What job did you do in your last role? (choose closest)</Form.Label>
+                            <Form.Select onChange={handleClick} value={selectJob} placeholder="Choose an option..">
+                                <option value="Server">Server</option>
+                                <option value="Cook">Cook</option>
+                                <option value="Busser">Busser</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Dishwasher">Dishwasher</option>
+                            </Form.Select> */}
                             <Button disabled={loading} className="w-100 mt-2" type="submit">Sign Up</Button>
                         </Form>
                     </Card.Body>

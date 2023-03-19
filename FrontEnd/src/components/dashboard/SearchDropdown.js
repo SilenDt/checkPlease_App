@@ -1,4 +1,4 @@
-
+import { Dropdown } from "react-bootstrap"
 
 const SearchDropdown = ({searchResults}) => {
 
@@ -9,9 +9,7 @@ const SearchDropdown = ({searchResults}) => {
 
     return (
         <div className="search-results-dropdown">
-            <li>
-                {dropdownDisplay}
-            </li>
+            {dropdownDisplay}
         </div>
     )
 }
