@@ -37,15 +37,15 @@ public class DataLoader  implements  ApplicationRunner{
         tipOutTypeRepository.deleteAll();
 //        benefitRepository.deleteAll();
 
-        JobType server = new JobType("Server");
+        JobType server = new JobType("Server", 10);
         jobTitleRepository.save(server);
-        JobType bartender = new JobType("Bartender");
+        JobType bartender = new JobType("Bartender", 10);
         jobTitleRepository.save(bartender);
-        JobType cook = new JobType("Cook");
+        JobType cook = new JobType("Cook", 12);
         jobTitleRepository.save(cook);
-        JobType dishwasher = new JobType("Dishwasher");
+        JobType dishwasher = new JobType("Dishwasher", 7);
         jobTitleRepository.save(dishwasher);
-        JobType busser = new JobType("Busser");
+        JobType busser = new JobType("Busser", 7);
         jobTitleRepository.save(busser);
 
 

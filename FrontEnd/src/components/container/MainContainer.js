@@ -18,6 +18,8 @@ import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
 import { getUserByUid, postUser } from "../../services/UserService";
 import { returnStatement } from "@babel/types";
+import { getJobTypesInfo } from "../../services/JobTypeServices";
+import CompanyComparison from "../pages/CompanyComparison";
 
 const MainContainer = () => {
 
@@ -26,6 +28,7 @@ const MainContainer = () => {
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchResults, setSearchResults] = useState([])
   const [userDetailsByUid, setUserDetailsByUid] = useState(null)
+  const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
   
   // console.log("This is the current user " + currentUser.uid)
@@ -40,6 +43,11 @@ const MainContainer = () => {
         setReviews(allReviews)
         console.log(allReviews)
       })
+    getJobTypesInfo()
+    .then((allJobTypes) => {
+      setJobTypes(allJobTypes)
+      // console.log(allJobTypes)
+    })
     if(!currentUser){
       return
     }
@@ -77,13 +85,13 @@ const MainContainer = () => {
             onCompanyClicked={onCompanyClicked}
           />
           </ProtectedRoute>} />
-          {companiesInfo.length > 0 && reviews.length > 0 ?
+          {companiesInfo.length > 0 && reviews.length > 0 && jobTypes.length > 0 ?
             <Route path="/companies/:id"
               element=
               {<CompanyDetail
-                selectedCompany={selectedCompany}
                 companiesInfo={companiesInfo}
                 reviews={reviews}
+                jobTypes={jobTypes}
               />}
             /> : "loading"}
           <Route path="/signin" element={<SignIn />}></Route>
@@ -99,6 +107,11 @@ const MainContainer = () => {
           : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ReviewForm />}></Route>
+          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/company-comparison" element={<CompanyComparison
+          jobTypes = {jobTypes}
+          companiesInfo = {companiesInfo}
+          />}          
+          /> : "loading"}
         </Routes>
       </Container>
     </Router>
