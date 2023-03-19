@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router";
-import { Card, Body, Title, Image } from "react-bootstrap";
+import { Card, Body, Title, Image, Row, Col, Container } from "react-bootstrap";
 
 const CompanyComparison = ({ companiesInfo, jobTypes }) => {
 
@@ -13,12 +13,18 @@ const CompanyComparison = ({ companiesInfo, jobTypes }) => {
     const oneCompany = companiesInfo.find((company) => company.id == id);
     console.log(jobTypes)
     console.log(oneCompany)
-    
-    // const currentJobTypes = jobTypes.forEach((jobType) => {
-    //     // console.log(jobType)
-    //     return jobType
-    // })
 
+
+    const currentJobTypes = jobTypes.map((jobType) => (
+        <Container key={jobType.id}>
+            <Row>
+                <Col>{jobType.jobRole}</Col>
+                <Col> {jobType.hourlyRate}</Col>
+            </Row>
+        </Container>
+    ));
+
+        console.log(currentJobTypes)
 
     return (
         <>
@@ -26,18 +32,43 @@ const CompanyComparison = ({ companiesInfo, jobTypes }) => {
                 src="https://picsum.photos/900/400"
                 fluid
             />
-            <Card className="mt-3 d-flex align-items-center justify-content-center">
-            <Card.Body>
-                <Card.Title>{oneCompany.name}</Card.Title>
-                <Card.Text>{oneCompany.description}</Card.Text>
-            </Card.Body>
-                <Card.Body>
-                    {/* <Card.Title>Job Role:</Card.Title>
-                    <Card.Text>{currentJobTypes.jobRole}</Card.Text> */}
-                    {/* <Card.Title>Wages:</Card.Title>
-                    <Card.Text>{currentJobTypes.hourlyRate}</Card.Text> */}
-                </Card.Body>
-            </Card>
+            <Container className="mt-3">
+                <Row>
+                    <Col>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>
+                                {oneCompany.name}
+                            </Card.Title>
+                            <Card.Text>
+                                {oneCompany.description}
+                            </Card.Text>
+                        </Card.Body>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        Comparison Company 
+                    </Col>
+                </Row>
+                <Row>
+                    <Col> 
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>Job Role:</Card.Title>
+                                <Card.Text>{currentJobTypes}</Card.Text>
+                                <Card.Title>Wages:</Card.Title>
+                                <Card.Text>{currentJobTypes}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>2 of 2</Col>
+                </Row>
+
+
+
+            </Container>
+
         </>
     )
 

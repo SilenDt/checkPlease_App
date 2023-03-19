@@ -107,7 +107,7 @@ const MainContainer = () => {
           : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ReviewForm />}></Route>
-          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/company-comparison" element={<CompanyComparison
+          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
           jobTypes = {jobTypes}
           companiesInfo = {companiesInfo}
           />}          

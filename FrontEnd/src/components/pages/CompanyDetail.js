@@ -2,8 +2,6 @@ import { useNavigate, useParams } from "react-router"
 import { useState, useEffect } from "react";
 import { getOneCompany } from "../../services/CompanyServices";
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
-import { StarRatings } from 'react-star-ratings'
-import Rater from "react-rater";
 import ReactStars from "react-stars";
 
 
@@ -13,9 +11,8 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    // console.log(id)
+
     const oneCompany = companiesInfo.find((company) => company.id == id);
-    // console.log(oneCompany)
 
     // filter through reviews to display the ones that match current company id.
     const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
