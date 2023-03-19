@@ -4,6 +4,8 @@ import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
 import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
+import Profile from "../pages/Profile";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
 
@@ -17,6 +19,8 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
   }
+
+  const isLoggedIn = useAuth();
   
   return (
     <>
@@ -36,17 +40,20 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         </Col>
     </Row>
     </Form>
-        <CompanyList
-        companiesInfo={companiesInfo}
-        onCompanyClicked={onCompanyClicked}
-        />
-  
+    <Row>
+      <Col sm={8}>
+          <CompanyList
+          companiesInfo={companiesInfo}
+          onCompanyClicked={onCompanyClicked}
+          />
+      </Col>
+      </Row>
+      {isLoggedIn.currentUser && (
+            <Profile/>)}
       <Container>
       <ReviewForm/>
     </Container>
-  
   </>
-  // <input id='input' type='text' placeholder='Search here...' value={searchbarInput} onChange={handleChange} />
   )
 }
 

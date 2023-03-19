@@ -14,7 +14,7 @@ const CompanyDetail = ({ companiesInfo, reviews, selectedCompany, onReviewButton
 
     // filter through reviews to display the ones that match current company id.
     const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
-    console.log(currentCompanyReviews[0].text)
+    // console.log(currentCompanyReviews[0].text)
     // console.log(currentCompanyReviews.text)
 
     const handleWriteReviewClick = () => {

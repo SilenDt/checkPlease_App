@@ -25,7 +25,9 @@ const MainContainer = () => {
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchResults, setSearchResults] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
-  
+  const [profile, setProfile] = useState()
+
+
   // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
@@ -70,13 +72,13 @@ const MainContainer = () => {
       <NavBar />
       <Container>
         <Routes>
-          <Route exact path="/" element={<ProtectedRoute><Dashboard
+          <Route exact path="/" element={<Dashboard
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             companiesInfo={companiesInfo}
             onCompanyClicked={onCompanyClicked}
           />
-          </ProtectedRoute>} />
+          }/>
           {companiesInfo.length > 0 ?
             <Route path="/companies/:id"
               element=
@@ -89,7 +91,7 @@ const MainContainer = () => {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} /> */}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ReviewForm />}></Route>
         </Routes>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Card } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link} from 'react-router-dom'
+import { DEFAULT_MIN_BREAKPOINT } from 'react-bootstrap/esm/ThemeProvider'
 
 export default function Profile() {
 //   const [error, setError] = useState()

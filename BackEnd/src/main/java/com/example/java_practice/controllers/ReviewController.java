@@ -36,4 +36,5 @@ public class ReviewController {
         List<Review> foundReviews = reviewRepository.findAll();
         return new ResponseEntity<>(foundReviews, HttpStatus.OK);
     }
+
 }
