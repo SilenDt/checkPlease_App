@@ -19,9 +19,6 @@ const SignUpForm = () => {
     const [selectJob, setSelectJob] = useState("")
     const navigate = useNavigate()
 
-
-
-
     async function handleSubmit(e) {
         e.preventDefault();
         console.log(currentUser.uid)
