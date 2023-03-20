@@ -85,6 +85,7 @@ const MainContainer = () => {
             companiesInfo={companiesInfo}
             onCompanyClicked={onCompanyClicked}
             userDetailsByUid={userDetailsByUid}
+            selectedCompany={selectedCompany}
           />  
           }/>
           

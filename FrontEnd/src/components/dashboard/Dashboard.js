@@ -5,11 +5,15 @@ import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
 import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate, useParams } from "react-router";
 
 const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked, userDetailsByUid }) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
-    const [searchbarInput, setSearchbarInput] = useState("")
+  const [searchbarInput, setSearchbarInput] = useState("")
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const isLoggedIn = useAuth()
 
 
   const handleChange = (e) => {
@@ -17,9 +21,11 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
+    // const searchedCompany = companiesInfo.find((company) => company.id == id)
+    // selectedCompany(searchedCompany)
+    // navigate ("/companies/:id")
+    
   }
-
-  const isLoggedIn = useAuth();
   
   return (
     <>
