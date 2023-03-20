@@ -21,6 +21,7 @@ import { returnStatement } from "@babel/types";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
 import UpdateProfile from "../pages/UpdateProfile";
+import { getTipOutTypes } from "../../services/TipOutTypeServices";
 
 const MainContainer = () => {
 
@@ -31,6 +32,7 @@ const MainContainer = () => {
   const [userDetailsByUid, setUserDetailsByUid] = useState(null)
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
+  const [tipOutTypes, setTipOutTypes] = useState([])
 
   // console.log("This is the current user " + currentUser.uid)
 
@@ -44,11 +46,17 @@ const MainContainer = () => {
         setReviews(allReviews)
         console.log(allReviews)
       })
+    getTipOutTypes()
+    .then((allTipOutTypes) => {
+      setTipOutTypes(allTipOutTypes)
+    })
+
     getJobTypesInfo()
       .then((allJobTypes) => {
         setJobTypes(allJobTypes)
         // console.log(allJobTypes)
       })
+      
     if (!currentUser) {
       return
     }
@@ -86,6 +94,8 @@ const MainContainer = () => {
             onCompanyClicked={onCompanyClicked}
             userDetailsByUid={userDetailsByUid}
             selectedCompany={selectedCompany}
+            jobTypes={jobTypes}
+            tipOutTypes={tipOutTypes}
           />  
           }/>
           

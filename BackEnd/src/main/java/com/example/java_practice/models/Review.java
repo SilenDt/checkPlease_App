@@ -17,8 +17,11 @@ public class Review {
     @Column (name = "date")
     private String date;
 
-    @Column (name = "text")
-    private String text;
+    @Column (name = "pros")
+    private String pros;
+
+    @Column(name = "cons")
+    private String cons;
 
     @JsonIgnoreProperties ({"reviews"})
     @ManyToOne
@@ -34,21 +37,31 @@ public class Review {
     @JoinColumn(name = "jobType_id")
     private JobType jobType;
 
+    @Column (name = "doYouTipOut")
+    private String doYouTipOut;
+
     @OneToOne
     @JoinColumn(name = "tipOutType_id")
     private TipOutType tipOutType;
+
+    @Column(name = "hourlyRate")
+    private double hourlyRate;
+
 
 //    private List<Benefit> benefits;
 
     public Review(){}
 
-    public Review(String date, String text, Company company, User user, JobType jobType, TipOutType tipOutType) {
+    public Review(String date, String pros, String cons, Company company, User user, JobType jobType, String doYouTipOut, TipOutType tipOutType, double hourlyRate) {
         this.date = date;
-        this.text = text;
+        this.pros = pros;
+        this.cons = cons;
         this.company = company;
         this.user = user;
         this.jobType = jobType;
         this.tipOutType = tipOutType;
+        this.doYouTipOut = doYouTipOut;
+        this.hourlyRate = hourlyRate;
 //        this.benefits = new ArrayList<>();
     }
 
@@ -84,12 +97,20 @@ public class Review {
         this.date = date;
     }
 
-    public String getText() {
-        return text;
+    public String getPros() {
+        return pros;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPros(String pros) {
+        this.pros = pros;
+    }
+
+    public String getCons() {
+        return cons;
+    }
+
+    public void setCons(String cons) {
+        this.cons = cons;
     }
 
     public JobType getJobType() {
@@ -108,7 +129,23 @@ public class Review {
         this.tipOutType = tipOutType;
     }
 
-//    public List<Benefit> getBenefits() {
+    public String getDoYouTipOut() {
+        return doYouTipOut;
+    }
+
+    public void setDoYouTipOut(String doYouTipOut) {
+        this.doYouTipOut = doYouTipOut;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    //    public List<Benefit> getBenefits() {
 //        return benefits;
 //    }
 //
