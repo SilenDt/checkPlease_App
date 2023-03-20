@@ -8,10 +8,7 @@ import com.example.java_practice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,11 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> foundUsers = userRepository.findAll();
         return new ResponseEntity<>(foundUsers, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/{uid}")
+    public ResponseEntity getUserByUid(@PathVariable String uid){
+        return new ResponseEntity<>(userRepository.findUserByUid(uid), HttpStatus.OK);
     }
 
     @PostMapping("/users")

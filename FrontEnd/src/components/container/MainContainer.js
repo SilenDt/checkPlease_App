@@ -16,7 +16,10 @@ import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
-import { postUser } from "../../services/UserServices";
+import { getUserByUid, postUser } from "../../services/UserService";
+import { returnStatement } from "@babel/types";
+import { getJobTypesInfo } from "../../services/JobTypeServices";
+import CompanyComparison from "../pages/CompanyComparison";
 
 const MainContainer = () => {
 
@@ -24,9 +27,9 @@ const MainContainer = () => {
   const [reviews, setReviews] = useState([])
   const [selectedCompany, setSelectedCompany] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  const [userDetailsByUid, setUserDetailsByUid] = useState(null)
+  const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
-  const [profile, setProfile] = useState()
-
 
   // console.log("This is the current user " + currentUser.uid)
 
@@ -34,26 +37,25 @@ const MainContainer = () => {
     getCompaniesInfo()
       .then((allCompaniesInfo) => {
         setCompaniesInfo(allCompaniesInfo)
-
       })
-  }, [])
-
-  useEffect(() => {
     getAllReviews()
       .then((allReviews) => {
         setReviews(allReviews)
         console.log(allReviews)
       })
+    getJobTypesInfo()
+      .then((allJobTypes) => {
+        setJobTypes(allJobTypes)
+        // console.log(allJobTypes)
+      })
+    if (!currentUser) {
+      return
+    }
+    getUserByUid(currentUser.uid)
+      .then((userDetailsByUid) => {
+        setUserDetailsByUid(userDetailsByUid)
+      })
   }, [])
-
-  // useEffect(() => {
-  //   const userData = {
-  //     uid: currentUser.uid,
-  //     email: currentUser.email
-  //   }
-  // postUser(userData)
-  // }, [])
-
 
   const onCompanyClicked = (company) => {
     setSelectedCompany(company)
@@ -67,6 +69,10 @@ const MainContainer = () => {
     }
   }
 
+  console.log(userDetailsByUid)
+
+
+
   return (
     <Router>
       <NavBar />
@@ -77,23 +83,39 @@ const MainContainer = () => {
             searchResults={searchResults}
             companiesInfo={companiesInfo}
             onCompanyClicked={onCompanyClicked}
-          />
+          />  
           }/>
-          {companiesInfo.length > 0 ?
+          
+          {companiesInfo.length > 0 && reviews.length > 0 && jobTypes.length > 0 ?
             <Route path="/companies/:id"
               element=
               {<CompanyDetail
-                selectedCompany={selectedCompany}
                 companiesInfo={companiesInfo}
                 reviews={reviews}
+                jobTypes={jobTypes}
               />}
             /> : "loading"}
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
-          {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} /> */}
+          {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
+          {userDetailsByUid ?
+            <Route path="/profile/:id"
+              element={
+                <ProtectedRoute>
+                  <Profile userDetailsByUid={userDetailsByUid} />
+                </ProtectedRoute>} />
+            : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ReviewForm />}></Route>
+          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
+            jobTypes={jobTypes}
+            companiesInfo={companiesInfo}
+            saveSearchDetail={saveSearchDetail}
+            searchResults={searchResults}
+
+          />}
+          /> : "loading"}
         </Routes>
       </Container>
     </Router>

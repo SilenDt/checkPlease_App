@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 const SignedInLinks = () => {
     const navigate = useNavigate()
     const { logout } = useAuth()
+    const {currentUser, setCurrentUser} = useAuth()
 
     async function handleClick(e) {
         e.preventDefault()
@@ -24,7 +25,7 @@ const SignedInLinks = () => {
             </Nav>
             <Nav className="ml-auto">
             <NavDropdown title="My account" id="my-account-dropdown">
-                <NavDropdown.Item href='/profile' className='profile-page'>Profile</NavDropdown.Item>
+                <NavDropdown.Item href={`/profile/${currentUser.uid}`} className='profile-page'>Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <Button variant="link" onClick={handleClick}>Log Out</Button>
             </NavDropdown>

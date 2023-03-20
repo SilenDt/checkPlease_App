@@ -1,6 +1,6 @@
-const baseURL = "http://localhost:8080/jobtype"
+const baseURL = "http://localhost:8080/job_types"
 
-export async function getAllJobTypes(){
-    const res = await fetch(baseURL)
-    return await res.json()
+export  function getJobTypesInfo(){
+    return  fetch(baseURL)
+    .then(res => res.json())
 }
