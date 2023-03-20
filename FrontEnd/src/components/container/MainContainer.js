@@ -30,7 +30,9 @@ const MainContainer = () => {
   const [userDetailsByUid, setUserDetailsByUid] = useState(null)
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
-  
+  const [profile, setProfile] = useState()
+
+
   // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
@@ -78,7 +80,7 @@ const MainContainer = () => {
       <NavBar />
       <Container>
         <Routes>
-          <Route exact path="/" element={<ProtectedRoute><Dashboard
+          <Route exact path="/" element={<Dashboard
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             companiesInfo={companiesInfo}
