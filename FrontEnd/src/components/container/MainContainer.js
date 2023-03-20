@@ -30,7 +30,7 @@ const MainContainer = () => {
   const [userDetailsByUid, setUserDetailsByUid] = useState(null)
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
-  
+
   // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
@@ -44,17 +44,17 @@ const MainContainer = () => {
         console.log(allReviews)
       })
     getJobTypesInfo()
-    .then((allJobTypes) => {
-      setJobTypes(allJobTypes)
-      // console.log(allJobTypes)
-    })
-    if(!currentUser){
+      .then((allJobTypes) => {
+        setJobTypes(allJobTypes)
+        // console.log(allJobTypes)
+      })
+    if (!currentUser) {
       return
     }
     getUserByUid(currentUser.uid)
-    .then((userDetailsByUid) => {
-      setUserDetailsByUid(userDetailsByUid)
-    })
+      .then((userDetailsByUid) => {
+        setUserDetailsByUid(userDetailsByUid)
+      })
   }, [])
 
   const onCompanyClicked = (company) => {
@@ -69,9 +69,9 @@ const MainContainer = () => {
     }
   }
 
-  console.log( userDetailsByUid)
+  console.log(userDetailsByUid)
 
-  
+
 
   return (
     <Router>
@@ -99,18 +99,21 @@ const MainContainer = () => {
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid ?
-          <Route path="/profile/:id" 
-          element={
-          <ProtectedRoute>
-          <Profile userDetailsByUid={userDetailsByUid}/>
-          </ProtectedRoute>} />
-          : "loading"}
+            <Route path="/profile/:id"
+              element={
+                <ProtectedRoute>
+                  <Profile userDetailsByUid={userDetailsByUid} />
+                </ProtectedRoute>} />
+            : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ReviewForm />}></Route>
           {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
-          jobTypes = {jobTypes}
-          companiesInfo = {companiesInfo}
-          />}          
+            jobTypes={jobTypes}
+            companiesInfo={companiesInfo}
+            saveSearchDetail={saveSearchDetail}
+            searchResults={searchResults}
+
+          />}
           /> : "loading"}
         </Routes>
       </Container>
