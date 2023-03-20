@@ -100,7 +100,7 @@ const MainContainer = () => {
             /> : "loading"}
           <Route path="/signin" element={<SignIn/>}></Route>
           <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
+          <Route path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid ?
             <Route path="/profile/:id"
