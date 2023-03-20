@@ -22,7 +22,7 @@ public class JobType {
     public JobType() {}
 
     public JobType(String jobRole, int hourlyRate) {
-
+        this.hourlyRate = hourlyRate;
         this.jobRole = jobRole;
     }
 
