@@ -84,16 +84,11 @@ public class DataLoader  implements  ApplicationRunner{
 //        benefitRepository.save(none);
 
 
-        Review review1 = new Review("12-12-2023", "Loved working there", company1, user1, cook, totalSales);
-//        review1.addBenefit(tips);
-//        review1.addBenefit(health);
+        Review review1 = new Review("12-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", company1, user1, cook, "yes", totalSales, 2.15);
         reviewRepository.save(review1);
-        Review review2 = new Review("12-12-2023", "Terrible working environment", company2, user1, busser, discretion);
+        Review review2 = new Review("12-12-2023", "Decent tips", "Management are an absolute joke", company2, user1, busser, "yes", discretion, 3.50);
         reviewRepository.save(review2);
-        Review review3 = new Review("12-11-2023", "Pish", company2, user2, dishwasher, totalTips);
+        Review review3 = new Review("12-11-2023", "Fries every day", "You come home stinkin'", company2, user2, dishwasher, "yes", totalTips, 7.25);
         reviewRepository.save(review3);
-
-
-
     }
 }

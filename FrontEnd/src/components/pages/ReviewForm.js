@@ -3,33 +3,65 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { Form } from 'react-bootstrap'
 
-const ReviewForm = ({jobTypes})=> {
+const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
     const [formData, setFormData] = useState(
         {
-            tipOutType: '',
-            doYouTipOut: '',
-            text: '',
-            benefits: [],
+            companyName: '',
             jobType: '',
+            doYouTipOut: '',
+            tipOutType: '',
+            hourlyRate: '',
+            pros: '',
+            cons: ''
         }
     );
-    console.log(jobTypes)
 
 
-    const jobTypesOptions = jobTypes.map((jobType) => {
-        <option value={jobType}>{jobType.jobRole}</option>
+    // THIS OPTION DOES NOT HAVE A VALUE
+    const companyOptions = companiesInfo.map((company) => {
+        return <option>{company.name}</option>
     })
 
-    // const currentJobTypes = jobTypes.map((jobType) => (
-    //     <Container key={jobType.id}>
-    //         <Row>
-    //             <Col>Job Role: {jobType.jobRole}</Col>
-    //             <Col>Hourly Rate: {jobType.hourlyRate}</Col>
-    //         </Row>
-    //     </Container>
-    // ));
+    const handleCompanyChoiceChange = (event) => {
+        setFormData({...formData, companyName: event.target.value})
+    }
+    // console.log(formData.companyName)
+
+    const jobTypesOptions = jobTypes.map((jobType) => { 
+        return <option value={jobType}>{jobType.jobRole}</option>
+    })
+
+    const handleJobTitleChoiceChange = (event) => {
+        setFormData({ ...formData, jobType: event.target.value });
+    };
+    
+    const handleDoYouTipOutChange = (event) => {
+        setFormData({ ...formData, doYouTipOut: event.target.value });
+    };
+    // console.log(formData.doYouTipOut)
+
+    const tipOutTypeOptions = tipOutTypes.map((tipOutType) => {
+        return <option value={tipOutType}>{tipOutType.tipOutMethod}</option>
+    })
+
+    const handleTipOutChoiceChange = (event) => {
+        setFormData({...formData, tipOutType: event.target.value})
+    }
+
+    const handleHourlyRateChoiceChange = (event) => {
+        setFormData({...formData, hourlyRate: event.target.value})
+    }
+    console.log(formData.hourlyRate)
+
+    const handleProsChange = (event) => {
+        setFormData({...formData, pros: event.target.value})
+    }
+
+    const handleConsChange = (event) => {
+        setFormData({...formData, cons: event.target.value})
+    }
 
   
     //
@@ -38,17 +70,8 @@ const ReviewForm = ({jobTypes})=> {
     // Each input field has an event handler function associated with it that updates the corresponding property in the formData object
 
     //the handleMultipleChoiceChange function is called when the value of the select input field changes and updates the multipleChoice property in the formData object
-    const handleTipOutMultipleChoiceChange = (event) => {
-        setFormData({ ...formData, tipOutType: event.target.value });
-    }; 
-
-    const handleJobTitleChoiceChange = (event) => {
-        setFormData({ ...formData, jobType: event.target.value });
-    }; 
     
-    const handleYesOrNoChange = (event) => {
-        setFormData({ ...formData, doYouTipOut: event.target.value });
-    };
+    
     
     const handleShortAnswerChange = (event) => {
         setFormData({ ...formData, text: event.target.value });
@@ -79,20 +102,6 @@ const ReviewForm = ({jobTypes})=> {
         event.preventDefault();
         const { tipOutType, doYouTipOut, text, benefits, jobType } = formData;
     
-        // Send data to backend API
-        // await fetch('/api/questions', {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //     tipOutType,
-        //     doYouTipOut,
-        //     text,
-        //     benefits,
-        //     jobType,
-        // }),
-        // headers: {
-        //     'Content-Type': 'application/json',
-        //     },
-        // });
     
         // Reset form
         setFormData({
@@ -106,63 +115,59 @@ const ReviewForm = ({jobTypes})=> {
 
     return (
     <div>
-    <h1>This is a review form</h1>
+    <h1>Leave your review here</h1>
 
         <form onSubmit={handleSubmit} className="p-3 border rounded">
 
-{/* What was your job title at the company? */}
-    {/* <div className="form-group">
-        <label htmlFor="jobTitleMultipleChoichDropdown">What was your job title at the company?</label>
-        <select id="jobType" className="form-control" value={formData.jobType} onChange={handleJobTitleChoiceChange}>
-            <option value="">Select an option</option>
-            <option value="server">Server</option>
-            <option value="bartender">Bartender</option>
-            <option value="cook">Cook</option>
-            <option value="dishwasher">Dishwasher</option>
-            <option value="busser">Busser</option>
-        </select>
-    </div> */}
 
+        <Form.Group>
+            <Form.Label>What company are you leaving a review for?</Form.Label>
+                <Form.Select  onChange={handleCompanyChoiceChange}>
+                    <option value="">Please choose</option>
+                    {companyOptions}
+                </Form.Select>
+        </Form.Group>
 
         <Form.Group>
             <Form.Label>Job Title</Form.Label>
-                <Form.Select value={formData.jobType} onChange={handleJobTitleChoiceChange}>
+                <Form.Select  onChange={handleJobTitleChoiceChange}>
                     <option value="">Please choose</option>
                     {jobTypesOptions}
                 </Form.Select>
         </Form.Group>
 
+        <Form.Group>
+            <Form.Label>Do you tip out other staff members?</Form.Label>
+                <Form.Select  onChange={handleDoYouTipOutChange}>
+                    <option value="">Please choose</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </Form.Select>
+        </Form.Group>
+
+        <Form.Group>
+            <Form.Label>How do you tip out?</Form.Label>
+                <Form.Select  onChange={handleTipOutChoiceChange}>
+                    <option value="">Please choose</option>
+                    {tipOutTypeOptions}
+                </Form.Select>
+        </Form.Group>
     
+        <Form.Group>
+            <Form.Label>What is your hourly rate?</Form.Label>
+                <Form.Control type='text' onChange={handleHourlyRateChoiceChange}></Form.Control>
+        </Form.Group>
 
-{/* Do you tip out other staff members? */}
-            <div className="form-group">
-                <label>Do you tip out other staff members?</label>
-                <div className="form-check">
-                <label className="form-check-label">
-                    <input type="radio" className="form-check-input" name="doYouTipOut" value="Yes" checked={formData.doYouTipOut === 'Yes'} onChange={handleYesOrNoChange} />
-                    Yes
-                </label>
-                </div>
-                <div className="form-check">
-                <label className="form-check-label">
-                    <input type="radio" className="form-check-input" name="doYouTipOut" value="No" checked={formData.doYouTipOut === 'No'} onChange={handleYesOrNoChange} />
-                    No
-                </label>
-                </div>
-            </div>
+        <Form.Group>
+            <Form.Label>Pros of working there</Form.Label>
+                <Form.Control type='text' onChange={handleProsChange}></Form.Control>
+        </Form.Group>
 
-{/* How do you tip out? */}
-    <div className="form-group">
-        <label htmlFor="tipOutType">How do you tip out?</label>
-        <select id="tipOutType" className="form-control" value={formData.tipOutType} onChange={handleTipOutMultipleChoiceChange}>
-            <option value="">Select an option</option>
-            <option value="Option 1">A percentage of your total tips</option>
-            <option value="Option 2">A percentage of your total sales</option>
-            <option value="Option 3">A fixed amount</option>
-            <option value="Option 3">At your own discretion</option>
-            <option value="Option 3">I don't tip out</option>
-        </select>
-    </div>
+        <Form.Group>
+            <Form.Label>Cons of working there</Form.Label>
+                <Form.Control type='text' onChange={handleConsChange}></Form.Control>
+        </Form.Group>
+
 
 {/* What benefits do you recieve? */}
         <div>
