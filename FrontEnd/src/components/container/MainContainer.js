@@ -96,8 +96,8 @@ const MainContainer = () => {
                 jobTypes={jobTypes}
               />}
             /> : "loading"}
-          <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/signin" element={<SignIn/>}></Route>
+          <Route path="/signup" element={<SignUp/>}></Route>
           <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid ?
@@ -108,7 +108,11 @@ const MainContainer = () => {
                 </ProtectedRoute>} />
             : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/review-form" element={<ReviewForm />}></Route>
+          {jobTypes.length > 0 ?
+          <Route path="/review-form" element={<ReviewForm 
+            jobTypes={jobTypes}
+          />}
+          /> : "loading"}
           {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
             jobTypes={jobTypes}
             companiesInfo={companiesInfo}
