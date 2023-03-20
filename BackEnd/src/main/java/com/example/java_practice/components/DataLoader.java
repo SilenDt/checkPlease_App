@@ -54,10 +54,28 @@ public class DataLoader  implements  ApplicationRunner{
         User user2 = new User("gdhdhjjd8848484848","Jane","Lee", "Stirling", "Burger King", "Stirling","jane@email.com", server);
         userRepository.save(user2);
 
-        Company company1 = new Company("TGI Fridays", "Edinburgh", "Burgers and stuff", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
-        companyRepository.save(company1);
-        Company company2 = new Company("Burger King", "Stirling", "More Burgers and frieds", 3, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png");
-        companyRepository.save(company2);
+        Company tgiFridays = new Company("TGI Fridays", "New York", "TGI Fridays is an American classic, known for its fast casual eats, from burgers and sandwiches to steaks and seafood", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
+        companyRepository.save(tgiFridays);
+        Company burgerKing = new Company("Burger King", "New York", "Fast-food burgers and fries", 3, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png");
+        companyRepository.save(burgerKing);
+        Company bonefishGrill = new Company("Bonefish Grill", "New York", "Bonefish Grill specializes in market-fresh fish from around the world, savory wood-grilled specialties and hand-crafted cocktails. The Bonefish experience is based on the premise of simplicity, consistency and a strong commitment to being incredible.", 3, "https://1000logos.net/wp-content/uploads/2020/07/Bonefish-Grill-Logo-tumb.jpg");
+        companyRepository.save(bonefishGrill);
+        Company hardRock = new Company("Hard Rock Cafe", "Boulder", "Rock ’n’ roll-themed chain with a high-energy vibe serving burgers & American classics. Chill out and enjoy your food surrounded by classic rock 'n' roll memorabilia", 5, "https://1000logos.net/wp-content/uploads/2021/12/Hard-Rock-Cafe-logo-tumb.jpg");
+        companyRepository.save(hardRock);
+        Company hooters = new Company("Hooters", "Boulder", "Menu includes hamburgers and other sandwiches, steaks, seafood entrees, appetizers, and our specialty, chicken wings. All served by our famous Hooter Girls", 2, "https://1000logos.net/wp-content/uploads/2022/01/Hooters-Logo-tumb.png");
+        companyRepository.save(hooters);
+        Company papaJohns = new Company("Papa John's", "Boulder", "Better ingredients, better pizza. A laid back atmosphere with a team that's here to meet all your pizza needs. Whether you like your crust original, thin, stuffed, or even our vegan butternut squash option, and all the toppings you can think of", 4, "https://1000logos.net/wp-content/uploads/2018/02/Papa-Johns-Logo-tumb.png");
+        companyRepository.save(papaJohns);
+        Company longHorn = new Company("LongHorn Steakhouse", "Springfield", "Fresh, never-frozen steaks grilled by our experts, with just the right seasoning, and no shortcuts. LongHorn Steakhouse has a Texan theme, with each restaurant decorated with oil paintings, photos, and selected Western memorabilia", 2, "https://1000logos.net/wp-content/uploads/2022/11/LongHorn-Steakhouse-Logo-tumb.png");
+        companyRepository.save(longHorn);
+        Company polloLoco = new Company("El Pollo Loco", "Springfield", "Famous citrus-marinated, fire-grilled chicken. Cooked slow. Served fast. Always cut-to-order", 4, "https://1000logos.net/wp-content/uploads/2020/09/El-Pollo-Loco-Logo-tumb.jpg");
+        companyRepository.save(polloLoco);
+        Company quiznos = new Company("Quiznos", "Springfield", "Quiznos is a chain designed for busy people who are looking for a high quality, freshly prepared alternative to traditional fast-food. Quiznos is the pioneer of the toasted sandwich, offering creative sandwiches and salads using premium ingredients", 3, "https://1000logos.net/wp-content/uploads/2020/09/Quiznos-Logo-tumb.jpg");
+        companyRepository.save(quiznos);
+        Company redLobster = new Company("Red Lobster", "San Francisco", "American casual dining restaurant chain specialising in sustainably-caught seafood and fish", 5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuiBXeK9bFEfd86V4GeMSjAMWLm9-9Rzqjyw&usqp=CAU");
+        companyRepository.save(redLobster);
+
+
 
         TipOutType totalTips = new TipOutType("A percentage of your total tips");
         tipOutTypeRepository.save(totalTips);
@@ -84,11 +102,11 @@ public class DataLoader  implements  ApplicationRunner{
 //        benefitRepository.save(none);
 
 
-        Review review1 = new Review("12-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", company1, user1, cook, "yes", totalSales, 2.15, "n/a");
+        Review review1 = new Review("12-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", tgiFridays, user1, cook, "yes", totalSales, 2.15, "n/a");
         reviewRepository.save(review1);
-        Review review2 = new Review("12-12-2023", "Decent tips", "Management are an absolute joke", company2, user1, busser, "yes", discretion, 3.50, "");
+        Review review2 = new Review("12-12-2023", "Decent tips", "Management are an absolute joke", burgerKing, user1, busser, "yes", discretion, 3.50, "");
         reviewRepository.save(review2);
-        Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", company2, user2, dishwasher, "yes", totalTips, 7.25, "");
+        Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", burgerKing, user2, dishwasher, "yes", totalTips, 7.25, "");
         reviewRepository.save(review3);
     }
 }

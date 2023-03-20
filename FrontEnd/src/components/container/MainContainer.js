@@ -128,11 +128,7 @@ const MainContainer = () => {
                 </ProtectedRoute>} />
             : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          {jobTypes.length > 0 ?
-          <Route path="/review-form" element={<ReviewForm 
-            jobTypes={jobTypes}
-          />}
-          /> : "loading"}
+          <Route path="/review-form" element={<ReviewForm/>}/>
           {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
             jobTypes={jobTypes}
             companiesInfo={companiesInfo}
