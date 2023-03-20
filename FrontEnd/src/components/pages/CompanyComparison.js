@@ -44,7 +44,7 @@ const CompanyComparison = ({companiesInfo, jobTypes, saveSearchDetail, searchRes
         <Container key={jobType.id}>
             <Row>
                 <Col>{jobType.jobRole}</Col>
-                <Col> {jobType.hourlyRate}</Col>
+                <Col> $ {jobType.hourlyRate}</Col>
             </Row>
         </Container>
     ));

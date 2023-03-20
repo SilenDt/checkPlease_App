@@ -32,7 +32,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
         <Container key={jobType.id}>
             <Row>
                 <Col>Job Role: {jobType.jobRole}</Col>
-                <Col>Hourly Rate: {jobType.hourlyRate}</Col>
+                <Col>Hourly Rate: ${jobType.hourlyRate}</Col>
             </Row>
         </Container>
     ));
