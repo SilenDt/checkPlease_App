@@ -6,7 +6,7 @@ import SearchDropdown from "./SearchDropdown";
 import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
 
-const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked }) => {
+const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked, userDetailsByUid }) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
     const [searchbarInput, setSearchbarInput] = useState("")
@@ -44,9 +44,10 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
           onCompanyClicked={onCompanyClicked}
           />
       </Col>
-      </Row>
-      {isLoggedIn.currentUser && (
-            <Profile/>)}
+      </Row> 
+      {isLoggedIn.currentUser && userDetailsByUid ? 
+      (<Profile userDetailsByUid={userDetailsByUid}/>) 
+      : "loading"}
       <Container>
       <ReviewForm/>
     </Container>

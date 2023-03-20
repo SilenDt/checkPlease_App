@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getAllJobTypes } from '../../services/JobTypeServices';
+import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { Form } from 'react-bootstrap'
 
 const ReviewForm = ()=> {
@@ -16,7 +16,7 @@ const ReviewForm = ()=> {
 
     useEffect(() => {
         const fetchJobTypes = async () => {
-            const options = await getAllJobTypes();
+            const options = await getJobTypesInfo();
             setFormData.jobType(options)
         }
         fetchJobTypes();
@@ -92,20 +92,20 @@ const ReviewForm = ()=> {
         });
     };
 
-    const jobTypeDropdownOptions = async () => {
-       return options.map((option) => {
-        return <option value={option.id}>{option.jobRole}</option>
-       })
+    // const jobTypeDropdownOptions = async () => {
+    //    return options.map((option) => {
+    //     return <option value={option.id}>{option.jobRole}</option>
+    //    })
 
-    //    getCountry() {
-    //     return countries.map((country) => {
-    //       return <option value={country.dial_code}>{country.name} 
-    //              </option>;
-    //     });
-    //   }
+    // //    getCountry() {
+    // //     return countries.map((country) => {
+    // //       return <option value={country.dial_code}>{country.name} 
+    // //              </option>;
+    // //     });
+    // //   }
         
         
-    }
+    // }
 
     return (
     <div>
@@ -127,13 +127,13 @@ const ReviewForm = ()=> {
     </div> */}
 
     {/* <Form> */}
-        <Form.Group>
+        {/* <Form.Group>
             <Form.Label>Job Title</Form.Label>
                 <Form.Select value={formData.jobType} onChange={handleJobTitleChoiceChange}>
                     <option value="">Please choose</option>
                     <option>{jobTypeDropdownOptions()}</option>
                 </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
     {/* </Form> */}
 
     
