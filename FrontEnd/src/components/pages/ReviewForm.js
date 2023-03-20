@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getJobTypesInfo } from '../../services/JobTypeServices';
-import { Form } from 'react-bootstrap'
+import { FloatingLabel, Form } from 'react-bootstrap'
 
 const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
     //Initialize form state with useState:
@@ -14,7 +14,8 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
             tipOutType: '',
             hourlyRate: '',
             pros: '',
-            cons: ''
+            cons: '',
+            additionalComments: ''
         }
     );
 
@@ -63,39 +64,10 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
         setFormData({...formData, cons: event.target.value})
     }
 
-  
-    //
+    const handleAdditionalCommentsChange = (event) => {
+        setFormData({...formData, additionalComments: event.target.value})
+    }
 
-    // Event handlers:
-    // Each input field has an event handler function associated with it that updates the corresponding property in the formData object
-
-    //the handleMultipleChoiceChange function is called when the value of the select input field changes and updates the multipleChoice property in the formData object
-    
-    
-    
-    const handleShortAnswerChange = (event) => {
-        setFormData({ ...formData, text: event.target.value });
-    };
-
-    //handleMultipleAnswersChange:
-    //When called with an event
-    const handleMultipleAnswersChange = (event) => {
-    // Get current options array from formData.benefits
-        const options = formData.benefits;
-    // Get index of event.target.value in options array
-        const index = options.indexOf(event.target.value);
-        // If event.target.checked:
-        if (event.target.checked) {
-            //   Push event.target.value onto options array
-            options.push(event.target.value);
-        
-        //Else: Remove event.target.value from options array using splice
-        } else {
-            options.splice(index, 1);
-        }
-         // Call setFormData with a new object that merges the previous state with the updated benefits property
-        setFormData({ ...formData, benefits: options });
-    };
     
         //The handleSubmit function is called when the form is submitted and sends the form data to a backend API using the fetch function. The setFormData function is then called to reset the form to its default values
         const handleSubmit = async (event) => {
@@ -160,18 +132,29 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
 
         <Form.Group>
             <Form.Label>Pros of working there</Form.Label>
+            <FloatingLabel label="Tell us the good stuff">
                 <Form.Control type='text' onChange={handleProsChange}></Form.Control>
+            </FloatingLabel>
         </Form.Group>
 
         <Form.Group>
             <Form.Label>Cons of working there</Form.Label>
+            <FloatingLabel label="Tell us the not so good stuff">
                 <Form.Control type='text' onChange={handleConsChange}></Form.Control>
+            </FloatingLabel>
+        </Form.Group>
+
+        <Form.Group>
+            <Form.Label>Any other comments you want to leave?</Form.Label>
+            <FloatingLabel label="e.g. Advice for management, thoughts about uniforms...">
+                <Form.Control type='text' onChange={handleAdditionalCommentsChange}></Form.Control>
+            </FloatingLabel>
         </Form.Group>
 
 
 {/* What benefits do you recieve? */}
         <div>
-            <label htmlFor="benefits">What benefits do you recieve?</label>
+            {/* <label htmlFor="benefits">What benefits do you recieve?</label>
                 <div>
                     <label htmlFor="option1">
                         <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
@@ -201,14 +184,11 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
                         <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
                         Tips
                     </label>
-                </div>
+                </div> */}
 
 
 {/* Add comments about your experience: */}
-        <div className="form-group">
-            <label htmlFor="text">Any other comments about your experience:</label>
-                <input type="text" id="text" className="form-control" value={formData.text} onChange={handleShortAnswerChange} />
-        </div>
+        
 
         </div>
         <input type="submit" value="Submit" />

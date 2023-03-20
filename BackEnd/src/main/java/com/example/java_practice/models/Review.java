@@ -47,12 +47,15 @@ public class Review {
     @Column(name = "hourlyRate")
     private double hourlyRate;
 
+    @Column(name = "additionalComments")
+    private String additionalComments;
+
 
 //    private List<Benefit> benefits;
 
     public Review(){}
 
-    public Review(String date, String pros, String cons, Company company, User user, JobType jobType, String doYouTipOut, TipOutType tipOutType, double hourlyRate) {
+    public Review(String date, String pros, String cons, Company company, User user, JobType jobType, String doYouTipOut, TipOutType tipOutType, double hourlyRate, String additionalComments) {
         this.date = date;
         this.pros = pros;
         this.cons = cons;
@@ -62,7 +65,7 @@ public class Review {
         this.tipOutType = tipOutType;
         this.doYouTipOut = doYouTipOut;
         this.hourlyRate = hourlyRate;
-//        this.benefits = new ArrayList<>();
+        this.additionalComments = additionalComments;
     }
 
     public User getUser() {
@@ -145,16 +148,11 @@ public class Review {
         this.hourlyRate = hourlyRate;
     }
 
-    //    public List<Benefit> getBenefits() {
-//        return benefits;
-//    }
-//
-//    public void setBenefits(List<Benefit> benefits) {
-//        this.benefits = benefits;
-//    }
-//
-//    //METHODS:
-//    public void addBenefit(Benefit benefit) {
-//        benefits.add(benefit);
-//    }
+    public String getAdditionalComments() {
+        return additionalComments;
+    }
+
+    public void setAdditionalComments(String additionalComments) {
+        this.additionalComments = additionalComments;
+    }
 }

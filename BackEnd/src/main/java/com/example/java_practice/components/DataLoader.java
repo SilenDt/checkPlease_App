@@ -88,7 +88,7 @@ public class DataLoader  implements  ApplicationRunner{
         reviewRepository.save(review1);
         Review review2 = new Review("12-12-2023", "Decent tips", "Management are an absolute joke", company2, user1, busser, "yes", discretion, 3.50);
         reviewRepository.save(review2);
-        Review review3 = new Review("12-11-2023", "Fries every day", "You come home stinkin'", company2, user2, dishwasher, "yes", totalTips, 7.25);
+        Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", company2, user2, dishwasher, "yes", totalTips, 7.25);
         reviewRepository.save(review3);
     }
 }
