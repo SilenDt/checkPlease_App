@@ -10,8 +10,9 @@ const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
         <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
 
     ))
-    // console.log(dropdownDisplay)
+
     console.log(searchResults)
+    shouldNavigate = true
 
     const curentSearchResults = searchResults.map((result) => (
         result.id
