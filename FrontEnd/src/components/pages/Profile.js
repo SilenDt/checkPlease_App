@@ -26,9 +26,9 @@ export default function Profile({userDetailsByUid}) {
             <Card.Text>{userDetailsByUid.firstName}</Card.Text>
             <Card.Title>Last name:</Card.Title> 
             <Card.Text>{userDetailsByUid.lastName}</Card.Text>
-            <Card.Title>Town:</Card.Title> 
+            <Card.Title>Town you live in:</Card.Title> 
             <Card.Text>{userDetailsByUid.userTown}</Card.Text>
-            <Card.Title> locationOfPlaceOfWork:</Card.Title>
+            <Card.Title> Town you work in:</Card.Title>
             <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
             <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
             Update profile

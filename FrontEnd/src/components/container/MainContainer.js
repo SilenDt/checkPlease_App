@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
-import { getUserByUid, postUser } from "../../services/UserService";
+import { getUserByUid, postUser } from "../../services/UserServices";
 import { returnStatement } from "@babel/types";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
@@ -83,8 +83,10 @@ const MainContainer = () => {
             searchResults={searchResults}
             companiesInfo={companiesInfo}
             onCompanyClicked={onCompanyClicked}
-          />
-          </ProtectedRoute>} />
+            userDetailsByUid={userDetailsByUid}
+          />  
+          }/>
+          
           {companiesInfo.length > 0 && reviews.length > 0 && jobTypes.length > 0 ?
             <Route path="/companies/:id"
               element=

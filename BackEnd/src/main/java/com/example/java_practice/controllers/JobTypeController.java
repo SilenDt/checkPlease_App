@@ -17,10 +17,10 @@ public class JobTypeController {
     @Autowired
     JobTypeRepository jobTypeRepository;
 
+
     @GetMapping("/job_types")
-        public ResponseEntity<List<JobType>> getAllUsers(){
+        public ResponseEntity<List<JobType>> getAllJobTypes(){
             List<JobType> foundJobs = jobTypeRepository.findAll();
             return new ResponseEntity<>(foundJobs, HttpStatus.OK);
         }
     }
-

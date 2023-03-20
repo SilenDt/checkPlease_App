@@ -3,7 +3,7 @@ import { Container, Form, Card, Button, Alert, Dropdown } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
-import { postUser } from "../../services/UserService";
+import { postUser } from "../../services/UserServices";
 
 const SignUpForm = () => {
 
