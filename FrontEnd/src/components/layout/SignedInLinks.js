@@ -26,6 +26,7 @@ const SignedInLinks = () => {
             <Nav className="ml-auto">
             <NavDropdown title="My account" id="my-account-dropdown">
                 <NavDropdown.Item href={`/profile/${currentUser.uid}`} className='profile-page'>Profile</NavDropdown.Item>
+                <NavDropdown.Item href={`/update-profile/${currentUser.uid}`} className='profile-page'>Update profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <Button variant="link" onClick={handleClick}>Log Out</Button>
             </NavDropdown>

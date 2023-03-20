@@ -20,6 +20,7 @@ import { getUserByUid, postUser } from "../../services/UserServices";
 import { returnStatement } from "@babel/types";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
+import UpdateProfile from "../pages/UpdateProfile";
 
 const MainContainer = () => {
 
@@ -105,6 +106,14 @@ const MainContainer = () => {
               element={
                 <ProtectedRoute>
                   <Profile userDetailsByUid={userDetailsByUid} />
+                </ProtectedRoute>} />
+            : "loading"}   
+                    
+            {userDetailsByUid ?
+            <Route path="/update-profile/:id"
+              element={
+                <ProtectedRoute>
+                  <UpdateProfile userDetailsByUid={userDetailsByUid}/>
                 </ProtectedRoute>} />
             : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
