@@ -34,6 +34,22 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+    @PutMapping("/users/{uid}")
+    public ResponseEntity<User> updateUser(@PathVariable String uid, @RequestBody User userDetails) {
+        User user = userRepository.findUserByUid(uid);
+
+        String name = userDetails.getFirstName();
+        System.out.println(name);
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setUserTown(userDetails.getUserTown());
+        user.setLocationOfPlaceOfWork(userDetails.getLocationOfPlaceOfWork());
+
+        userRepository.save(user);
+
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    }
+
 //    @PostMapping("/users")
 //    public ResponseEntity<User> saveUser(@RequestBody UserDto userDto) {
 //        User user = new User();

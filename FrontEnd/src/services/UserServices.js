@@ -22,3 +22,13 @@ export async function getUserByUid(uid){
     return await fetch(baseURL + uid)
     .then(res => res.json())
 }
+
+export const updateUser = async (uid, payload) => {
+    const res = await fetch(baseURL + uid, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    return await res.json();
+}
+
