@@ -23,6 +23,10 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     saveSearchDetail(searchInput)
   
   }
+
+  const onSelect = (companyId) => {
+    navigate(`/companies/${companyId}`)
+  }
   
   return (
     <>
@@ -36,7 +40,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         </Row>
         <Row>
           <ul>
-            <SearchDropdown searchResults={searchResults}/>
+            <SearchDropdown searchResults={searchResults} onSelect={onSelect}/>
           </ul>
     </Row>
     </Form>

@@ -3,16 +3,17 @@ import { ListGroup } from "react-bootstrap"
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
-    const navigate = useNavigate()
+const SearchDropdown = ({ searchResults, showComparison, shouldNavigate, onSelect }) => {
+    // const navigate = useNavigate()
 
+    
     const dropdownDisplay = searchResults.map((result) => (
         <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
 
     ))
 
-    console.log(searchResults)
-    shouldNavigate = true
+    // console.log(searchResults)
+    // shouldNavigate = true
 
     const curentSearchResults = searchResults.map((result) => (
         result.id
@@ -20,9 +21,9 @@ const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
     console.log(curentSearchResults)
 
     const handleSelect = (id) => {
-        if (shouldNavigate) {
-            navigate(`/companies/${curentSearchResults}`)
-        }
+        // if (showComparison) {
+        //     navigate(`/companies/${curentSearchResults}`)
+        // }
         onSelect(id)
     }
 

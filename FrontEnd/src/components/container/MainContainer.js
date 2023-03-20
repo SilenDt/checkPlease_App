@@ -33,6 +33,7 @@ const MainContainer = () => {
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
   const [tipOutTypes, setTipOutTypes] = useState([])
+  let shouldNavigate = false
 
   // console.log("This is the current user " + currentUser.uid)
 
@@ -138,6 +139,7 @@ const MainContainer = () => {
             companiesInfo={companiesInfo}
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
+            // shouldNavigate={shouldNavigate}
 
           />}
           /> : "loading"}
