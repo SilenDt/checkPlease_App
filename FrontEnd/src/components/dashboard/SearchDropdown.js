@@ -3,7 +3,7 @@ import { ListGroup } from "react-bootstrap"
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const SearchDropdown = ({ searchResults }) => {
+const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
     const [value, setValue] = useState('');
     const navigate = useNavigate()
 
@@ -20,7 +20,10 @@ const SearchDropdown = ({ searchResults }) => {
 
     const handleSelect = (e) => {
         setValue(dropdownDisplay)
-        navigate(`/companies/${curentSearchResults}`)
+        if (shouldNavigate) {
+            navigate(`/companies/${curentSearchResults}`)
+        }
+        onSelect()
         console.log(e);
     }
 
@@ -30,20 +33,14 @@ const SearchDropdown = ({ searchResults }) => {
     return (
         <div className="search-results-dropdown">
             <DropdownButton
-                alignRight
+                
                 title="Dropdown right"
                 id="dropdown-menu-align-right"
                 onSelect={handleSelect}
             >
                 <Dropdown.Item eventKey="option-1">{dropdownDisplay}</Dropdown.Item>
             </DropdownButton>
-            <h4>You selected {value}</h4>
-
-            {/* <ListGroup as="ul">
-                <ListGroup.Item as="li" active >
-                    {dropdownDisplay}
-                </ListGroup.Item>
-            </ListGroup> */}
+    
         </div>
     )
 }

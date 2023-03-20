@@ -21,10 +21,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
-    // const searchedCompany = companiesInfo.find((company) => company.id == id)
-    // selectedCompany(searchedCompany)
-    // navigate ("/companies/:id")
-    
+  
   }
   
   return (
@@ -54,9 +51,6 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
       {isLoggedIn.currentUser && userDetailsByUid ? 
       (<Profile userDetailsByUid={userDetailsByUid}/>) 
       : "loading"}
-      <Container>
-      {/* <ReviewForm jobTypes={jobTypes}/> */}
-    </Container>
   </>
   )
 }
