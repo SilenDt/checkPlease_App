@@ -30,7 +30,7 @@ export default function Profile({userDetailsByUid}) {
             <Card.Text>{userDetailsByUid.userTown}</Card.Text>
             <Card.Title> Town you work in:</Card.Title>
             <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
-            <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+            <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
             Update profile
             </Link>
         </Card.Body>
