@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
-import { postUser } from "../../services/UserService";
+import { postUser } from "../../services/UserServices";
 
 const MainContainer = () => {
 

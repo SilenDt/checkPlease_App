@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
-import { getCompaniesInfo } from "../../services/CompanyServices";
 import {Dropdown, Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
 import ReviewForm from "../pages/ReviewForm";
 import SearchDropdown from "./SearchDropdown";
