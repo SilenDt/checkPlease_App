@@ -1,14 +1,23 @@
 import { useParams, useNavigate } from "react-router";
-import { Card, Body, Title, Image, Row, Col, Container } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Form, FloatingLabel, Image, Row, Col, Container } from "react-bootstrap";
+import SearchDropdown from "../dashboard/SearchDropdown";
 
-const CompanyComparison = ({ companiesInfo, jobTypes }) => {
+const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchResults }) => {
 
     const { id } = useParams()
     const navigate = useNavigate()
 
-    console.log(id)
+    const [searchbarInput, setSearchbarInput] = useState("")
 
-    console.log(companiesInfo)
+
+    const handleChange = (e) => {
+        const searchInput = e.target.value
+        console.log({ searchInput })
+        setSearchbarInput(searchInput)
+        saveSearchDetail(searchInput)
+    }
+
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
     console.log(jobTypes)
@@ -24,7 +33,6 @@ const CompanyComparison = ({ companiesInfo, jobTypes }) => {
         </Container>
     ));
 
-        console.log(currentJobTypes)
 
     return (
         <>
@@ -35,34 +43,37 @@ const CompanyComparison = ({ companiesInfo, jobTypes }) => {
             <Container className="mt-3">
                 <Row>
                     <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>
-                                {oneCompany.name}
-                            </Card.Title>
-                            <Card.Text>
-                                {oneCompany.description}
-                            </Card.Text>
-                        </Card.Body>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>
+                                    {oneCompany.name}
+                                </Card.Title>
+                                <Card.Text>
+                                    {oneCompany.description}
+                                </Card.Text>
+                            </Card.Body>
                         </Card>
                     </Col>
 
                     <Col>
-                        Comparison Company 
+                        Comparison Company
+                        <Form.Group className="mb-3 mt-3" style={{ width: "100%" }} controlId="form-input-choice">
+                            <FloatingLabel controlId="floatingInputGrid" label="Search using restaurant name or location">
+                                <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange} />
+                            </FloatingLabel>
+                        </Form.Group>
                     </Col>
                 </Row>
                 <Row>
-                    <Col> 
+                    <Col>
                         <Card>
                             <Card.Body>
-                                <Card.Title>Job Role:</Card.Title>
-                                <Card.Text>{currentJobTypes}</Card.Text>
-                                <Card.Title>Wages:</Card.Title>
+                                <Card.Title>Job Role (wages):</Card.Title>
                                 <Card.Text>{currentJobTypes}</Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col>2 of 2</Col>
+                    <Col><SearchDropdown searchResults={searchResults}/></Col>
                 </Row>
 
 
