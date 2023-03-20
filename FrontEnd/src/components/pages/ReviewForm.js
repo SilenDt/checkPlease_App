@@ -151,46 +151,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
             </FloatingLabel>
         </Form.Group>
 
-
-{/* What benefits do you recieve? */}
-        <div>
-            {/* <label htmlFor="benefits">What benefits do you recieve?</label>
-                <div>
-                    <label htmlFor="option1">
-                        <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
-                        Staff Meal
-                    </label>
-                </div>
-                <div>
-                    <label htmlFor="option2">
-                        <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
-                        Employee Food Discount
-                    </label>
-                </div>
-                <div>
-                    <label htmlFor="option3">
-                        <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
-                        Friends and Family Discount
-                    </label>
-                </div>
-                <div>
-                    <label htmlFor="option4">
-                        <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
-                        Health Insurance
-                    </label>
-                </div>
-                <div>
-                    <label htmlFor="option5">
-                        <input type="checkbox" id="option1" name="benefits" value="Option 1" onChange={handleMultipleAnswersChange} />
-                        Tips
-                    </label>
-                </div> */}
-
-
-{/* Add comments about your experience: */}
-        
-
-        </div>
         <input type="submit" value="Submit" />
 </form>
 </div>
