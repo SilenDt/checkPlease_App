@@ -3,24 +3,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { Form } from 'react-bootstrap'
 
-const ReviewForm = ()=> {
+const ReviewForm = ({jobTypes})=> {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
-    const [formData, setFormData] = useState({
-        tipOutType: '',
-        doYouTipOut: '',
-        text: '',
-        benefits: [],
-        jobType: '',
-    });
-
-    useEffect(() => {
-        const fetchJobTypes = async () => {
-            const options = await getJobTypesInfo();
-            setFormData.jobType(options)
+    const [formData, setFormData] = useState(
+        {
+            tipOutType: '',
+            doYouTipOut: '',
+            text: '',
+            benefits: [],
+            jobType: '',
         }
-        fetchJobTypes();
-    }, [])
+    );
+    console.log(jobTypes)
+
+
+    const jobTypesOptions = jobTypes.map((jobType) => {
+        <option value={jobType}>{jobType.jobRole}</option>
+    })
+
+    // const currentJobTypes = jobTypes.map((jobType) => (
+    //     <Container key={jobType.id}>
+    //         <Row>
+    //             <Col>Job Role: {jobType.jobRole}</Col>
+    //             <Col>Hourly Rate: {jobType.hourlyRate}</Col>
+    //         </Row>
+    //     </Container>
+    // ));
+
+  
+    //
 
     // Event handlers:
     // Each input field has an event handler function associated with it that updates the corresponding property in the formData object
@@ -92,21 +104,6 @@ const ReviewForm = ()=> {
         });
     };
 
-    // const jobTypeDropdownOptions = async () => {
-    //    return options.map((option) => {
-    //     return <option value={option.id}>{option.jobRole}</option>
-    //    })
-
-    // //    getCountry() {
-    // //     return countries.map((country) => {
-    // //       return <option value={country.dial_code}>{country.name} 
-    // //              </option>;
-    // //     });
-    // //   }
-        
-        
-    // }
-
     return (
     <div>
     <h1>This is a review form</h1>
@@ -126,15 +123,14 @@ const ReviewForm = ()=> {
         </select>
     </div> */}
 
-    {/* <Form> */}
-        {/* <Form.Group>
+
+        <Form.Group>
             <Form.Label>Job Title</Form.Label>
                 <Form.Select value={formData.jobType} onChange={handleJobTitleChoiceChange}>
                     <option value="">Please choose</option>
-                    <option>{jobTypeDropdownOptions()}</option>
+                    {jobTypesOptions}
                 </Form.Select>
-        </Form.Group> */}
-    {/* </Form> */}
+        </Form.Group>
 
     
 
@@ -215,6 +211,7 @@ const ReviewForm = ()=> {
 </div>
 )
 }
+
 
 export default ReviewForm
 

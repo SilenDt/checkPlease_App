@@ -49,7 +49,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
       (<Profile userDetailsByUid={userDetailsByUid}/>) 
       : "loading"}
       <Container>
-      <ReviewForm/>
+      {/* <ReviewForm jobTypes={jobTypes}/> */}
     </Container>
   </>
   )

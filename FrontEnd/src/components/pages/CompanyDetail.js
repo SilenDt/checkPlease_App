@@ -36,6 +36,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
             </Row>
         </Container>
     ));
+    console.log(jobTypes)
 
 
     const handleWriteReviewClick = () => {
