@@ -9,6 +9,7 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
     let shouldNavigate = false
 
     const [searchbarInput, setSearchbarInput] = useState("")
+    const [showComparision, setShowComparision] = useState(false)
 
 
     //searchInput are the letters the user types
@@ -24,16 +25,13 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
     }
 
 
-    const onSelect = (company) => {
-        const selectedCompany = companiesInfo.find(c => c.name === company)
-        if (selectedCompany) {
-            const selectedJobTypes = jobTypes.filter(jt => jt.companyId === selectedCompany.id)
-            console.log(selectedJobTypes)
-        }
+    const onSelect = (companyId) => {
+            setShowComparision(true)
+        
         //when the user has selected the company and clicked the button
         //display the comparisonJobTypes()
-
     }
+
 
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
@@ -54,7 +52,6 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
     ));
 
     function displayComparisonJobTypes() {
-        if (curentSearchResults.length >0) {
             return jobTypes.map((jobType) => (
                 <Container key={jobType.id}>
                     <Row>
@@ -63,13 +60,9 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
                     </Row>
                 </Container>
             ))
-        }
     }
 
-    const handleComparisonSelect = (e) => {
-        displayComparisonJobTypes()
-        console.log(e);
-    }
+
 
     // console.log(displayComparisonJobTypes())
 
@@ -118,14 +111,15 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
                             </Card.Body>
                         </Card>
                     </Col>
-                    {searchResults && handleChange ?
+                    {searchResults ?
                         <Col ><SearchDropdown 
                         searchResults={searchResults} 
                         shouldNavigate = {shouldNavigate}
                         displayComparisonJobTypes={displayComparisonJobTypes} 
+                        onSelect={onSelect}
 
                         />
-                            {displayComparisonJobTypes()}
+                            {showComparision ? displayComparisonJobTypes() : null}
                         </Col> : null}
                 </Row>
 

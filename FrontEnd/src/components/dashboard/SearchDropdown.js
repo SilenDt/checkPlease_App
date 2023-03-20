@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
-    const [value, setValue] = useState('');
     const navigate = useNavigate()
 
     const dropdownDisplay = searchResults.map((result) => (
-        result.name
+        <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
+
     ))
     // console.log(dropdownDisplay)
     console.log(searchResults)
@@ -18,13 +18,11 @@ const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
     ));
     console.log(curentSearchResults)
 
-    const handleSelect = (e) => {
-        setValue(dropdownDisplay)
+    const handleSelect = (id) => {
         if (shouldNavigate) {
             navigate(`/companies/${curentSearchResults}`)
         }
-        onSelect()
-        console.log(e);
+        onSelect(id)
     }
 
     //dropdownDisplay is the list with all companies by name
@@ -38,7 +36,7 @@ const SearchDropdown = ({ searchResults, shouldNavigate, onSelect }) => {
                 id="dropdown-menu-align-right"
                 onSelect={handleSelect}
             >
-                <Dropdown.Item eventKey="option-1">{dropdownDisplay}</Dropdown.Item>
+                {dropdownDisplay}
             </DropdownButton>
     
         </div>
