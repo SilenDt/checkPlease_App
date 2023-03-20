@@ -78,7 +78,7 @@ const MainContainer = () => {
       <NavBar />
       <Container>
         <Routes>
-          <Route exact path="/" element={<ProtectedRoute><Dashboard
+          <Route exact path="/" element={<Dashboard
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             companiesInfo={companiesInfo}

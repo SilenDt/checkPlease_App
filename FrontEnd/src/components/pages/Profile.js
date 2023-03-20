@@ -3,6 +3,7 @@ import { Container, Card } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useParams} from 'react-router-dom'
 
+
 export default function Profile({userDetailsByUid}) {
 //   const [error, setError] = useState()
   const {currentUser, setCurrentUser} = useAuth()
