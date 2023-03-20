@@ -18,6 +18,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
             additionalComments: ''
         }
     );
+    const [error, setError] = useState("")
 
 
     // THIS OPTION DOES NOT HAVE A VALUE
@@ -57,15 +58,31 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
     console.log(formData.hourlyRate)
 
     const handleProsChange = (event) => {
+        const shouldSetValue = event.target.value.length < 255
+        if (shouldSetValue){
         setFormData({...formData, pros: event.target.value})
+        } else {
+            setError("Comments can't be longer than 255 characters")
+        }
     }
 
+
     const handleConsChange = (event) => {
+        const shouldSetValue = event.target.value.length < 255
+        if (shouldSetValue){
         setFormData({...formData, cons: event.target.value})
+        } else {
+        setError("Comments can't be longer than 255 characters")
+        }
     }
 
     const handleAdditionalCommentsChange = (event) => {
+        const shouldSetValue = event.target.value.length < 255
+        if (shouldSetValue){
         setFormData({...formData, additionalComments: event.target.value})
+        } else {
+        setError("Comments can't be longer than 255 characters")
+        }
     }
 
     
@@ -77,11 +94,14 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
     
         // Reset form
         setFormData({
-        tipOutType: '',
-        doYouTipOut: '',
-        text: '',
-        benefits: [],
-        jobType,
+            companyName: '',
+            jobType: '',
+            doYouTipOut: '',
+            tipOutType: '',
+            hourlyRate: '',
+            pros: '',
+            cons: '',
+            additionalComments: ''
         });
     };
 
