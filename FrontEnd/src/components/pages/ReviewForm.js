@@ -23,6 +23,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const additionalCommentsRef = useRef()
     const navigate = useNavigate()
     const { currentUser, setCurrentUser } = useAuth()
+    
 
 
 
@@ -34,6 +35,17 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
         try {
             setError("")
             setLoading(true)
+
+            const date = new Date();
+
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+
+            // This arrangement can be altered based on how we want the date's format to appear.
+            let currentDate = `${day}-${month}-${year}`;
+            console.log(currentDate); // "17-6-2022"
+
             const reviewDetails = {
                 company: company,
                 jobType: jobType,
@@ -43,7 +55,8 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
                 pros: prosRef.current.value,
                 cons: consRef.current.value,
                 additionalComments: additionalCommentsRef.current.value,
-                user: userDetailsByUid
+                user: userDetailsByUid,
+                date: currentDate
             }
             console.log(userDetailsByUid)
             console.log("this is the review details")
