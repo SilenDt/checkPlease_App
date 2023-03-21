@@ -40,7 +40,9 @@ const CompanyItem = ({company, onCompanyClicked, reviews}) => {
                                     position="center"
                                     activeColor="#ffd700"
                                     edit ={false}
-                                    /></Card.Text>
+                                    />
+                                    ({currentCompanyReviews.length})
+                                    </Card.Text>
                                 <Card.Link href={`/companies/${company.id}`}>Click here for more information...</Card.Link>
                         </Card.Body>
                         </div>
