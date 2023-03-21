@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-const SearchDropdown = ({ resetSearchResults, searchResults, showComparison, shouldNavigate, onSelect }) => {
+const SearchDropdown = ({searchResults, showComparison, shouldNavigate, onSelect }) => {
     // const navigate = useNavigate()
 
     
@@ -30,7 +30,6 @@ const SearchDropdown = ({ resetSearchResults, searchResults, showComparison, sho
         // }
         
         onSelect(id)
-        resetSearchResults()
     }
 
     //dropdownDisplay is the list with all companies by name

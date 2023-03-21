@@ -27,6 +27,7 @@ console.log(userDetailsByUid)
   }
 
   const onSelect = (companyId) => {
+    resetSearchResults()
     navigate(`/companies/${companyId}`)
   }
   
