@@ -38,7 +38,7 @@ public class User {
     private List<Review> reviews;
 
     @OneToOne
-    @JoinColumn(name = "jobType_id")
+    @JoinColumn(name = "job_type_id")
     private JobType jobType;
 
     public User(){}
