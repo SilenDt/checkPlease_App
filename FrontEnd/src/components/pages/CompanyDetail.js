@@ -47,6 +47,17 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
         navigate(`/companies/${id}/company-comparison`)
     }
 
+    
+    const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
+
+
+    // const initialValue = 0;
+    // const sumWithInitial = array1.reduce(
+    // (accumulator, currentValue) => accumulator + currentValue,
+    // initialValue
+// );
+    
+
 
     return (
         <>
@@ -76,7 +87,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                 <Card>
                                     <ReactStars
                                     count={5}
-                                    value={oneCompany.rating}
+                                    value={averageRating}
                                     name="rating"
                                     size={24}
                                     position="center"
