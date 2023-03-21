@@ -87,8 +87,10 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     }
 
     const companyOptions = companiesInfo.map((company) => {
-        return <option value={company.name}>{company.name}</option>
+        return <option key={company.id} value={company.name}>{company.name}</option>
     })
+
+    const prePopCompanyName = location.state?.companyName
 
     const handleCompanyChoiceChange = (e) => {
         const findObj=companiesInfo.find(company=>company.name===e.target.value)
@@ -214,7 +216,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
         <Form.Group>
             <Form.Label>What company are you leaving a review for?</Form.Label>
-                <Form.Select  onChange={handleCompanyChoiceChange}>
+                <Form.Select defaultValue={prePopCompanyName} onChange={handleCompanyChoiceChange}>
                     <option value="">Please choose</option>
                     {companyOptions}
                 </Form.Select>
@@ -222,7 +224,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
         <Form.Group>
             <Form.Label>Job Title</Form.Label>
-                <Form.Select  onChange={handleJobTitleChoiceChange}>
+                <Form.Select onChange={handleJobTitleChoiceChange}>
                     <option>Please choose</option>
                     {jobTypeOptions}
                 </Form.Select>
