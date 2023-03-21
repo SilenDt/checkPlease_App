@@ -5,92 +5,88 @@ import { Link, useParams} from 'react-router-dom'
 
 
 export default function Profile({userDetailsByUid, reviews}) {
-//   const [error, setError] = useState()
-  const {currentUser, setCurrentUser} = useAuth()
-
-  // const {id} = useParams()
-
-  // console.log("This is on the profile page")
-  // console.log(userDetailsByUid)
-  // console.log(reviews)
-
-  const currentUserReviews = reviews.filter((review) => userDetailsByUid.id == review.user.id)
-
-  const mappedReviews = currentUserReviews.map((review) => (
-    <Container key={review.id}>
-        <Row>
-            <Col>Date Posted: {review.date}</Col>
-            <Col>Review: 
-                {review.company.name}
-                {review.jobType.jobRole}
-                {review.doYouTipOut}
-                {review.tipOutType.tipOutMethod}
-                {review.hourlyRate}
-                {review.pros}
-                {review.cons}
-                {review.additionalComments}
-            </Col>
-        </Row>
-    </Container>
-));
-
-  return (
-  <>    
+  //   const [error, setError] = useState()
+    const {currentUser, setCurrentUser} = useAuth()
+  
+    // const {id} = useParams()
+  
+    // console.log("This is on the profile page")
+    // console.log(userDetailsByUid)
+    // console.log(reviews)
+  
+    const currentUserReviews = reviews.filter((review) => userDetailsByUid.id == review.user.id)
+  
+    const mappedReviews = currentUserReviews.map((review) => (
+      <Container key={review.id}>
+        <Card>
+          <Row>
+              <Col>Date Posted: {review.date}</Col>
+              <Col>Review: 
+                  {review.company.name}
+                  {review.jobType.jobRole}
+                  {review.doYouTipOut}
+                  {review.tipOutType.tipOutMethod}
+                  {review.hourlyRate}
+                  {review.pros}
+                  {review.cons}
+                  {review.additionalComments}
+              </Col>
+          </Row>
+          </Card> 
+      </Container>
+  ));
+  
+    return (    
     <Container>
       <Row>
         <Col>
-          <Card>
-            <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
-              
-              <Row>
-                <Col>
-                  <Card style={{ width: '18rem' }}>
-                    <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
+  {/* Profile Card Container */}
+          <Card className='profile-container'>
+          <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
+            <Row>
+              <Col sm={3}>
+            {/* Profile Details Card*/}
+              <Card style={{ width: '18rem' }}>
+                <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
+                <Card.Body>
+                <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
+                          {/* <Card.Title>Email:</Card.Title> */}
+                <Card.Text>{currentUser.email}</Card.Text>
+                  <Row>
+                    <Card.Title>Current City:</Card.Title> 
+                    <Card.Text>{userDetailsByUid.userTown}</Card.Text>
+                  </Row>
+                  <Row>
+                    <Card.Title>Town you work in:</Card.Title>
+                    <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
+                  </Row>    
+                    <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
+                    Update profile
+                    </Link>
+                        </Card.Body>
+              </Card>
+                  </Col>
+            {/* Profile Details Card */}
+            {/* Review Card Container - start*/}
+                  <Col>
+                    <Card>
                       <Card.Body>
-                        <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
-                        {/* <Card.Title>Email:</Card.Title> */}
-                        <Card.Text>{currentUser.email}</Card.Text>
-
-                          <Row>
-                            <Card.Title>Current City:</Card.Title> 
-                            <Card.Text>{userDetailsByUid.userTown}</Card.Text>
-                          </Row>
-
-                          <Row>
-                            <Card.Title>Town you work in:</Card.Title>
-                            <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
-                          </Row>    
-
-                          <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
-                          Update profile
-                          </Link>
+                        <Card.Title>Reviews</Card.Title>
+                          <ListGroup variant="flush">
+                          <ListGroup.Item>{mappedReviews}</ListGroup.Item>
+                          </ListGroup>
                       </Card.Body>
-                  </Card>
-                </Col>
-      
-
-       
-        
-          <Col>
-          <Card>
-          <Card.Body>
-            <Card.Title>
-              Reviews
-            </Card.Title>
-            <ListGroup variant="flush">
-              <ListGroup.Item>{mappedReviews}</ListGroup.Item>
-            </ListGroup>
-          </Card.Body>
+                    </Card>
+                  </Col>
+            {/* Review Card Container -end */}
+              </Row>
         </Card>
+  {/*Profile Card Container */}
         </Col>
       </Row>
-      </Card>
-      </Col>
-      </Row>
     </Container>
-  </>
-  )
-}
+    )
+  }
 
 // try {
 //   setError("")
