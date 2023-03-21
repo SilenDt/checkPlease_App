@@ -2,7 +2,14 @@ import { Link } from "react-router-dom"
 import {Image, Card, Button} from "react-bootstrap"
 import ReactStars from "react-stars"
 
-const CompanyItem = ({company, onCompanyClicked}) => {
+const CompanyItem = ({company, onCompanyClicked, reviews}) => {
+
+    const currentCompanyReviews = reviews.filter((review) => review.company.id == company.id)
+
+    const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
+
+
+
 
     const handleClick = () => {
     onCompanyClicked(company.id)
@@ -27,7 +34,7 @@ const CompanyItem = ({company, onCompanyClicked}) => {
                                 <Card.Text>{company.description}</Card.Text>
                                 <Card.Text>Rating: <ReactStars
                                     count={5}
-                                    value={company.rating}
+                                    value={averageRating}
                                     name="rating"
                                     size={24}
                                     position="center"

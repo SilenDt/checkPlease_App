@@ -30,8 +30,11 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // if(firstNameRef === null || lastNameRef === null){
-        //     setError("All fields are required")
+        // if(prosRef > 255 || consRef > 255 || additionalCommentsRef > 255){
+        //     setError("Comments cannot be greater than 255 characters")
+        //     console.log(error)
+        // }else if (overallRatingRef > 5){
+        //     setError("Your overall rating cannot be greater than 5")
         // }
         try {
             setError("")
@@ -268,7 +271,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
         </Form.Group>
 
         <Form.Group>
-            <Form.Label>What is your overall rating for this company?</Form.Label>
+            <Form.Label>What is your overall rating for this company? (Out of 5 stars)</Form.Label>
                 <Form.Control type='text' ref={overallRatingRef}></Form.Control>
         </Form.Group>
 
