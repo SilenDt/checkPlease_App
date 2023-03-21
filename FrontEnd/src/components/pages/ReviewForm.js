@@ -86,7 +86,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     }
 
     const companyOptions = companiesInfo.map((company) => {
-        return <option value={company.name}>{company.name}</option>
+        return <option key={company.id} value={company.name}>{company.name}</option>
     })
 
     const handleCompanyChoiceChange = (e) => {
