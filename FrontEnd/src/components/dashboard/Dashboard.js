@@ -53,6 +53,7 @@ console.log(userDetailsByUid)
           <CompanyList
           companiesInfo={companiesInfo}
           onCompanyClicked={onCompanyClicked}
+          reviews = {reviews}
           />
       </Col>
       <Col sm={3}>
