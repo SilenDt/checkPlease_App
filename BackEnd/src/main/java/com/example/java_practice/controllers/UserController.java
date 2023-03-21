@@ -2,7 +2,6 @@ package com.example.java_practice.controllers;
 
 import com.example.java_practice.models.Review;
 import com.example.java_practice.models.User;
-import com.example.java_practice.models.UserDto;
 import com.example.java_practice.repositories.ReviewRepository;
 import com.example.java_practice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

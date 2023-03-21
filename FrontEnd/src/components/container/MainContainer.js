@@ -79,6 +79,10 @@ const MainContainer = () => {
     }
   }
 
+  const resetSearchResults = () => {
+    setSearchResults([])
+  }
+
   console.log(userDetailsByUid)
 
 
@@ -98,6 +102,7 @@ const MainContainer = () => {
             jobTypes={jobTypes}
             tipOutTypes={tipOutTypes}
             reviews={reviews}
+            resetSearchResults={resetSearchResults}
           />  
           }/>
           

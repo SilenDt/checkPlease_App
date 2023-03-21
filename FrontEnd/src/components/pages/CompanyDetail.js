@@ -58,13 +58,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
 
     
     const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
-
-
-    // const initialValue = 0;
-    // const sumWithInitial = array1.reduce(
-    // (accumulator, currentValue) => accumulator + currentValue,
-    // initialValue
-// );
     
 
 
@@ -111,6 +104,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                     activeColor="#ffd700"
                                     edit ={false}
                                     />
+                                    ({currentCompanyReviews.length})
                                 </Card>
                             </Col>
                         </Row>
