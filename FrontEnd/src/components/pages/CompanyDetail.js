@@ -20,9 +20,18 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const mappedReviews = currentCompanyReviews.map((review) => (
         <Container key={review.id}>
             <Row>
-                <Col>Username: {review.user.name}</Col>
-                <Col>Date: {review.date}</Col>
-                <Col>Review: {review.text}</Col>
+                <Col>Username: {review.user.firstName}</Col>
+                <Col>Date Posted: {review.date}</Col>
+                <Col>Review: 
+                    {review.company.name}
+                    {review.jobType.jobRole}
+                    {review.doYouTipOut}
+                    {review.tipOutType.tipOutMethod}
+                    {review.hourlyRate}
+                    {review.pros}
+                    {review.cons}
+                    {review.additionalComments}
+                </Col>
             </Row>
         </Container>
     ));
@@ -47,13 +56,32 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
         navigate(`/companies/${id}/company-comparison`)
     }
 
+    
+    const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
+
+
+    // const initialValue = 0;
+    // const sumWithInitial = array1.reduce(
+    // (accumulator, currentValue) => accumulator + currentValue,
+    // initialValue
+// );
+    
+
 
     return (
         <>
-            <Image
+            <Image 
+                        variant="top" 
+                        src={oneCompany.imageUrl} 
+                        alt="this is a company picture"
+                        style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
+                        className="img-fluid"
+                        />
+            
+            {/* <Image
                 src="https://picsum.photos/900/400"
                 fluid
-            />
+            /> */}
             <Tabs
                 // defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
@@ -76,7 +104,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                 <Card>
                                     <ReactStars
                                     count={5}
-                                    value={oneCompany.rating}
+                                    value={averageRating}
                                     name="rating"
                                     size={24}
                                     position="center"

@@ -4,14 +4,35 @@ import { useAuth } from '../../contexts/AuthContext'
 import { Link, useParams} from 'react-router-dom'
 
 
-export default function Profile({userDetailsByUid}) {
+export default function Profile({userDetailsByUid, reviews}) {
 //   const [error, setError] = useState()
   const {currentUser, setCurrentUser} = useAuth()
 
-  // const {uid} = useParams()
+  // const {id} = useParams()
 
-  console.log("This is on the profile page")
-  console.log(userDetailsByUid)
+  // console.log("This is on the profile page")
+  // console.log(userDetailsByUid)
+  // console.log(reviews)
+
+  const currentUserReviews = reviews.filter((review) => userDetailsByUid.id == review.user.id)
+
+  const mappedReviews = currentUserReviews.map((review) => (
+    <Container key={review.id}>
+        <Row>
+            <Col>Date Posted: {review.date}</Col>
+            <Col>Review: 
+                {review.company.name}
+                {review.jobType.jobRole}
+                {review.doYouTipOut}
+                {review.tipOutType.tipOutMethod}
+                {review.hourlyRate}
+                {review.pros}
+                {review.cons}
+                {review.additionalComments}
+            </Col>
+        </Row>
+    </Container>
+));
 
   return (
   <>    
@@ -57,9 +78,7 @@ export default function Profile({userDetailsByUid}) {
               Reviews
             </Card.Title>
             <ListGroup variant="flush">
-              <ListGroup.Item>Review1</ListGroup.Item>
-              <ListGroup.Item>Review2</ListGroup.Item>
-              <ListGroup.Item>Review3</ListGroup.Item>
+              <ListGroup.Item>{mappedReviews}</ListGroup.Item>
             </ListGroup>
           </Card.Body>
         </Card>

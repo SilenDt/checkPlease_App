@@ -14,8 +14,3 @@ export async function getOneCompany(id){
 //     return  fetch(baseURL + "/reviews")
 //     .then(res => res.json())
 // }
-
-// export async function getReviewsByCompany(chosenCompanyId){
-//     return await fetch(baseURL + "/reviews?" + "company_id=" + chosenCompanyId)
-//     .then(res => res.json())
-// }
