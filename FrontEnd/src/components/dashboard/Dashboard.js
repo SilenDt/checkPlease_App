@@ -7,7 +7,7 @@ import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 
-const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, onCompanyClicked, userDetailsByUid, reviews}) => {
+const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, companiesInfo, onCompanyClicked, userDetailsByUid, reviews}) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
   const [searchbarInput, setSearchbarInput] = useState("")
@@ -34,31 +34,35 @@ console.log(userDetailsByUid)
     <>
     <Form>
       <Row>
-        <Form.Group className="mb-3 mt-3" style={{width: "40%"}} controlId="form-input-choice">
+        <Form.Group className="mt-3" style={{width: "75%"}} controlId="form-input-choice">
           <FloatingLabel controlId="floatingInputGrid" label="Search for a company using restaurant name or location">
           <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange}/>
           </FloatingLabel>
         </Form.Group>
         </Row>
         <Row>
+        {searchResults.length > 0 ?
           <ul>
-            <SearchDropdown searchResults={searchResults} onSelect={onSelect}/>
+            <SearchDropdown searchResults={searchResults} resetSearchResults={resetSearchResults} onSelect={onSelect}/>
           </ul>
+        : ""}
     </Row>
     </Form>
-    <Row>
-      <Col sm={8}>
+    <Row className="mt-3">
+      <Col sm={9}>
           <CompanyList
           companiesInfo={companiesInfo}
           onCompanyClicked={onCompanyClicked}
           />
       </Col>
+      <Col sm={3}>
+        {isLoggedIn.currentUser && userDetailsByUid && reviews? 
+        (<Profile userDetailsByUid={userDetailsByUid}
+                  reviews={reviews}
+          />) 
+        : "loading"}
+      </Col>
       </Row> 
-      {isLoggedIn.currentUser && userDetailsByUid && reviews? 
-      (<Profile userDetailsByUid={userDetailsByUid}
-                reviews={reviews}
-        />) 
-      : "loading"}
   </>
   )
 }
