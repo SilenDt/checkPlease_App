@@ -7,7 +7,7 @@ import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 
-const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, onCompanyClicked, userDetailsByUid, reviews}) => {
+const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, companiesInfo, onCompanyClicked, userDetailsByUid, reviews}) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
   const [searchbarInput, setSearchbarInput] = useState("")
@@ -43,7 +43,7 @@ console.log(userDetailsByUid)
         <Row>
         {searchResults.length > 0 ?
           <ul>
-            <SearchDropdown searchResults={searchResults} onSelect={onSelect}/>
+            <SearchDropdown searchResults={searchResults} resetSearchResults={resetSearchResults} onSelect={onSelect}/>
           </ul>
         : ""}
     </Row>
