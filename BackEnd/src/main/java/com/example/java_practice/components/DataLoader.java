@@ -56,7 +56,7 @@ public class DataLoader  implements  ApplicationRunner{
 
         Company tgiFridays = new Company("TGI Fridays", "New York", "TGI Fridays is an American classic, known for its fast casual eats, from burgers and sandwiches to steaks and seafood", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
         companyRepository.save(tgiFridays);
-        Company burgerKing = new Company("Burger King", "New York", "Fast-food burgers and fries", 3, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png");
+        Company burgerKing = new Company("Burger King", "New York", "Fast-food burgers and fries", 3, "https://1000logos.net/wp-content/uploads/2016/10/Burger-King-logo-tumb.jpg");
         companyRepository.save(burgerKing);
         Company bonefishGrill = new Company("Bonefish Grill", "New York", "Bonefish Grill specializes in market-fresh fish from around the world, savory wood-grilled specialties and hand-crafted cocktails. The Bonefish experience is based on the premise of simplicity, consistency and a strong commitment to being incredible.", 3, "https://1000logos.net/wp-content/uploads/2020/07/Bonefish-Grill-Logo-tumb.jpg");
         companyRepository.save(bonefishGrill);
