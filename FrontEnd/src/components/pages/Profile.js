@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Container, Card } from 'react-bootstrap'
+import { Container, Card, Col, Row, ListGroup } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useParams} from 'react-router-dom'
 
@@ -15,26 +15,59 @@ export default function Profile({userDetailsByUid}) {
 
   return (
   <>    
-    <Container className="mt-3 d-flex align-items-center justify-content-center">
-        <Card>
-        <Card.Body>
-            <h2 className="text-center mb-4">Profile</h2>
-            {/* {error && <Alert variant="danger">{error}</Alert>} */}
-            <Card.Title>Email:</Card.Title>
-            <Card.Text>{currentUser.email}</Card.Text> 
-            <Card.Title>First name:</Card.Title> 
-            <Card.Text>{userDetailsByUid.firstName}</Card.Text>
-            <Card.Title>Last name:</Card.Title> 
-            <Card.Text>{userDetailsByUid.lastName}</Card.Text>
-            <Card.Title>Town you live in:</Card.Title> 
-            <Card.Text>{userDetailsByUid.userTown}</Card.Text>
-            <Card.Title> Town you work in:</Card.Title>
-            <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
-            <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
-            Update profile
-            </Link>
-        </Card.Body>
+    <Container>
+      <Row>
+        <Col>
+          <Card>
+            <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
+              
+              <Row>
+                <Col>
+                  <Card style={{ width: '18rem' }}>
+                    <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
+                      <Card.Body>
+                        <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
+                        {/* <Card.Title>Email:</Card.Title> */}
+                        <Card.Text>{currentUser.email}</Card.Text>
+
+                          <Row>
+                            <Card.Title>Current City:</Card.Title> 
+                            <Card.Text>{userDetailsByUid.userTown}</Card.Text>
+                          </Row>
+
+                          <Row>
+                            <Card.Title>Town you work in:</Card.Title>
+                            <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
+                          </Row>    
+
+                          <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
+                          Update profile
+                          </Link>
+                      </Card.Body>
+                  </Card>
+                </Col>
+      
+
+       
+        
+          <Col>
+          <Card>
+          <Card.Body>
+            <Card.Title>
+              Reviews
+            </Card.Title>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Review1</ListGroup.Item>
+              <ListGroup.Item>Review2</ListGroup.Item>
+              <ListGroup.Item>Review3</ListGroup.Item>
+            </ListGroup>
+          </Card.Body>
         </Card>
+        </Col>
+      </Row>
+      </Card>
+      </Col>
+      </Row>
     </Container>
   </>
   )
