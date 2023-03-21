@@ -23,12 +23,6 @@ const SignUpForm = ({jobTypes}) => {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(currentUser.uid)
-        console.log("This is the selected job")
-        console.log(typeof selectJob)
-        console.log(selectJob)
-        console.log(selectJob.id)
-        console.log(selectJob.jobRole)
         // if(firstNameRef === null || lastNameRef === null){
         //     setError("All fields are required")
         // }
@@ -45,9 +39,6 @@ const SignUpForm = ({jobTypes}) => {
                 uid: currentUser.uid,
                 userEmail: currentUser.email
             }
-            console.log("This is user details")
-            console.log(userDetails)
-            console.log(selectJob)
             await postUser(userDetails)
             navigate("/")
         } catch {
@@ -61,12 +52,7 @@ const SignUpForm = ({jobTypes}) => {
     ));
 
     const handleClick = (e) => {
-        console.log("This is the current value")
-        console.log(e.target.value)
         const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
-        console.log("this is the findObj")
-        console.log(findObj)
-        const chosenJob = e.target.value
         // setSelectJob(Number(chosenJob)) 
         setSelectJob(findObj) 
     }
@@ -107,14 +93,6 @@ const SignUpForm = ({jobTypes}) => {
                                     {currentJobTypes}
                                 </Form.Select>
                             </Form.Group>
-                            {/* <Form.Label>What job did you do in your last role? (choose closest)</Form.Label>
-                            <Form.Select onChange={handleClick} value={selectJob} placeholder="Choose an option..">
-                                <option value="Server">Server</option>
-                                <option value="Cook">Cook</option>
-                                <option value="Busser">Busser</option>
-                                <option value="Bartender">Bartender</option>
-                                <option value="Dishwasher">Dishwasher</option>
-                            </Form.Select> */}
                             <Button disabled={loading} className="w-100 mt-2" type="submit">Sign Up</Button>
                         </Form>
                     </Card.Body>
