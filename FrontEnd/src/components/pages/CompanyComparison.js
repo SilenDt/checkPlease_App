@@ -3,35 +3,62 @@ import { useState } from "react";
 import { Card, Form, FloatingLabel, Image, Row, Col, Container } from "react-bootstrap";
 import SearchDropdown from "../dashboard/SearchDropdown";
 
-const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchResults }) => {
+const CompanyComparison = ({companiesInfo, jobTypes, saveSearchDetail, searchResults }) => {
 
     const { id } = useParams()
-    const navigate = useNavigate()
 
     const [searchbarInput, setSearchbarInput] = useState("")
+    const [showComparison, setShowComparison] = useState(false)
 
+    // let shouldNavigate = false;
+    //searchInput are the letters the user types
+    //searchResults empty array atm
+    //saveSearchDetail checks if the searchInput matches any companies from the db
 
     const handleChange = (e) => {
         const searchInput = e.target.value
         console.log({ searchInput })
         setSearchbarInput(searchInput)
         saveSearchDetail(searchInput)
+        console.log(saveSearchDetail)
     }
 
 
+    const onSelect = (companyId) => {
+            setShowComparison(true)
+        //when the user has selected the company and clicked the button
+        //display the comparisonJobTypes()
+    }
+
+
+
     const oneCompany = companiesInfo.find((company) => company.id == id);
-    console.log(jobTypes)
-    console.log(oneCompany)
+
+    const curentSearchResults = searchResults.map((result) => (
+        result.name
+    ));
+    console.log(curentSearchResults)
 
 
     const currentJobTypes = jobTypes.map((jobType) => (
         <Container key={jobType.id}>
             <Row>
                 <Col>{jobType.jobRole}</Col>
-                <Col> {jobType.hourlyRate}</Col>
+                <Col> $ {jobType.hourlyRate}</Col>
             </Row>
         </Container>
     ));
+
+    function displayComparisonJobTypes() {
+            return jobTypes.map((jobType) => (
+                <Container key={jobType.id}>
+                    <Row>
+                        <Col>{jobType.jobRole}</Col>
+                        <Col> {jobType.hourlyRate}</Col>
+                    </Row>
+                </Container>
+            ))
+    }
 
 
     return (
@@ -61,6 +88,7 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
                             <FloatingLabel controlId="floatingInputGrid" label="Search using restaurant name or location">
                                 <Form.Control type="search" placeholder="Search here..." value={searchbarInput} onChange={handleChange} />
                             </FloatingLabel>
+
                         </Form.Group>
                     </Col>
                 </Row>
@@ -73,10 +101,18 @@ const CompanyComparison = ({ companiesInfo, jobTypes, saveSearchDetail, searchRe
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col><SearchDropdown searchResults={searchResults}/></Col>
+                    {searchResults ?
+                        <Col ><SearchDropdown 
+                        searchResults={searchResults} 
+                        // showComparison = {showComparison}
+                        // shouldNavigate = {shouldNavigate}
+                        displayComparisonJobTypes={displayComparisonJobTypes} 
+                        onSelect={onSelect}
+
+                        />
+                            {showComparison ? displayComparisonJobTypes() : null}
+                        </Col> : null}
                 </Row>
-
-
 
             </Container>
 
