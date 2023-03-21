@@ -20,9 +20,18 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const mappedReviews = currentCompanyReviews.map((review) => (
         <Container key={review.id}>
             <Row>
-                <Col>Username: {review.user.name}</Col>
-                <Col>Date: {review.date}</Col>
-                <Col>Review: {review.text}</Col>
+                <Col>Username: {review.user.firstName}</Col>
+                <Col>Date Posted: {review.date}</Col>
+                <Col>Review: 
+                    {review.company.name}
+                    {review.jobType.jobRole}
+                    {review.doYouTipOut}
+                    {review.tipOutType.tipOutMethod}
+                    {review.hourlyRate}
+                    {review.pros}
+                    {review.cons}
+                    {review.additionalComments}
+                </Col>
             </Row>
         </Container>
     ));
