@@ -7,7 +7,7 @@ import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 
-const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked, userDetailsByUid }) => {
+const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCompany, onCompanyClicked, userDetailsByUid, jobTypes, tipOutTypes }) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
   const [searchbarInput, setSearchbarInput] = useState("")
@@ -21,10 +21,11 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
     console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
-    // const searchedCompany = companiesInfo.find((company) => company.id == id)
-    // selectedCompany(searchedCompany)
-    // navigate ("/companies/:id")
-    
+  
+  }
+
+  const onSelect = (companyId) => {
+    navigate(`/companies/${companyId}`)
   }
   
   return (
@@ -39,7 +40,7 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
         </Row>
         <Row>
           <ul>
-            <SearchDropdown searchResults={searchResults}/>
+            <SearchDropdown searchResults={searchResults} onSelect={onSelect}/>
           </ul>
     </Row>
     </Form>
@@ -54,9 +55,14 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
       {isLoggedIn.currentUser && userDetailsByUid ? 
       (<Profile userDetailsByUid={userDetailsByUid}/>) 
       : "loading"}
+
       <Container>
-      {/* <ReviewForm jobTypes={jobTypes}/> */}
+      <ReviewForm
+      jobTypes={jobTypes}
+      companiesInfo={companiesInfo}
+      tipOutTypes={tipOutTypes}/>
     </Container>
+
   </>
   )
 }

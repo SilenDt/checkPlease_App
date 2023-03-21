@@ -21,6 +21,7 @@ import { returnStatement } from "@babel/types";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
 import UpdateProfile from "../pages/UpdateProfile";
+import { getTipOutTypes } from "../../services/TipOutTypeServices";
 
 const MainContainer = () => {
 
@@ -31,6 +32,8 @@ const MainContainer = () => {
   const [userDetailsByUid, setUserDetailsByUid] = useState(null)
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
+  const [tipOutTypes, setTipOutTypes] = useState([])
+  let shouldNavigate = false
 
   // console.log("This is the current user " + currentUser.uid)
 
@@ -44,11 +47,17 @@ const MainContainer = () => {
         setReviews(allReviews)
         console.log(allReviews)
       })
+    getTipOutTypes()
+    .then((allTipOutTypes) => {
+      setTipOutTypes(allTipOutTypes)
+    })
+
     getJobTypesInfo()
       .then((allJobTypes) => {
         setJobTypes(allJobTypes)
         // console.log(allJobTypes)
       })
+      
     if (!currentUser) {
       return
     }
@@ -86,6 +95,8 @@ const MainContainer = () => {
             onCompanyClicked={onCompanyClicked}
             userDetailsByUid={userDetailsByUid}
             selectedCompany={selectedCompany}
+            jobTypes={jobTypes}
+            tipOutTypes={tipOutTypes}
           />  
           }/>
           
@@ -100,7 +111,7 @@ const MainContainer = () => {
             /> : "loading"}
           <Route path="/signin" element={<SignIn/>}></Route>
           <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/signupform" element={<ProtectedRoute><SignUpForm /></ProtectedRoute>}></Route>
+          <Route path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid ?
             <Route path="/profile/:id"
@@ -118,16 +129,13 @@ const MainContainer = () => {
                 </ProtectedRoute>} />
             : "loading"}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          {jobTypes.length > 0 ?
-          <Route path="/review-form" element={<ReviewForm 
-            jobTypes={jobTypes}
-          />}
-          /> : "loading"}
+          <Route path="/review-form" element={<ReviewForm/>}/>
           {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
             jobTypes={jobTypes}
             companiesInfo={companiesInfo}
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
+            // shouldNavigate={shouldNavigate}
 
           />}
           /> : "loading"}
