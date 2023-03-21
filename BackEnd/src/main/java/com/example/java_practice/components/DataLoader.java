@@ -35,7 +35,6 @@ public class DataLoader  implements  ApplicationRunner{
         companyRepository.deleteAll();
         jobTitleRepository.deleteAll();
         tipOutTypeRepository.deleteAll();
-//        benefitRepository.deleteAll();
 
         JobType server = new JobType("Server", 10);
         jobTitleRepository.save(server);
@@ -108,5 +107,12 @@ public class DataLoader  implements  ApplicationRunner{
         reviewRepository.save(review2);
         Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", burgerKing, user2, dishwasher, "yes", totalTips, 7.25, "", 4.0);
         reviewRepository.save(review3);
+        Review review4 = new Review("01-11-2020", "All the tacos you can eat", "no tips", polloLoco, user1, server, "no", na, 9.50, "fun environment, but not easy to get days off", 3.7);
+        Review review5 = new Review("05-06-2022", "shifts are short", "scraping food off plates is really hard", bonefishGrill, user1, dishwasher, "no", na, 11.25, "not the best place to work but not the worst", 4.2);
+        Review review6 = new Review("03-03-2032", "staff is really friendly", "management is hard to get along with", quiznos, user2, busser, "no", na, 8.50, "heavy lifting involved, everyone goes out after and hangs out", 4.5);
+        Review review7 = new Review("01-28-2023", "really good tips", "really gross customers and low hourly pay", hooters, user1, server, "yes", totalSales, 2.15, "theres a lot to put up with but you can make good money", 4.0);
+        Review review8 = new Review("08-30-2022", "we get breaks and bonuses", "corporate run restaurant so not much freedom to come up with your own recipes or specials. you have to stick with whats given to you", tgiFridays, user1, cook, "no", na, 13.25, "be ready to sweat if you take a job here", 4.0);
+
+
     }
 }
