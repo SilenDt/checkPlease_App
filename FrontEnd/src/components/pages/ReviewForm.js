@@ -1,115 +1,209 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { FloatingLabel, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { postReview } from '../../services/ReviewService';
 
-const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
+
+const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
-    const [formData, setFormData] = useState(
-        {
-            companyName: '',
-            jobType: '',
-            doYouTipOut: '',
-            tipOutType: '',
-            hourlyRate: '',
-            pros: '',
-            cons: '',
-            additionalComments: ''
-        }
-    );
-    const [error, setError] = useState("")
 
-
-    // THIS OPTION DOES NOT HAVE A VALUE
-    const companyOptions = companiesInfo.map((company) => {
-        return <option>{company.name}</option>
-    })
-
-    const handleCompanyChoiceChange = (event) => {
-        setFormData({...formData, companyName: event.target.value})
-    }
-    // console.log(formData.companyName)
-
-    const jobTypesOptions = jobTypes.map((jobType) => { 
-        return <option value={jobType}>{jobType.jobRole}</option>
-    })
-
-    const handleJobTitleChoiceChange = (event) => {
-        setFormData({ ...formData, jobType: event.target.value });
-    };
+    const [company, setCompany] = useState()
+    const [tipOutType, setTipOutType] = useState()
+    const [jobType, setJobType] = useState()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState()
+    const [doYouTipOut, setDoYouTipOut] = useState("")
+    const hourlyRateRef = useRef()
+    const prosRef = useRef()
+    const consRef = useRef()
+    const additionalCommentsRef = useRef()
+    const navigate = useNavigate()
+    const { currentUser, setCurrentUser } = useAuth()
     
+
+
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        // if(firstNameRef === null || lastNameRef === null){
+        //     setError("All fields are required")
+        // }
+        try {
+            setError("")
+            setLoading(true)
+
+            const date = new Date();
+
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+
+            // This arrangement can be altered based on how we want the date's format to appear.
+            let currentDate = `${day}-${month}-${year}`;
+            console.log(currentDate); // "17-6-2022"
+
+            const reviewDetails = {
+                company: company,
+                jobType: jobType,
+                doYouTipOut: doYouTipOut,
+                tipOutType: tipOutType,
+                hourlyRate: parseFloat(hourlyRateRef.current.value),
+                pros: prosRef.current.value,
+                cons: consRef.current.value,
+                additionalComments: additionalCommentsRef.current.value,
+                user: userDetailsByUid,
+                date: currentDate
+            }
+            console.log(userDetailsByUid)
+            console.log("this is the review details")
+            console.log(reviewDetails)
+
+            await postReview(reviewDetails)
+            navigate("/")
+        } catch {
+            setError("failed to post review")
+        }
+        setLoading(false)
+    }
+
+    const jobTypeOptions = jobTypes.map((jobType) => (
+            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+    ));
+
+    const handleJobTitleChoiceChange = (e) => {
+        const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
+        // setSelectJob(Number(chosenJob)) 
+        setJobType(findObj) 
+    }
+
+    const companyOptions = companiesInfo.map((company) => {
+        return <option value={company.name}>{company.name}</option>
+    })
+
+    const handleCompanyChoiceChange = (e) => {
+        const findObj=companiesInfo.find(company=>company.name===e.target.value)
+        setCompany(findObj) 
+    }
+
     const handleDoYouTipOutChange = (event) => {
-        setFormData({ ...formData, doYouTipOut: event.target.value });
+        setDoYouTipOut(event.target.value);
     };
-    // console.log(formData.doYouTipOut)
 
     const tipOutTypeOptions = tipOutTypes.map((tipOutType) => {
-        return <option value={tipOutType}>{tipOutType.tipOutMethod}</option>
+        return <option value={tipOutType.tipOutMethod}>{tipOutType.tipOutMethod}</option>
     })
 
-    const handleTipOutChoiceChange = (event) => {
-        setFormData({...formData, tipOutType: event.target.value})
-    }
-
-    const handleHourlyRateChoiceChange = (event) => {
-        setFormData({...formData, hourlyRate: event.target.value})
-    }
-    console.log(formData.hourlyRate)
-
-    const handleProsChange = (event) => {
-        const shouldSetValue = event.target.value.length < 255
-        if (shouldSetValue){
-        setFormData({...formData, pros: event.target.value})
-        } else {
-            setError("Comments can't be longer than 255 characters")
-        }
+    const handleTipOutChoiceChange = (e) => {
+        const findObj=tipOutTypes.find(tipOutType=>tipOutType.tipOutMethod===e.target.value)
+        setTipOutType(findObj)
     }
 
 
-    const handleConsChange = (event) => {
-        const shouldSetValue = event.target.value.length < 255
-        if (shouldSetValue){
-        setFormData({...formData, cons: event.target.value})
-        } else {
-        setError("Comments can't be longer than 255 characters")
-        }
-    }
 
-    const handleAdditionalCommentsChange = (event) => {
-        const shouldSetValue = event.target.value.length < 255
-        if (shouldSetValue){
-        setFormData({...formData, additionalComments: event.target.value})
-        } else {
-        setError("Comments can't be longer than 255 characters")
-        }
-    }
+    //beginning of review form
+    // const [formData, setFormData] = useState(
+    //     {
+    //         companyName: '',
+    //         jobType: '',
+    //         doYouTipOut: '',
+    //         tipOutType: '',
+    //         hourlyRate: '',
+    //         pros: '',
+    //         cons: '',
+    //         additionalComments: '',
+    //         user: userDetailsByUid
+    //     }
+    // );
+
+    // THIS OPTION DOES NOT HAVE A VALUE
+    // const companyOptions = companiesInfo.map((company) => {
+    //     return <option value={company.id}>{company.name}</option>
+    // })
+
+    // const handleCompanyChoiceChange = (event) => {
+    //     setFormData({...formData, companyName: event.target.value})
+    // }
+    // console.log(formData.companyName)
+
+    // const handleJobTitleChoiceChange = (event) => {
+    //     setFormData({ ...formData, jobType: event.target.value });
+    // };
+    
+    // const handleDoYouTipOutChange = (event) => {
+    //     setFormData({ ...formData, doYouTipOut: event.target.value });
+    // };
+    // console.log(formData.doYouTipOut)
+
+    // const tipOutTypeOptions = tipOutTypes.map((tipOutType) => {
+    //     return <option value={tipOutType}>{tipOutType.tipOutMethod}</option>
+    // })
+
+    // const handleTipOutChoiceChange = (event) => {
+    //     setFormData({...formData, tipOutType: event.target.value})
+    // }
+
+    // const handleHourlyRateChoiceChange = (event) => {
+    //     setFormData({...formData, hourlyRate: event.target.value})
+    // }
+    // console.log(formData.hourlyRate)
+
+    // const handleProsChange = (event) => {
+    //     const shouldSetValue = event.target.value.length < 255
+    //     if (shouldSetValue){
+    //     setFormData({...formData, pros: event.target.value})
+    //     } else {
+    //         setError("Comments can't be longer than 255 characters")
+    //     }
+    // }
+
+
+    // const handleConsChange = (event) => {
+    //     const shouldSetValue = event.target.value.length < 255
+    //     if (shouldSetValue){
+    //     setFormData({...formData, cons: event.target.value})
+    //     } else {
+    //     setError("Comments can't be longer than 255 characters")
+    //     }
+    // }
+
+    // const handleAdditionalCommentsChange = (event) => {
+    //     const shouldSetValue = event.target.value.length < 255
+    //     if (shouldSetValue){
+    //     setFormData({...formData, additionalComments: event.target.value})
+    //     } else {
+    //     setError("Comments can't be longer than 255 characters")
+    //     }
+    // }
 
     
         //The handleSubmit function is called when the form is submitted and sends the form data to a backend API using the fetch function. The setFormData function is then called to reset the form to its default values
-        const handleSubmit = async (event) => {
-        event.preventDefault();
-        const { tipOutType, doYouTipOut, text, benefits, jobType } = formData;
+        // const handleSubmit = async (event) => {
+        // event.preventDefault();
+        // const { tipOutType, doYouTipOut, text, benefits, jobType } = formData;
     
     
         // Reset form
-        setFormData({
-            companyName: '',
-            jobType: '',
-            doYouTipOut: '',
-            tipOutType: '',
-            hourlyRate: '',
-            pros: '',
-            cons: '',
-            additionalComments: ''
-        });
-    };
+        // setFormData({
+        //     companyName: '',
+        //     jobType: '',
+        //     doYouTipOut: '',
+        //     tipOutType: '',
+        //     hourlyRate: '',
+        //     pros: '',
+        //     cons: '',
+        //     additionalComments: ''
+        // });
+    // };
 
     return (
     <div>
     <h1>Leave your review here</h1>
 
-        <form onSubmit={handleSubmit} className="p-3 border rounded">
+        <Form onSubmit={handleSubmit} className="p-3 border rounded">
 
 
         <Form.Group>
@@ -123,8 +217,8 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
         <Form.Group>
             <Form.Label>Job Title</Form.Label>
                 <Form.Select  onChange={handleJobTitleChoiceChange}>
-                    <option value="">Please choose</option>
-                    {jobTypesOptions}
+                    <option>Please choose</option>
+                    {jobTypeOptions}
                 </Form.Select>
         </Form.Group>
 
@@ -147,32 +241,32 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes})=> {
     
         <Form.Group>
             <Form.Label>What is your hourly rate?</Form.Label>
-                <Form.Control type='text' onChange={handleHourlyRateChoiceChange}></Form.Control>
+                <Form.Control type='text' ref={hourlyRateRef}></Form.Control>
         </Form.Group>
 
         <Form.Group>
             <Form.Label>Pros of working there</Form.Label>
             <FloatingLabel label="Tell us the good stuff">
-                <Form.Control type='text' onChange={handleProsChange}></Form.Control>
+                <Form.Control type='text' ref={prosRef}></Form.Control>
             </FloatingLabel>
         </Form.Group>
 
         <Form.Group>
             <Form.Label>Cons of working there</Form.Label>
             <FloatingLabel label="Tell us the not so good stuff">
-                <Form.Control type='text' onChange={handleConsChange}></Form.Control>
+                <Form.Control type='text' ref={consRef}></Form.Control>
             </FloatingLabel>
         </Form.Group>
 
         <Form.Group>
             <Form.Label>Any other comments you want to leave?</Form.Label>
             <FloatingLabel label="e.g. Advice for management, thoughts about uniforms...">
-                <Form.Control type='text' onChange={handleAdditionalCommentsChange}></Form.Control>
+                <Form.Control type='text' ref={additionalCommentsRef}></Form.Control>
             </FloatingLabel>
         </Form.Group>
 
         <input type="submit" value="Submit" />
-</form>
+</Form>
 </div>
 )
 }

@@ -15,6 +15,8 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
   const navigate = useNavigate()
   const isLoggedIn = useAuth()
 
+console.log("this is dashboard user details")
+console.log(userDetailsByUid)
 
   const handleChange = (e) => {
     const searchInput = e.target.value
@@ -60,7 +62,9 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
       <ReviewForm
       jobTypes={jobTypes}
       companiesInfo={companiesInfo}
-      tipOutTypes={tipOutTypes}/>
+      tipOutTypes={tipOutTypes}
+      userDetailsByUid={userDetailsByUid}/>
+      
     </Container>
 
   </>
