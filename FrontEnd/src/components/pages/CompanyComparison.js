@@ -9,6 +9,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
 
     const [searchbarInput, setSearchbarInput] = useState("")
     const [showComparison, setShowComparison] = useState(false)
+    const [twoCompany, setTwoCompany] = useState()
 
     // let shouldNavigate = false;
     //searchInput are the letters the user types
@@ -30,11 +31,11 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             setSearchbarInput("")
             setShowComparison(true)
             resetSearchResults()
+            const twoCompany = companiesInfo.find((company) => company.id == companyId)
+            setTwoCompany(twoCompany)
         //when the user has selected the company and clicked the button
         //display the comparisonJobTypes()
     }
-
-
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
 
@@ -54,14 +55,26 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     ));
 
     function displayComparisonJobTypes() {
-            return jobTypes.map((jobType) => (
-                <Container key={jobType.id}>
-                    <Row>
-                        <Col>{jobType.jobRole}</Col>
-                        <Col> {jobType.hourlyRate}</Col>
-                    </Row>
-                </Container>
-            ))
+            return (
+            <Card>
+                <Card.Body>
+                    <Image style={{maxWidth: "25em", maxHeight: "25em"}}
+                        src={twoCompany.imageUrl}
+                        fluid
+                    />
+                    <Card.Title>
+                        {twoCompany.name}
+                    </Card.Title>
+                    <Card.Text>
+                        {twoCompany.description}
+                    </Card.Text>
+                </Card.Body>
+                <Card.Body >
+                    <Card.Title>Job Role (wages):</Card.Title>
+                    <Card.Text>{currentJobTypes}</Card.Text>
+                </Card.Body>
+            </Card>
+            )
     }
 
 
