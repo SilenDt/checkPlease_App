@@ -55,11 +55,11 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                 fluid
             />
             <Tabs
-                defaultActiveKey="Overview"
+                // defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="overview" title="Overview" >
+                <Tab eventKey="overview" title="Overview" defaultActiveKey="Overview">
                     <Container>
                         <Row>
 
