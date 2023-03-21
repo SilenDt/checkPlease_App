@@ -104,6 +104,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                     activeColor="#ffd700"
                                     edit ={false}
                                     />
+                                    ({currentCompanyReviews.length})
                                 </Card>
                             </Col>
                         </Row>
