@@ -21,7 +21,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const prosRef = useRef()
     const consRef = useRef()
     const additionalCommentsRef = useRef()
-    const overallRating = useRef()
+    const overallRatingRef = useRef()
     const navigate = useNavigate()
     const { currentUser, setCurrentUser } = useAuth()
     
@@ -58,7 +58,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
                 additionalComments: additionalCommentsRef.current.value,
                 user: userDetailsByUid,
                 date: currentDate,
-                overallRating: overallRating
+                overallRating: parseFloat(overallRatingRef.current.value)
             }
             console.log(userDetailsByUid)
             console.log("this is the review details")
@@ -269,7 +269,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
         <Form.Group>
             <Form.Label>What is your overall rating for this company?</Form.Label>
-                <Form.Control type='text' ref={overallRating}></Form.Control>
+                <Form.Control type='text' ref={overallRatingRef}></Form.Control>
         </Form.Group>
 
         <input type="submit" value="Submit" />
