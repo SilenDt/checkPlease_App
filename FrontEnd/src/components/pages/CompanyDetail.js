@@ -117,7 +117,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                     {currentJobTypes}
                 </Tab>
             </Tabs>
-            <Button onClick={handleWriteReviewClick}>Write a Review</Button>
+            <Button className="m-2" onClick={handleWriteReviewClick}>Write a Review</Button>
             <Button onClick={handleCompareClick}>Compare</Button>
         </>
     );

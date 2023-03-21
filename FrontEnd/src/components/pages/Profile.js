@@ -44,7 +44,7 @@ export default function Profile({userDetailsByUid, reviews}) {
               
               <Row>
                 <Col>
-                  <Card style={{ width: '18rem' }}>
+                  <Card style={{ maxWidth: '18rem' }}>
                     <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
                       <Card.Body>
                         <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
