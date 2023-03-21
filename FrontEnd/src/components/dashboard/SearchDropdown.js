@@ -4,10 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-const SearchDropdown = ({searchResults, showComparison, shouldNavigate, onSelect }) => {
-    // const navigate = useNavigate()
+const SearchDropdown = ({searchResults, onSelect }) => {
 
-    
     const dropdownDisplay = searchResults.map((result) => (
         <div>
                 <Card.Body >
@@ -16,19 +14,12 @@ const SearchDropdown = ({searchResults, showComparison, shouldNavigate, onSelect
         </div>
     ))
 
-    // console.log(searchResults)
-    // shouldNavigate = true
-
     const curentSearchResults = searchResults.map((result) => (
         result.id
     ));
     console.log(curentSearchResults)
 
-    const handleSelect = (id) => {
-        // if (showComparison) {
-        //     navigate(`/companies/${curentSearchResults}`)
-        // }
-        
+    const handleSelect = (id) => {        
         onSelect(id)
     }
 
@@ -39,8 +30,6 @@ const SearchDropdown = ({searchResults, showComparison, shouldNavigate, onSelect
         <div className="search-results-dropdown">
             <Card style={{width : "74%"}}>
             <Dropdown
-                // title="Dropdown right"
-                // id="dropdown-menu-align-right"
                 onSelect={handleSelect}
             >
                 {dropdownDisplay}

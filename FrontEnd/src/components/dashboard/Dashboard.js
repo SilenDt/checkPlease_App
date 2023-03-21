@@ -14,9 +14,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
   const { id } = useParams()
   const navigate = useNavigate()
   const isLoggedIn = useAuth()
-
-console.log("this is dashboard user details")
-console.log(userDetailsByUid)
+  let hideReviews = true
 
   const handleChange = (e) => {
     const searchInput = e.target.value
@@ -61,8 +59,9 @@ console.log(userDetailsByUid)
         {isLoggedIn.currentUser && userDetailsByUid && reviews? 
         (<Profile userDetailsByUid={userDetailsByUid}
                   reviews={reviews}
+                  hideReviews={hideReviews}
           />) 
-        : "loading"}
+        : "loading"} 
       </Col>
       </Row> 
   </>

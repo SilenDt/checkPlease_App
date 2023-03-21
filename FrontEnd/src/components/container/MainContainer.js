@@ -11,13 +11,10 @@ import { Container, Row, Column } from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyDetail from "../pages/CompanyDetail";
-import { getOneCompany } from "../../services/CompanyServices";
-import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
-import { getUserByUid, postUser } from "../../services/UserServices";
-import { returnStatement } from "@babel/types";
+import { getUserByUid } from "../../services/UserServices";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
 import UpdateProfile from "../pages/UpdateProfile";
@@ -35,7 +32,6 @@ const MainContainer = () => {
   const [tipOutTypes, setTipOutTypes] = useState([])
   let shouldNavigate = false
 
-  // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
     getCompaniesInfo()
@@ -83,7 +79,6 @@ const MainContainer = () => {
     setSearchResults([])
   }
 
-  console.log(userDetailsByUid)
 
 
 
@@ -148,8 +143,6 @@ const MainContainer = () => {
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             resetSearchResults={resetSearchResults}
-            // shouldNavigate={shouldNavigate}
-
           />}
           /> : "loading"}
         </Routes>

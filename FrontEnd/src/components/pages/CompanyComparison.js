@@ -11,11 +11,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     const [showComparison, setShowComparison] = useState(false)
     const [twoCompany, setTwoCompany] = useState()
 
-    // let shouldNavigate = false;
-    //searchInput are the letters the user types
-    //searchResults empty array atm
-    //saveSearchDetail checks if the searchInput matches any companies from the db
-
     const handleChange = (e) => {
         const searchInput = e.target.value
         console.log({ searchInput })
