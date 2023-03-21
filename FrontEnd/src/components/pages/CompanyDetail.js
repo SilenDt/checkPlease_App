@@ -81,6 +81,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                     size={24}
                                     position="center"
                                     activeColor="#ffd700"
+                                    edit ={false}
                                     />
                                 </Card>
                             </Col>
