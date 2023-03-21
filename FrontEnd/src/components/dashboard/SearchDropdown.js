@@ -1,15 +1,19 @@
-import { Dropdown, DropdownButton, Container } from "react-bootstrap"
+import { Button, Dropdown, DropdownButton, Container, Card } from "react-bootstrap"
 import { ListGroup } from "react-bootstrap"
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const SearchDropdown = ({ searchResults, showComparison, shouldNavigate, onSelect }) => {
     // const navigate = useNavigate()
 
     
     const dropdownDisplay = searchResults.map((result) => (
-        <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
-
+        <div>
+                <Card.Body >
+                    <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
+                </Card.Body>
+        </div>
     ))
 
     // console.log(searchResults)
@@ -32,15 +36,15 @@ const SearchDropdown = ({ searchResults, showComparison, shouldNavigate, onSelec
 
     return (
         <div className="search-results-dropdown">
-            <DropdownButton
-                
-                title="Dropdown right"
-                id="dropdown-menu-align-right"
+            <Card style={{width : "74%"}}>
+            <Dropdown
+                // title="Dropdown right"
+                // id="dropdown-menu-align-right"
                 onSelect={handleSelect}
             >
                 {dropdownDisplay}
-            </DropdownButton>
-    
+            </Dropdown>
+            </Card>
         </div>
     )
 }
