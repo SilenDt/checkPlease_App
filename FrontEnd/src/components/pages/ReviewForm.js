@@ -4,6 +4,7 @@ import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { postReview } from '../../services/ReviewService';
 
 
 const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> {
@@ -38,16 +39,17 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
                 jobType: jobType,
                 doYouTipOut: doYouTipOut,
                 tipOutType: tipOutType,
-                hourlyRate: hourlyRateRef.current.value,
+                hourlyRate: parseFloat(hourlyRateRef.current.value),
                 pros: prosRef.current.value,
                 cons: consRef.current.value,
                 additionalComments: additionalCommentsRef.current.value,
                 user: userDetailsByUid
             }
+            console.log(userDetailsByUid)
             console.log("this is the review details")
             console.log(reviewDetails)
 
-            // await postReview(reviewDetails)
+            await postReview(reviewDetails)
             navigate("/")
         } catch {
             setError("failed to post review")
@@ -188,7 +190,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     <div>
     <h1>Leave your review here</h1>
 
-        <form onSubmit={handleSubmit} className="p-3 border rounded">
+        <Form onSubmit={handleSubmit} className="p-3 border rounded">
 
 
         <Form.Group>
@@ -251,7 +253,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
         </Form.Group>
 
         <input type="submit" value="Submit" />
-</form>
+</Form>
 </div>
 )
 }

@@ -19,6 +19,15 @@ export function addAReview(){
     return fetch(baseURL)
 }
 
+export const postReview = async (payload) => {
+    const res = await fetch(baseURL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    return await res.json()
+}
+
 
 
 // export async function getReviewsByCompany(chosenCompanyId){
