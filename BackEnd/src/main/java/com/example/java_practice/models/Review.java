@@ -45,20 +45,18 @@ public class Review {
     private TipOutType tipOutType;
 
     @Column(name = "hourlyRate")
-    private double hourlyRate;
+    private Double hourlyRate;
 
     @Column(name = "additionalComments")
     private String additionalComments;
 
     @Column(name = "overallRating")
-    private double overallRating;
+    private Double overallRating;
 
-
-//    private List<Benefit> benefits;
 
     public Review(){}
 
-    public Review(String date, String pros, String cons, Company company, User user, JobType jobType, String doYouTipOut, TipOutType tipOutType, double hourlyRate, String additionalComments, double overallRating) {
+    public Review(String date, String pros, String cons, Company company, User user, JobType jobType, String doYouTipOut, TipOutType tipOutType, Double hourlyRate, String additionalComments, Double overallRating) {
         this.date = date;
         this.pros = pros;
         this.cons = cons;
