@@ -70,16 +70,24 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
 
     return (
         <>
-            <Image
+            <Image 
+                        variant="top" 
+                        src={oneCompany.imageUrl} 
+                        alt="this is a company picture"
+                        style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
+                        className="img-fluid"
+                        />
+            
+            {/* <Image
                 src="https://picsum.photos/900/400"
                 fluid
-            />
+            /> */}
             <Tabs
-                defaultActiveKey="Overview"
+                // defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="overview" title="Overview" >
+                <Tab eventKey="overview" title="Overview" defaultActiveKey="Overview">
                     <Container>
                         <Row>
 

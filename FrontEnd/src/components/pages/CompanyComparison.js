@@ -21,6 +21,8 @@ const CompanyComparison = ({companiesInfo, jobTypes, saveSearchDetail, searchRes
         setSearchbarInput(searchInput)
         saveSearchDetail(searchInput)
         console.log(saveSearchDetail)
+
+        //add a condition for the company you're on to not be displayed as comparison
     }
 
 
