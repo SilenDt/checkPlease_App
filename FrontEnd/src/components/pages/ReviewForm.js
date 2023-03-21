@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { postReview } from '../../services/ReviewService';
 
@@ -23,6 +23,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const additionalCommentsRef = useRef()
     const overallRatingRef = useRef()
     const navigate = useNavigate()
+    const location = useLocation()
     const { currentUser, setCurrentUser } = useAuth()
     
 
