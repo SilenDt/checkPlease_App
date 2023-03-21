@@ -60,7 +60,9 @@ const Dashboard = ({ saveSearchDetail,  searchResults, companiesInfo, selectedCo
       <ReviewForm
       jobTypes={jobTypes}
       companiesInfo={companiesInfo}
-      tipOutTypes={tipOutTypes}/>
+      tipOutTypes={tipOutTypes}
+      userDetailsByUid={userDetailsByUid}/>
+      
     </Container>
 
   </>

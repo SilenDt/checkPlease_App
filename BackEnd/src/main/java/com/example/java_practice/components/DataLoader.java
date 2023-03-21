@@ -85,7 +85,7 @@ public class DataLoader  implements  ApplicationRunner{
         tipOutTypeRepository.save(fixedAmount);
         TipOutType discretion = new TipOutType("At your own discretion");
         tipOutTypeRepository.save(discretion);
-        TipOutType na = new TipOutType("I don't tip out");
+        TipOutType na = new TipOutType("I do not tip out");
         tipOutTypeRepository.save(na);
 
 //        Benefit staffMeal = new Benefit("Staff Meal");
