@@ -41,7 +41,7 @@ export default function Profile({userDetailsByUid, reviews}) {
         <Col>
           <Card>
             <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
-              
+              ›
               <Row>
                 <Col>
                   <Card style={{ maxWidth: '18rem' }}>
