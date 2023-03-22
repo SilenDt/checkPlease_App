@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
-import { Container, Card, Col, Row, ListGroup } from 'react-bootstrap'
+import { Container, Card, Col, Row, ListGroup, Button } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 import '../css/style.css'
+import { deleteOneReview } from '../../services/ReviewService'
 
-export default function Profile({userDetailsByUid, reviews, hideReviews}) {
+export default function Profile({userDetailsByUid, reviews, hideReviews, handleDeleteReveiw}) {
 
     const {currentUser, setCurrentUser} = useAuth()
   
     const currentUserReviews = reviews.filter((review) => userDetailsByUid.id == review.user.id)
-  
+
+    const handleDelete = (e) => {
+      handleDeleteReveiw(e.target.value)
+      deleteOneReview(e.target.value)
+    }
+
     const mappedReviews = currentUserReviews.map((review) => (
       <Container key={review.id}>
         <Card>
@@ -24,6 +30,9 @@ export default function Profile({userDetailsByUid, reviews, hideReviews}) {
                   {review.pros}
                   {review.cons}
                   {review.additionalComments}
+                  <Button onClick={handleDelete} value= {review.id} className=" w-30 mt-1 ">
+                                    Delete review                               
+                                    </Button>
               </Col>
           </Row>
           </Card> 
@@ -61,12 +70,10 @@ export default function Profile({userDetailsByUid, reviews, hideReviews}) {
                     <Card.Body>
                         <ListGroup variant="flush">
                         <ListGroup.Item>{mappedReviews}</ListGroup.Item>
-                        <Link to="/update-review/:id" className="btn btn-primary w-30 mt-1 mr-3">
+                        {/* <Link to="/update-review/:id" className="btn btn-primary w-30 mt-1 mr-3">
                                     Update review
-                                </Link>
-                                <Link to="/update-profile/:id" className="btn btn-primary w-30 mt-1 ">
-                                    Delete review                                
-                                    </Link>
+                                </Link> */}
+                                
                         </ListGroup>
                     </Card.Body>
                     </Card>

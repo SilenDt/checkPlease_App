@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:8080/reviews"
+const baseURL = "http://localhost:8080/reviews/"
 
 // export  function getReviewsInfo(){
 //     return  fetch(baseURL)
@@ -43,5 +43,18 @@ export async function getReviewByCompanyId(companyId) {
         .then(res => res.json)
 }
 
+export async function deleteOneReview(id) {
+    return fetch(baseURL + id, {
+        method: 'DELETE',
+        body: JSON.stringify({ id })
+    })
+}
+
+// export const deleteVisitedCountry = (id) => {
+//     return fetch(visitedURL, {
+//         method: 'DELETE',
+//         body: JSON.stringify({ id })
+//     });
+// }
 
 
