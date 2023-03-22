@@ -45,14 +45,14 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
     </Row>
     </Form>
     <Row className="mt-3">
+        {isLoggedIn.currentUser && userDetailsByUid ? (
     <Col sm={3}>
-        {isLoggedIn.currentUser && userDetailsByUid && reviews? 
-        (<Profile userDetailsByUid={userDetailsByUid}
+        <Profile userDetailsByUid={userDetailsByUid}
                   reviews={reviews}
                   hideReviews={hideReviews}
-          />) 
-        : "loading"}
-      </Col>
+          /> 
+      </Col>)
+        : ""}
       <Col sm={9}>
           <CompanyList
           companiesInfo={companiesInfo}
