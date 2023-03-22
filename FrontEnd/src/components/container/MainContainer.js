@@ -77,6 +77,12 @@ const MainContainer = () => {
     setSearchResults([])
   }
 
+  const handleDeleteReveiw = (id) => {
+    const copyOfReviws = [... reviews]
+    const filteredReviws = copyOfReviws.filter((rv) => !(rv.id == id))
+    setReviews(filteredReviws)
+  }
+
 
   return (
     <Router>
@@ -115,6 +121,7 @@ const MainContainer = () => {
               element={
                 <ProtectedRoute>
                   <Profile 
+                    handleDeleteReveiw={handleDeleteReveiw}
                     userDetailsByUid={userDetailsByUid}
                     reviews={reviews}
                     />
