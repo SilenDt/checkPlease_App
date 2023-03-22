@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate, useLocation} from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
+import { Alert } from 'react-bootstrap';
 
 
 const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> {
@@ -64,6 +65,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
             await postReview(reviewDetails)
             navigate("/")
+            alert("Review posted successfully!")
         } catch {
             setError("failed to post review")
         }
