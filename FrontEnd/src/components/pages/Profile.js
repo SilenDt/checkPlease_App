@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Container, Card, Col, Row, ListGroup } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom'
+import '../css/style.css'
 
 export default function Profile({userDetailsByUid, reviews, hideReviews}) {
+
     const {currentUser, setCurrentUser} = useAuth()
   
     const currentUserReviews = reviews.filter((review) => userDetailsByUid.id == review.user.id)
