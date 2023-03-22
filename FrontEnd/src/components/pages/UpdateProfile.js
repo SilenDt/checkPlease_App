@@ -4,13 +4,14 @@ import React, { useRef, useState } from 'react'
 import { updateUser } from "../../services/UserServices"
 import { useNavigate } from "react-router-dom"
 
-export default function UpdateProfile({ userDetailsByUid }) {
+export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
     const { currentUser, setCurrentUser } = useAuth()
     const firstNameRef = useRef()
     const lastNameRef = useRef()
     const userTownRef = useRef()
     const locationOfPlaceOfWorkRef = useRef()
     const [loading, setLoading] = useState(false)
+    const [selectJob, setSelectJob] = useState()
     const [error, setError] = useState()
     const navigate = useNavigate()
 
@@ -23,17 +24,36 @@ export default function UpdateProfile({ userDetailsByUid }) {
             const userDetails = {
                 firstName: firstNameRef.current.value,
                 lastName: lastNameRef.current.value,
+                jobType: selectJob,
                 userTown: userTownRef.current.value,
-                locationOfPlaceOfWork: locationOfPlaceOfWorkRef.current.value,
+                locationOfPlaceOfWork: locationOfPlaceOfWorkRef.current.value
             }
+            console.log(userDetails)
             await updateUser(currentUser.uid, userDetails)
             console.log("this is the user details  " + currentUser.uid + " and " + userDetails.firstName)
+            
             navigate("/")
         } catch {
             setError("failed to update user details")
         }
         setLoading(false)
     }
+
+        const currentJobTypes = jobTypes.map((jobType) => (
+            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+    ));
+
+    const handleClick = (e) => {
+        console.log("this is the e.target.value")
+        console.log(typeof e.target.value)
+        console.log(e.target.value)
+
+        const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
+        setSelectJob(findObj) 
+    }
+    console.log("this is the userdetailsByUid")
+    console.log(userDetailsByUid)
+    console.log(selectJob)
 
     return (
         <div>
@@ -60,6 +80,13 @@ export default function UpdateProfile({ userDetailsByUid }) {
                             <Form.Group id="placeOfWork">
                                 <Form.Label>What town/city do you work in? </Form.Label>
                                 <Form.Control type="placeOfWork" ref={locationOfPlaceOfWorkRef} defaultValue={userDetailsByUid.locationOfPlaceOfWork}></Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Job Role:</Form.Label>
+                                <Form.Select onChange={handleClick}  >
+                                    <option value={userDetailsByUid.jobType.jobRole}>{userDetailsByUid.jobType.jobRole}</option>
+                                    {currentJobTypes}
+                                </Form.Select>
                             </Form.Group>
                             <Button disabled={loading} className="w-100 mt-2" type="submit">Update</Button>
                         </Form>

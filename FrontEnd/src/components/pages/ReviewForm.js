@@ -22,7 +22,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const overallRatingRef = useRef()
     const navigate = useNavigate()
     const location = useLocation()
-  
 
     async function handleSubmit(e) {
         e.preventDefault();

@@ -115,7 +115,8 @@ const MainContainer = () => {
                 <ProtectedRoute>
                   <Profile 
                     userDetailsByUid={userDetailsByUid}
-                    reviews={reviews}/>
+                    reviews={reviews}
+                    />
                 </ProtectedRoute>} />
             : ""}   
                     
@@ -123,7 +124,9 @@ const MainContainer = () => {
             <Route exact path="/update-profile/:id"
               element={
                 <ProtectedRoute>
-                  <UpdateProfile userDetailsByUid={userDetailsByUid}/>
+                  <UpdateProfile 
+                  userDetailsByUid={userDetailsByUid}
+                  jobTypes={jobTypes}/>
                 </ProtectedRoute>} />
             : ""}
           <Route exact path="/forgot-password" element={<ForgotPassword />}></Route>
