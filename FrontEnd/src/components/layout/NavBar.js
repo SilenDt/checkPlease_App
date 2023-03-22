@@ -10,7 +10,7 @@ const NavBar = () => {
   const isLoggedIn = useAuth();
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="xl">
       <Container>
         <Navbar.Brand 
           as={Link} 
