@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-import {Image, Card, Button} from "react-bootstrap"
+import {Card} from "react-bootstrap"
 import ReactStars from "react-stars"
 
 const CompanyItem = ({company, onCompanyClicked, reviews}) => {
@@ -32,7 +31,7 @@ const CompanyItem = ({company, onCompanyClicked, reviews}) => {
                                 <Card.Title>{company.name}</Card.Title>
                                 <Card.Subtitle>{company.town}</Card.Subtitle>
                                 <Card.Text>{company.description}</Card.Text>
-                                <Card.Text>Rating: <ReactStars
+                                <Card.Title>Rating: <ReactStars
                                     count={5}
                                     value={averageRating}
                                     name="rating"
@@ -42,7 +41,7 @@ const CompanyItem = ({company, onCompanyClicked, reviews}) => {
                                     edit ={false}
                                     />
                                     ({currentCompanyReviews.length})
-                                    </Card.Text>
+                                    </Card.Title>
                                 <Card.Link href={`/companies/${company.id}`}>Click here for more information...</Card.Link>
                         </Card.Body>
                         </div>

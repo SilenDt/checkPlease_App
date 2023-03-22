@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { useState } from "react";
 import { Card, Form, FloatingLabel, Image, Row, Col, Container } from "react-bootstrap";
 import SearchDropdown from "../dashboard/SearchDropdown";
@@ -12,11 +12,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     const [twoCompany, setTwoCompany] = useState()
     const [error, setError] = useState("")
 
-    // let shouldNavigate = false;
-    //searchInput are the letters the user types
-    //searchResults empty array atm
-    //saveSearchDetail checks if the searchInput matches any companies from the db
-
     const handleChange = (e) => {
         const searchInput = e.target.value
         console.log({ searchInput })
@@ -24,8 +19,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
         saveSearchDetail(searchInput)
         setError("")
         console.log(saveSearchDetail)
-
-        //add a condition for the company you're on to not be displayed as comparison
     }
 
 
@@ -39,8 +32,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             resetSearchResults()
             const twoCompany = companiesInfo.find((company) => company.id == companyId)
             setTwoCompany(twoCompany)
-        //when the user has selected the company and clicked the button
-        //display the comparisonJobTypes()
+    
     }
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
@@ -48,7 +40,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     const curentSearchResults = searchResults.map((result) => (
         result.name
     ));
-    console.log(curentSearchResults)
 
 
     const currentJobTypes = jobTypes.map((jobType) => (
@@ -94,8 +85,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             </FloatingLabel>
                         <SearchDropdown 
                         searchResults={searchResults} 
-                        // showComparison = {showComparison}
-                        // shouldNavigate = {shouldNavigate}
                         displayComparisonJobTypes={displayComparisonJobTypes} 
                         onSelect={onSelect}
                         />
@@ -105,8 +94,8 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             <Container className="mt-3">
                 <Row>
                     <Col>
-                        <Card>
-                            <Card.Body>
+                        <Card.Body>
+                            <Card>
                                 <Image style={{maxWidth: "25em", maxHeight: "25em"}}
                                     src={oneCompany.imageUrl}
                                     fluid
@@ -117,12 +106,12 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                                 <Card.Text>
                                     {oneCompany.description}
                                 </Card.Text>
-                            </Card.Body>
-                            <Card.Body >
+                            </Card>
+                            <Card>
                                 <Card.Title>Job Role (wages):</Card.Title>
                                 <Card.Text>{currentJobTypes}</Card.Text>
-                            </Card.Body>
-                        </Card>
+                            </Card>
+                        </Card.Body>
                     </Col>
                     <Col>
                     {!showComparison ?

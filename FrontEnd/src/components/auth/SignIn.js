@@ -2,7 +2,6 @@ import React, {useRef, useState} from "react";
 import {Container, Form, Card, Button, Alert} from "react-bootstrap"
 import {useAuth} from "../../contexts/AuthContext"
 import {useNavigate, Link } from "react-router-dom";
-import SignUp from "./SignUp";
 
 const SignIn = () => {
 

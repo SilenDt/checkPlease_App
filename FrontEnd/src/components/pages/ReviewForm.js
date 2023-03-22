@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
 
@@ -23,11 +21,7 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const additionalCommentsRef = useRef()
     const overallRatingRef = useRef()
     const navigate = useNavigate()
-    const location = useLocation()
-    const { currentUser, setCurrentUser } = useAuth()
-    
-
-
+  
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -82,7 +76,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
     const handleJobTitleChoiceChange = (e) => {
         const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
-        // setSelectJob(Number(chosenJob)) 
         setJobType(findObj) 
     }
 

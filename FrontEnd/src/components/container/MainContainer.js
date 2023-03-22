@@ -11,13 +11,10 @@ import { Container, Row, Column } from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { getCompaniesInfo } from "../../services/CompanyServices";
 import CompanyDetail from "../pages/CompanyDetail";
-import { getOneCompany } from "../../services/CompanyServices";
-import { useParams } from "react-router-dom";
 import ReviewForm from "../pages/ReviewForm";
 import { useAuth } from "../../contexts/AuthContext"
 import { getAllReviews } from "../../services/ReviewService";
-import { getUserByUid, postUser } from "../../services/UserServices";
-import { returnStatement } from "@babel/types";
+import { getUserByUid } from "../../services/UserServices";
 import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
 import UpdateProfile from "../pages/UpdateProfile";
@@ -33,9 +30,7 @@ const MainContainer = () => {
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
   const [tipOutTypes, setTipOutTypes] = useState([])
-  let shouldNavigate = false
 
-  // console.log("This is the current user " + currentUser.uid)
 
   useEffect(() => {
     getCompaniesInfo()
@@ -45,7 +40,6 @@ const MainContainer = () => {
     getAllReviews()
       .then((allReviews) => {
         setReviews(allReviews)
-        console.log(allReviews)
       })
     getTipOutTypes()
     .then((allTipOutTypes) => {
@@ -55,7 +49,6 @@ const MainContainer = () => {
     getJobTypesInfo()
       .then((allJobTypes) => {
         setJobTypes(allJobTypes)
-        // console.log(allJobTypes)
       })
       
     if (!currentUser) {
@@ -83,9 +76,6 @@ const MainContainer = () => {
     setSearchResults([])
   }
 
-  console.log(userDetailsByUid)
-
-
 
   return (
     <Router>
@@ -107,7 +97,7 @@ const MainContainer = () => {
           }/>
           
           {companiesInfo.length > 0 && reviews.length > 0 && jobTypes.length > 0 ?
-            <Route path="/companies/:id"
+            <Route exact path="/companies/:id"
               element=
               {<CompanyDetail
                 companiesInfo={companiesInfo}
@@ -115,43 +105,41 @@ const MainContainer = () => {
                 jobTypes={jobTypes}
               />}
             /> : "loading"}
-          <Route path="/signin" element={<SignIn/>}></Route>
-          <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
+          <Route exact path="/signin" element={<SignIn/>}></Route>
+          <Route exact path="/signup" element={<SignUp/>}></Route>
+          <Route exact path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid && reviews ?
-            <Route path="/profile/:id"
+            <Route exact path="/profile/:id"
               element={
                 <ProtectedRoute>
                   <Profile 
                     userDetailsByUid={userDetailsByUid}
                     reviews={reviews}/>
                 </ProtectedRoute>} />
-            : "loading"}   
+            : ""}   
                     
             {userDetailsByUid ?
-            <Route path="/update-profile/:id"
+            <Route exact path="/update-profile/:id"
               element={
                 <ProtectedRoute>
                   <UpdateProfile userDetailsByUid={userDetailsByUid}/>
                 </ProtectedRoute>} />
-            : "loading"}
-          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/review-form" element={<ProtectedRoute><ReviewForm
+            : ""}
+          <Route exact path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route exact path="/review-form" element={<ProtectedRoute><ReviewForm
           jobTypes={jobTypes}
           companiesInfo={companiesInfo}
           tipOutTypes={tipOutTypes}
           userDetailsByUid={userDetailsByUid}/></ProtectedRoute>}/>
-          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
+          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route exact path="/companies/:id/company-comparison" element={<CompanyComparison
             jobTypes={jobTypes}
             companiesInfo={companiesInfo}
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             resetSearchResults={resetSearchResults}
-            // shouldNavigate={shouldNavigate}
-
           />}
-          /> : "loading"}
+          /> : ""}
         </Routes>
       </Container>
     </Router>

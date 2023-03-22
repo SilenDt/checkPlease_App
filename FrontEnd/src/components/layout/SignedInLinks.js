@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { Button, Navbar, NavDropdown, Nav } from "react-bootstrap"
+import { useNavigate } from 'react-router-dom';
+import { Button, NavDropdown, Nav } from "react-bootstrap"
 import { useAuth } from '../../contexts/AuthContext';
 
 const SignedInLinks = () => {

@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Container, Card, Col, Row, ListGroup } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
-import { Link, useParams} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 export default function Profile({userDetailsByUid, reviews, hideReviews}) {
     const {currentUser, setCurrentUser} = useAuth()
@@ -35,7 +34,6 @@ export default function Profile({userDetailsByUid, reviews, hideReviews}) {
                 <Col>
                 <Card className='profile-container' style={{ maxWidth: '40rem' }}>
                         <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
-                            {/* Profile Details Card*/}
                                 <Card.Body style={{maxWidth: '18rem'}}>
                                 <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
                                 </Card.Body>
