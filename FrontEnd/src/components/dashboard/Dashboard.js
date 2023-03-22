@@ -16,7 +16,6 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
 
   const handleChange = (e) => {
     const searchInput = e.target.value
-    console.log({searchInput})
     setSearchbarInput(searchInput)
     saveSearchDetail(searchInput)
   

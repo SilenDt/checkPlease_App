@@ -30,7 +30,6 @@ const MainContainer = () => {
   const [jobTypes, setJobTypes] = useState([])
   const { currentUser, setCurrentUser } = useAuth()
   const [tipOutTypes, setTipOutTypes] = useState([])
-  let shouldNavigate = false
 
 
   useEffect(() => {
@@ -41,7 +40,6 @@ const MainContainer = () => {
     getAllReviews()
       .then((allReviews) => {
         setReviews(allReviews)
-        console.log(allReviews)
       })
     getTipOutTypes()
     .then((allTipOutTypes) => {
@@ -51,7 +49,6 @@ const MainContainer = () => {
     getJobTypesInfo()
       .then((allJobTypes) => {
         setJobTypes(allJobTypes)
-        // console.log(allJobTypes)
       })
       
     if (!currentUser) {
@@ -100,7 +97,7 @@ const MainContainer = () => {
           }/>
           
           {companiesInfo.length > 0 && reviews.length > 0 && jobTypes.length > 0 ?
-            <Route path="/companies/:id"
+            <Route exact path="/companies/:id"
               element=
               {<CompanyDetail
                 companiesInfo={companiesInfo}
@@ -108,12 +105,12 @@ const MainContainer = () => {
                 jobTypes={jobTypes}
               />}
             /> : "loading"}
-          <Route path="/signin" element={<SignIn/>}></Route>
-          <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
+          <Route exact path="/signin" element={<SignIn/>}></Route>
+          <Route exact path="/signup" element={<SignUp/>}></Route>
+          <Route exact path="/signupform" element={<ProtectedRoute><SignUpForm jobTypes={jobTypes}/></ProtectedRoute>}></Route>
           {/* <Route path={currentUser && `/profile/${currentUser.uid}`} element={<ProtectedRoute><Profile userDetailsByUid={userDetailsByUid}/></ProtectedRoute>} /> */}
           {userDetailsByUid && reviews ?
-            <Route path="/profile/:id"
+            <Route exact path="/profile/:id"
               element={
                 <ProtectedRoute>
                   <Profile 
@@ -123,19 +120,19 @@ const MainContainer = () => {
             : ""}   
                     
             {userDetailsByUid ?
-            <Route path="/update-profile/:id"
+            <Route exact path="/update-profile/:id"
               element={
                 <ProtectedRoute>
                   <UpdateProfile userDetailsByUid={userDetailsByUid}/>
                 </ProtectedRoute>} />
             : ""}
-          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/review-form" element={<ProtectedRoute><ReviewForm
+          <Route exact path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route exact path="/review-form" element={<ProtectedRoute><ReviewForm
           jobTypes={jobTypes}
           companiesInfo={companiesInfo}
           tipOutTypes={tipOutTypes}
           userDetailsByUid={userDetailsByUid}/></ProtectedRoute>}/>
-          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route path="/companies/:id/company-comparison" element={<CompanyComparison
+          {companiesInfo.length > 0 && jobTypes.length > 0 ? <Route exact path="/companies/:id/company-comparison" element={<CompanyComparison
             jobTypes={jobTypes}
             companiesInfo={companiesInfo}
             saveSearchDetail={saveSearchDetail}

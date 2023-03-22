@@ -13,7 +13,6 @@ const SearchDropdown = ({searchResults, onSelect }) => {
     const curentSearchResults = searchResults.map((result) => (
         result.id
     ));
-    console.log(curentSearchResults)
 
     const handleSelect = (id) => {        
         onSelect(id)

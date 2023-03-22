@@ -1,6 +1,4 @@
 import { useNavigate, useParams } from "react-router"
-import { useState, useEffect } from "react";
-import { getOneCompany } from "../../services/CompanyServices";
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
 import ReactStars from "react-stars";
 
@@ -45,7 +43,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
             </Row>
         </Container>
     ));
-    console.log(jobTypes)
 
 
     const handleWriteReviewClick = () => {
@@ -74,7 +71,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="overview" title="Overview" defaultActiveKey="Overview">
+                <Tab eventKey="overview" title="Overview" defaultactivekey="Overview">
                     <Container>
                         <Row>
 

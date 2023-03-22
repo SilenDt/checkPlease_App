@@ -8,7 +8,6 @@ import logo from '../images/logo.png'
 
 const NavBar = () => {
   const isLoggedIn = useAuth();
-  console.log(isLoggedIn.currentUser);
 
   return (
     <Navbar bg="light" expand="lg">

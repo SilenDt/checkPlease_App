@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { useState } from "react";
 import { Card, Form, FloatingLabel, Image, Row, Col, Container } from "react-bootstrap";
 import SearchDropdown from "../dashboard/SearchDropdown";
@@ -34,7 +34,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     const curentSearchResults = searchResults.map((result) => (
         result.name
     ));
-    console.log(curentSearchResults)
 
 
     const currentJobTypes = jobTypes.map((jobType) => (
@@ -88,8 +87,8 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             <Container className="mt-3">
                 <Row>
                     <Col>
-                        <Card>
-                            <Card.Body>
+                        <Card.Body>
+                            <Card>
                                 <Image style={{maxWidth: "25em", maxHeight: "25em"}}
                                     src={oneCompany.imageUrl}
                                     fluid
@@ -100,12 +99,12 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                                 <Card.Text>
                                     {oneCompany.description}
                                 </Card.Text>
-                            </Card.Body>
-                            <Card.Body >
+                            </Card>
+                            <Card>
                                 <Card.Title>Job Role (wages):</Card.Title>
                                 <Card.Text>{currentJobTypes}</Card.Text>
-                            </Card.Body>
-                        </Card>
+                            </Card>
+                        </Card.Body>
                     </Col>
                     <Col>
                     {!showComparison ?
