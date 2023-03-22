@@ -40,7 +40,6 @@ export default function Profile({userDetailsByUid, reviews}) {
     <Container>
       <Row>
         <Col>
-
   {/* Profile Card Container */}
           <Card className='profile-container'>
           <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
@@ -71,7 +70,6 @@ export default function Profile({userDetailsByUid, reviews}) {
             {/* Review Card Container - start*/}
                   <Col>
                     <Card>
-
                       <Card.Body>
                         <Card.Title>Reviews</Card.Title>
                           <ListGroup variant="flush">
