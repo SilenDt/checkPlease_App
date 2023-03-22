@@ -42,21 +42,14 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
     }
 
         const currentJobTypes = jobTypes.map((jobType) => (
-            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+            <option key={jobType.id} value={jobType.jobRole}>{jobType.jobRole}</option>
     ));
 
     const handleClick = (e) => {
-        console.log("this is the e.target.value")
-        console.log(typeof e.target.value)
-        console.log(e.target.value)
 
         const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
         setSelectJob(findObj) 
     }
-    console.log("this is the userdetailsByUid")
-    console.log(userDetailsByUid)
-    console.log(selectJob)
-
 
     return (
         <div>
@@ -72,7 +65,6 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
                                 <Form.Label>First name </Form.Label>
                                 <Form.Control type="firstName" ref={firstNameRef} defaultValue={userDetailsByUid.firstName} required ></Form.Control>
                             </Form.Group>
-
                             <Form.Group id="lastName">
                                 <Form.Label>Last name </Form.Label>
                                 <Form.Control type="lastName" ref={lastNameRef} defaultValue={userDetailsByUid.lastName} required ></Form.Control>
