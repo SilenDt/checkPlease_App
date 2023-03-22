@@ -32,24 +32,51 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             resetSearchResults()
             const twoCompany = companiesInfo.find((company) => company.id == companyId)
             setTwoCompany(twoCompany)
-    
     }
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
+    
+    const oneCompanyReviews = reviews.filter((review) => review.company.id == id)
 
-    const curentSearchResults = searchResults.map((result) => (
-        result.name
-    ));
+    //const curentSearchResults = searchResults.map((result) => (
+    //    result.name
+    //));
+    const jobPayObj1 = {}
+    oneCompanyReviews.forEach(review => {
+        const name = review.jobType.jobRole 
+        const rate = review.hourlyRate
+
+        if(jobPayObj1[name]){
+            jobPayObj1[name].push(rate)
+        } else {
+            jobPayObj1[name] = [rate]
+        }
+    });
+
+    const jobPayArray1 = []
+    for (let jobTitleKey in jobPayObj1 ){
+        const total = jobPayObj1[jobTitleKey].reduce((prevNumb, currentNumb ) =>  prevNumb + currentNumb)
+        const avg = total / jobPayObj1[jobTitleKey].length
+        const jobAvgPayObj1 = {jobTitle : jobTitleKey, avgPay : avg}
+        jobPayArray1.push(jobAvgPayObj1)
+    }
+
+    const jobTitlesAndAvgRate1 = jobPayArray1.map((jobAvgPayObj1) => (
+        <Row key={jobAvgPayObj1.jobTitle}>
+            <Col>{jobAvgPayObj1.jobTitle}</Col>
+            <Col>${jobAvgPayObj1.avgPay}</Col>
+        </Row>
+    ))
 
 
-    const currentJobTypes = jobTypes.map((jobType) => (
-        <Container key={jobType.id}>
-            <Row>
-                <Col>{jobType.jobRole}</Col>
-                <Col> $ {jobType.hourlyRate}</Col>
-            </Row>
-        </Container>
-    ));
+   const currentJobTypes = jobTypes.map((jobType) => (
+       <Container key={jobType.id}>
+           <Row>
+               <Col>{jobType.jobRole}</Col>
+               <Col> $ {jobType.hourlyRate}</Col>
+           </Row>
+       </Container>
+   ));
 
     function displayComparisonJobTypes() {
             return (
@@ -67,8 +94,16 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                     </Card.Text>
                 </Card.Body>
                 <Card.Body >
-                    <Card.Title>Job Role (wages):</Card.Title>
-                    <Card.Text>{currentJobTypes}</Card.Text>
+                <Row>
+                    <Col>
+                    <h6 className="font-weight-bold text-uppercase mb-3">Job title</h6>
+                    </Col>
+                    <Col>
+                    <h6 className="font-weight-bold text-uppercase mb-3">
+                    Average hourly rate</h6>
+                    </Col>
+                    </Row>
+                    {currentJobTypes}
                 </Card.Body>
             </Card>
             )
@@ -108,8 +143,16 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                                 </Card.Text>
                             </Card>
                             <Card>
-                                <Card.Title>Job Role (wages):</Card.Title>
-                                <Card.Text>{currentJobTypes}</Card.Text>
+                                <Row>
+                                    <Col>
+                                    <h6 className="font-weight-bold text-uppercase mb-3">Job title</h6>
+                                    </Col>
+                                    <Col>
+                                    <h6 className="font-weight-bold text-uppercase mb-3">
+                                    Average hourly rate</h6>
+                                    </Col>
+                                </Row>
+                                {jobTitlesAndAvgRate1}
                             </Card>
                         </Card.Body>
                     </Col>
