@@ -4,6 +4,7 @@ import { FloatingLabel, Form, Alert } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
+
 const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) => {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
