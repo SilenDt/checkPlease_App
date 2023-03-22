@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Container, Card, Col, Row, ListGroup } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useParams} from 'react-router-dom'
-
+import '../css/style.css'
 
 export default function Profile({userDetailsByUid, reviews}) {
   //   const [error, setError] = useState()
@@ -47,7 +47,7 @@ export default function Profile({userDetailsByUid, reviews}) {
             <Row>
               <Col sm={3}>
             {/* Profile Details Card*/}
-              <Card style={{ maxWidth: '18rem' }}>
+              <Card style={{ width: '18rem' }}>
                 <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
                 <Card.Body>
                 <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
