@@ -43,6 +43,8 @@ public class UserController {
         user.setLastName(userDetails.getLastName());
         user.setUserTown(userDetails.getUserTown());
         user.setLocationOfPlaceOfWork(userDetails.getLocationOfPlaceOfWork());
+        user.setJobType(userDetails.getJobType());
+
 
         userRepository.save(user);
 
