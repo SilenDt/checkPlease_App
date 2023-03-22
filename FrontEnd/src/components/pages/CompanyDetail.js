@@ -46,7 +46,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
 
 
     const handleWriteReviewClick = () => {
-        navigate("/review-form")
+        navigate("/review-form", {state: {companyName: oneCompany.name}})
     }
 
     const handleCompareClick = () => {

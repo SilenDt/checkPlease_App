@@ -10,17 +10,23 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
     const [searchbarInput, setSearchbarInput] = useState("")
     const [showComparison, setShowComparison] = useState(false)
     const [twoCompany, setTwoCompany] = useState()
+    const [error, setError] = useState("")
 
     const handleChange = (e) => {
         const searchInput = e.target.value
         console.log({ searchInput })
         setSearchbarInput(searchInput)
         saveSearchDetail(searchInput)
+        setError("")
         console.log(saveSearchDetail)
     }
 
 
     const onSelect = (companyId) => {
+        if(companyId === id){
+            setError("You cannot compare a company against itself!")
+            return;
+        }
             setSearchbarInput("")
             setShowComparison(true)
             resetSearchResults()
@@ -82,6 +88,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                         displayComparisonJobTypes={displayComparisonJobTypes} 
                         onSelect={onSelect}
                         />
+                        {error && <p>{error}</p>}
         </Form.Group>
         </Row>
             <Container className="mt-3">
