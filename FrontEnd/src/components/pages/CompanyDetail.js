@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router"
+import { useLocation, useNavigate, useParams } from "react-router"
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
 import ReactStars from "react-stars";
 
