@@ -43,28 +43,40 @@ export default function Profile({userDetailsByUid, reviews, hideReviews, handleD
         <Container>
             <Row>
                 <Col>
-                <Card className='profile-container' style={{ maxWidth: '40rem' }}>
+                <Card className='profile-container' style={{ width: '100%' }}>
                         <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
-                                <Card.Body style={{maxWidth: '18rem'}}>
-                                <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
-                                </Card.Body>
-                                <Card.Body>
-                                <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
-                                <Card.Text>{currentUser.email}</Card.Text>
-                                    <Card.Title>Current City:</Card.Title> 
-                                    <Card.Text>{userDetailsByUid.userTown}</Card.Text>
-                                    <Card.Title>Town you work in:</Card.Title>
-                                    <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
-                                    <Card.Title>Your current job title:</Card.Title>
-                                    <Card.Text>{userDetailsByUid.jobType.jobRole}</Card.Text>     
-                            <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
-                            Update profile
-                            </Link>
+                        <Card.Body style={{maxWidth: '18rem'}}>
+                            <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
                         </Card.Body>
+                        <Card style={{borderRadius: "0px"}}>
+                            <Card.Body>
+                                <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
+                            </Card.Body>
+                        </Card>
+                            <Card.Body>
+                                    <Card.Title className="mb-0">Email</Card.Title>
+                                    <Card.Text>{currentUser.email}</Card.Text>
+                            </Card.Body>
+                        <Card.Body>
+                            <Card.Title className="mb-0">Current City:</Card.Title> 
+                            <Card.Text>{userDetailsByUid.userTown}</Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Card.Title className="mb-0">Town you work in:</Card.Title>
+                            <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
+                        </Card.Body>
+                        <Card.Body>
+                            <Card.Title className="mb-0">Your current job title:</Card.Title>
+                            <Card.Text>{userDetailsByUid.jobType.jobRole}</Card.Text> 
+                        </Card.Body>  
+                        <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
+                        Update profile
+                        </Link>
+                        {/* </Card.Body> */}
                     </Card>
                 </Col>   
                 {hideReviews ? "" :   
-                <Col>
+                <Col sm={8}>
                     <Card>
                     <Card.Header><h2 className="text-center mb-4">Your reviews</h2></Card.Header>
                     <Card.Body>
