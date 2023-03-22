@@ -1,5 +1,6 @@
 package com.example.java_practice.controllers;
 
+import com.example.java_practice.models.Company;
 import com.example.java_practice.models.Review;
 import com.example.java_practice.models.User;
 import com.example.java_practice.repositories.ReviewRepository;
@@ -41,5 +42,27 @@ public class ReviewController {
         reviewRepository.save(review);
         return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
+
+//    @PutMapping("/reviews/{uid}")
+//    public ResponseEntity<Review> updateReview(@PathVariable String uid, @RequestBody Review reviewDetails) {
+////        List<Review> review = reviewRepository.findByUserUid(uid);
+//        Review review = reviewRepository.findByUserUid(uid);
+//
+//        review.setDate(reviewDetails.getDate());
+//        review.setPros(reviewDetails.getPros());
+//        review.setCons(reviewDetails.getCons());
+//        review.setCompany(reviewDetails.getCompany());
+//        review.setJobType(reviewDetails.getJobType());
+//        review.setDoYouTipOut(reviewDetails.getDoYouTipOut());
+//        review.setTipOutType(reviewDetails.getTipOutType());
+//        review.setAdditionalComments(reviewDetails.getAdditionalComments());
+//        review.setUser(reviewDetails.getUser());
+//        review.setHourlyRate(reviewDetails.setHourlyRate());
+//        review.setOverallRating(reviewDetails.getOverallRating());
+//
+//        reviewRepository.save(review);
+//
+//        return new ResponseEntity<>(review, HttpStatus.ACCEPTED);
+//    }
 
 }

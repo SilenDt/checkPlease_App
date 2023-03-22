@@ -8,5 +8,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository <Review, Long> {
 
     List<Review> findByCompanyId(Long company_id);
-    List<Review> findByUserId(Long user_id);
+    List<Review> findByUserId(Long id);
 }

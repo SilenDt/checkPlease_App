@@ -28,9 +28,12 @@ export const postReview = async (payload) => {
     return await res.json()
 }
 
+export const updateReview = async (uid, payload) => {
+    const res = await fetch(baseURL + uid, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    return await res.json();
+}
 
-
-// export async function getReviewsByCompany(chosenCompanyId){
-//     return await fetch(baseURL + "?" + "company_id=" + chosenCompanyId)
-//     .then(res => res.json())
-// }

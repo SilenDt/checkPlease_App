@@ -49,13 +49,4 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 
-//    @PostMapping("/users")
-//    public ResponseEntity<User> saveUser(@RequestBody UserDto userDto) {
-//        User user = new User();
-//        user.setId(userDto.getUid());
-//        user.setUserEmail(userDto.getUserEmail());
-//        userRepository.save(user);
-//        return ResponseEntity.ok(user);
-//    }
-
 }

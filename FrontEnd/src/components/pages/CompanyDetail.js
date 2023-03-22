@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router"
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container, Accordion } from "react-bootstrap";
 import ReactStars from "react-stars";
+import { Link } from "react-router-dom";
 
 
 
@@ -15,6 +16,8 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     // filter through reviews to display the ones that match current company id.
     const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
 
+    // const handleEdit 
+
     const mappedReviews = currentCompanyReviews.map((review) => (
         <Container key={review.id}>
             <Row>
@@ -25,7 +28,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         {review.user.firstName}
                     </Col>
                     <Col>
-                    <Card.Text className="fw-bold">Date Posted:  </Card.Text>
+                        <Card.Text className="fw-bold">Date Posted:  </Card.Text>
                         {review.date}
                     </Col>
                 </Row>
@@ -36,9 +39,9 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         <Accordion.Item eventKey="0">
                             <Accordion.Header>Review</Accordion.Header>
                             <Accordion.Body>
-                            <Card.Text className="fw-bold">Company Name: </Card.Text>
-                            <Card.Text>{review.company.name}</Card.Text>
-                                
+                                <Card.Text className="fw-bold">Company Name: </Card.Text>
+                                <Card.Text>{review.company.name}</Card.Text>
+
                                 <Card.Text className="fw-bold">Job role: </Card.Text>
                                 <Card.Text>{review.jobType.jobRole}</Card.Text>
                                 <Card.Text className="fw-bold">Do you tip out?: </Card.Text>
@@ -53,6 +56,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                                 <Card.Text>{review.cons}</Card.Text>
                                 <Card.Text className="fw-bold">Additional Comments: </Card.Text>
                                 <Card.Text>{review.additionalComments}</Card.Text>
+                                
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
@@ -106,8 +110,8 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         <Row>
 
                             <Col>
-                                <Card.Text className="fw-bold">{oneCompany.name}</Card.Text>                     
-                                <Card.Text className="fst-italic">{oneCompany.town}</Card.Text> 
+                                <Card.Text className="fw-bold">{oneCompany.name}</Card.Text>
+                                <Card.Text className="fst-italic">{oneCompany.town}</Card.Text>
                                 {oneCompany.description} <br></br>
                                 Website: <br></br>
                                 Email:

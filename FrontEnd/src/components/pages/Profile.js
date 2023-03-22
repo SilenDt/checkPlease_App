@@ -39,7 +39,6 @@ export default function Profile({userDetailsByUid, reviews, hideReviews}) {
                                 </Card.Body>
                                 <Card.Body>
                                 <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
-                                        {/* <Card.Title>Email:</Card.Title> */}
                                 <Card.Text>{currentUser.email}</Card.Text>
                                     <Card.Title>Current City:</Card.Title> 
                                     <Card.Text>{userDetailsByUid.userTown}</Card.Text>
@@ -60,6 +59,12 @@ export default function Profile({userDetailsByUid, reviews, hideReviews}) {
                     <Card.Body>
                         <ListGroup variant="flush">
                         <ListGroup.Item>{mappedReviews}</ListGroup.Item>
+                        <Link to="/update-review/:id" className="btn btn-primary w-30 mt-1 mr-3">
+                                    Update review
+                                </Link>
+                                <Link to="/update-profile/:id" className="btn btn-primary w-30 mt-1 ">
+                                    Delete review                                
+                                    </Link>
                         </ListGroup>
                     </Card.Body>
                     </Card>

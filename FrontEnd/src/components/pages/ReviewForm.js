@@ -59,9 +59,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
                 date: currentDate,
                 overallRating: parseFloat(overallRatingRef.current.value)
             }
-            console.log(userDetailsByUid)
-            console.log("this is the review details")
-            console.log(reviewDetails)
 
             await postReview(reviewDetails)
             navigate("/")
