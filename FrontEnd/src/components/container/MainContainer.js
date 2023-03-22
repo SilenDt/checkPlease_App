@@ -148,6 +148,7 @@ const MainContainer = () => {
             saveSearchDetail={saveSearchDetail}
             searchResults={searchResults}
             resetSearchResults={resetSearchResults}
+            reviews={reviews}
             // shouldNavigate={shouldNavigate}
 
           />}

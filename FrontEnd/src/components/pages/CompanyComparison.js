@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card, Form, FloatingLabel, Image, Row, Col, Container } from "react-bootstrap";
 import SearchDropdown from "../dashboard/SearchDropdown";
 
-const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSearchDetail, searchResults }) => {
+const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSearchDetail, searchResults, reviews }) => {
 
     const { id } = useParams()
 
