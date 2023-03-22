@@ -13,6 +13,7 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
     const [loading, setLoading] = useState(false)
     const [selectJob, setSelectJob] = useState()
     const [error, setError] = useState()
+    const [success, setSuccess] = useState()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -34,11 +35,15 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
             }
             console.log(userDetails)
             await updateUser(currentUser.uid, userDetails)
-            navigate("/")
+            
         } catch {
             setError("failed to update user details")
         }
         setLoading(false)
+        setSuccess("Updated! Redirecting...")
+        setTimeout(()=>{
+            navigate("/")
+        }, 1500)
     }
 
         const currentJobTypes = jobTypes.map((jobType) => (
@@ -58,6 +63,7 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
                     <Card.Body>
                         <h2>Update your profile</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
+                        {success && <Alert variant="success">{success}</Alert>}
                         <Card.Title>Email:</Card.Title>
                         <Card.Text>{currentUser.email}</Card.Text>
                         <Form onSubmit={handleSubmit}>

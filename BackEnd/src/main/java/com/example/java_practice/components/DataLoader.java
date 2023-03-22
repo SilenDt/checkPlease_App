@@ -48,6 +48,7 @@ public class DataLoader  implements  ApplicationRunner{
         jobTitleRepository.save(busser);
 
 
+
         User user1 = new User("gdhd747474747474","David", "Smith", "Edinburgh", "TGI Fridays", "Edinburgh", "davie@email.com", bartender);
         userRepository.save(user1);
         User user2 = new User("gdhdhjjd8848484848","Jane","Lee", "Stirling", "Burger King", "Stirling","jane@email.com", server);
@@ -94,20 +95,6 @@ public class DataLoader  implements  ApplicationRunner{
         tipOutTypeRepository.save(discretion);
         TipOutType na = new TipOutType("I do not tip out");
         tipOutTypeRepository.save(na);
-
-//        Benefit staffMeal = new Benefit("Staff Meal");
-//        benefitRepository.save(staffMeal);
-//        Benefit employeeFoodDiscount = new Benefit("Employee Food Discount");
-//        benefitRepository.save(employeeFoodDiscount);
-//        Benefit fofDiscount = new Benefit("Friends and Family Discount");
-//        benefitRepository.save(fofDiscount);
-//        Benefit health = new Benefit("Health Insurance");
-//        benefitRepository.save(health);
-//        Benefit tips = new Benefit("Tips");
-//        benefitRepository.save(tips);
-//        Benefit none = new Benefit("I do not receive benefits");
-//        benefitRepository.save(none);
-
 
         Review review1 = new Review("12-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", tgiFridays, user1, cook, "yes", totalSales, 2.15, "n/a", 3.5);
         reviewRepository.save(review1);
