@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getJobTypesInfo } from '../../services/JobTypeServices';
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate, useLocation} from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
 
@@ -24,10 +22,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     const overallRatingRef = useRef()
     const navigate = useNavigate()
     const location = useLocation()
-    const { currentUser, setCurrentUser } = useAuth()
-    
-
-
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -82,7 +76,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
 
     const handleJobTitleChoiceChange = (e) => {
         const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
-        // setSelectJob(Number(chosenJob)) 
         setJobType(findObj) 
     }
 
@@ -110,102 +103,6 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
         setTipOutType(findObj)
     }
 
-
-
-    //beginning of review form
-    // const [formData, setFormData] = useState(
-    //     {
-    //         companyName: '',
-    //         jobType: '',
-    //         doYouTipOut: '',
-    //         tipOutType: '',
-    //         hourlyRate: '',
-    //         pros: '',
-    //         cons: '',
-    //         additionalComments: '',
-    //         user: userDetailsByUid
-    //     }
-    // );
-
-    // THIS OPTION DOES NOT HAVE A VALUE
-    // const companyOptions = companiesInfo.map((company) => {
-    //     return <option value={company.id}>{company.name}</option>
-    // })
-
-    // const handleCompanyChoiceChange = (event) => {
-    //     setFormData({...formData, companyName: event.target.value})
-    // }
-    // console.log(formData.companyName)
-
-    // const handleJobTitleChoiceChange = (event) => {
-    //     setFormData({ ...formData, jobType: event.target.value });
-    // };
-    
-    // const handleDoYouTipOutChange = (event) => {
-    //     setFormData({ ...formData, doYouTipOut: event.target.value });
-    // };
-    // console.log(formData.doYouTipOut)
-
-    // const tipOutTypeOptions = tipOutTypes.map((tipOutType) => {
-    //     return <option value={tipOutType}>{tipOutType.tipOutMethod}</option>
-    // })
-
-    // const handleTipOutChoiceChange = (event) => {
-    //     setFormData({...formData, tipOutType: event.target.value})
-    // }
-
-    // const handleHourlyRateChoiceChange = (event) => {
-    //     setFormData({...formData, hourlyRate: event.target.value})
-    // }
-    // console.log(formData.hourlyRate)
-
-    // const handleProsChange = (event) => {
-    //     const shouldSetValue = event.target.value.length < 255
-    //     if (shouldSetValue){
-    //     setFormData({...formData, pros: event.target.value})
-    //     } else {
-    //         setError("Comments can't be longer than 255 characters")
-    //     }
-    // }
-
-
-    // const handleConsChange = (event) => {
-    //     const shouldSetValue = event.target.value.length < 255
-    //     if (shouldSetValue){
-    //     setFormData({...formData, cons: event.target.value})
-    //     } else {
-    //     setError("Comments can't be longer than 255 characters")
-    //     }
-    // }
-
-    // const handleAdditionalCommentsChange = (event) => {
-    //     const shouldSetValue = event.target.value.length < 255
-    //     if (shouldSetValue){
-    //     setFormData({...formData, additionalComments: event.target.value})
-    //     } else {
-    //     setError("Comments can't be longer than 255 characters")
-    //     }
-    // }
-
-    
-        //The handleSubmit function is called when the form is submitted and sends the form data to a backend API using the fetch function. The setFormData function is then called to reset the form to its default values
-        // const handleSubmit = async (event) => {
-        // event.preventDefault();
-        // const { tipOutType, doYouTipOut, text, benefits, jobType } = formData;
-    
-    
-        // Reset form
-        // setFormData({
-        //     companyName: '',
-        //     jobType: '',
-        //     doYouTipOut: '',
-        //     tipOutType: '',
-        //     hourlyRate: '',
-        //     pros: '',
-        //     cons: '',
-        //     additionalComments: ''
-        // });
-    // };
 
     return (
     <div>

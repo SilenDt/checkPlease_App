@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { useAuth } from '../../contexts/AuthContext';
-import { Stack, Image, Navbar, Container, Nav, Button, Row, Col, FloatingLabel, Form } from 'react-bootstrap';
-import { fromBits } from 'long';
+import {Image, Navbar, Container} from 'react-bootstrap';
 import logo from '../images/logo.png'
 
 const NavBar = () => {
   const isLoggedIn = useAuth();
-  console.log(isLoggedIn.currentUser);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="xl">
       <Container>
         <Navbar.Brand 
           as={Link} 

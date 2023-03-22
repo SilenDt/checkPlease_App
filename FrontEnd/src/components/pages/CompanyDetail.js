@@ -1,6 +1,4 @@
-import { useNavigate, useParams } from "react-router"
-import { useState, useEffect } from "react";
-import { getOneCompany } from "../../services/CompanyServices";
+import { useLocation, useNavigate, useParams } from "react-router"
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
 import ReactStars from "react-stars";
 
@@ -45,7 +43,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
             </Row>
         </Container>
     ));
-    console.log(jobTypes)
 
 
     const handleWriteReviewClick = () => {
@@ -70,17 +67,11 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
                         className="img-fluid"
                         />
-            
-            {/* <Image
-                src="https://picsum.photos/900/400"
-                fluid
-            /> */}
             <Tabs
-                // defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >
-                <Tab eventKey="overview" title="Overview" defaultActiveKey="Overview">
+                <Tab eventKey="overview" title="Overview" defaultactivekey="Overview">
                     <Container>
                         <Row>
 
