@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { useNavigate, useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
 
-const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> {
+const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) => {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
 
@@ -58,10 +58,8 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
                 date: currentDate,
                 overallRating: parseFloat(overallRatingRef.current.value)
             }
-            console.log(userDetailsByUid)
-            console.log("this is the review details")
+            console.log("this is review details")
             console.log(reviewDetails)
-
             await postReview(reviewDetails)
             navigate("/")
         } catch {
@@ -71,12 +69,12 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     }
 
     const jobTypeOptions = jobTypes.map((jobType) => (
-            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+        <option value={jobType.jobRole}>{jobType.jobRole}</option>
     ));
 
     const handleJobTitleChoiceChange = (e) => {
-        const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
-        setJobType(findObj) 
+        const findObj = jobTypes.find(job => job.jobRole === e.target.value)
+        setJobType(findObj)
     }
 
     const companyOptions = companiesInfo.map((company) => {
@@ -84,10 +82,17 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     })
 
     const prePopCompanyName = location.state?.companyName
+    
+    useEffect(() => {
+        const findObj = companiesInfo.find(company => company.name === prePopCompanyName)
+        setCompany(findObj)
+
+    }, [])
+
 
     const handleCompanyChoiceChange = (e) => {
-        const findObj=companiesInfo.find(company=>company.name===e.target.value)
-        setCompany(findObj) 
+        const findObj = companiesInfo.find(company => company.name === e.target.value)
+        setCompany(findObj)
     }
 
     const handleDoYouTipOutChange = (event) => {
@@ -99,86 +104,86 @@ const ReviewForm = ({jobTypes, companiesInfo, tipOutTypes, userDetailsByUid})=> 
     })
 
     const handleTipOutChoiceChange = (e) => {
-        const findObj=tipOutTypes.find(tipOutType=>tipOutType.tipOutMethod===e.target.value)
+        const findObj = tipOutTypes.find(tipOutType => tipOutType.tipOutMethod === e.target.value)
         setTipOutType(findObj)
     }
 
 
     return (
-    <div>
-    <h1>Leave your review here</h1>
+        <div>
+            <h1>Leave your review here</h1>
 
-        <Form onSubmit={handleSubmit} className="p-3 border rounded">
+            <Form onSubmit={handleSubmit} className="p-3 border rounded">
 
 
-        <Form.Group>
-            <Form.Label>What company are you leaving a review for?</Form.Label>
-                <Form.Select defaultValue={prePopCompanyName} onChange={handleCompanyChoiceChange}>
-                    <option value="">Please choose</option>
-                    {companyOptions}
-                </Form.Select>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>What company are you leaving a review for?</Form.Label>
+                    <Form.Select onChange={handleCompanyChoiceChange}>
+                        <option value={prePopCompanyName}>{prePopCompanyName}</option>
+                        {companyOptions}
+                    </Form.Select>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>Job Title</Form.Label>
-                <Form.Select onChange={handleJobTitleChoiceChange}>
-                    <option>Please choose</option>
-                    {jobTypeOptions}
-                </Form.Select>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>Job Title</Form.Label>
+                    <Form.Select onChange={handleJobTitleChoiceChange}>
+                        <option>Please choose</option>
+                        {jobTypeOptions}
+                    </Form.Select>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>Do you tip out other staff members?</Form.Label>
-                <Form.Select  onChange={handleDoYouTipOutChange}>
-                    <option value="">Please choose</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </Form.Select>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>Do you tip out other staff members?</Form.Label>
+                    <Form.Select onChange={handleDoYouTipOutChange}>
+                        <option value="">Please choose</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </Form.Select>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>How do you tip out?</Form.Label>
-                <Form.Select  onChange={handleTipOutChoiceChange}>
-                    <option value="">Please choose</option>
-                    {tipOutTypeOptions}
-                </Form.Select>
-        </Form.Group>
-    
-        <Form.Group>
-            <Form.Label>What is your hourly rate?</Form.Label>
-                <Form.Control type='text' ref={hourlyRateRef}></Form.Control>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>How do you tip out?</Form.Label>
+                    <Form.Select onChange={handleTipOutChoiceChange}>
+                        <option value="">Please choose</option>
+                        {tipOutTypeOptions}
+                    </Form.Select>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>Pros of working there</Form.Label>
-            <FloatingLabel label="Tell us the good stuff">
-                <Form.Control type='text' ref={prosRef}></Form.Control>
-            </FloatingLabel>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>What is your hourly rate?</Form.Label>
+                    <Form.Control type='text' ref={hourlyRateRef}></Form.Control>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>Cons of working there</Form.Label>
-            <FloatingLabel label="Tell us the not so good stuff">
-                <Form.Control type='text' ref={consRef}></Form.Control>
-            </FloatingLabel>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>Pros of working there</Form.Label>
+                    <FloatingLabel label="Tell us the good stuff">
+                        <Form.Control type='text' ref={prosRef}></Form.Control>
+                    </FloatingLabel>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>Any other comments you want to leave?</Form.Label>
-            <FloatingLabel label="e.g. Advice for management, thoughts about uniforms...">
-                <Form.Control type='text' ref={additionalCommentsRef}></Form.Control>
-            </FloatingLabel>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>Cons of working there</Form.Label>
+                    <FloatingLabel label="Tell us the not so good stuff">
+                        <Form.Control type='text' ref={consRef}></Form.Control>
+                    </FloatingLabel>
+                </Form.Group>
 
-        <Form.Group>
-            <Form.Label>What is your overall rating for this company? (Out of 5 stars)</Form.Label>
-                <Form.Control type='text' ref={overallRatingRef}></Form.Control>
-        </Form.Group>
+                <Form.Group>
+                    <Form.Label>Any other comments you want to leave?</Form.Label>
+                    <FloatingLabel label="e.g. Advice for management, thoughts about uniforms...">
+                        <Form.Control type='text' ref={additionalCommentsRef}></Form.Control>
+                    </FloatingLabel>
+                </Form.Group>
 
-        <input type="submit" value="Submit" />
-</Form>
-</div>
-)
+                <Form.Group>
+                    <Form.Label>What is your overall rating for this company? (Out of 5 stars)</Form.Label>
+                    <Form.Control type='text' ref={overallRatingRef}></Form.Control>
+                </Form.Group>
+
+                <input type="submit" value="Submit" />
+            </Form>
+        </div>
+    )
 }
 
 

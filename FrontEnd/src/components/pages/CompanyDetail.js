@@ -1,7 +1,9 @@
 import { useLocation, useNavigate, useParams } from "react-router"
-import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
+import { Tab, Tabs, Image, Button, Card, Col, Row, Container, Accordion } from "react-bootstrap";
 import ReactStars from "react-stars";
+import { Link } from "react-router-dom";
 import { getReviewByCompanyId } from "../../services/ReviewService";
+
 
 
 
@@ -51,47 +53,80 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     
 
 
+    // const handleEdit 
+
     const mappedReviews = currentCompanyReviews.map((review) => (
         <Container key={review.id}>
             <Row>
-                <Col>Username: {review.user.firstName}</Col>
-                <Col>Date Posted: {review.date}</Col>
-                <Col>Review: 
-                    {review.company.name}
-                    {review.jobType.jobRole}
-                    {review.doYouTipOut}
-                    {review.tipOutType.tipOutMethod}
-                    {review.hourlyRate}
-                    {review.pros}
-                    {review.cons}
-                    {review.additionalComments}
+
+                <Row>
+                    <Col >
+                        <Card.Text className="fw-bold">Username: </Card.Text>
+                        {review.user.firstName}
+                    </Col>
+                    <Col>
+                        <Card.Text className="fw-bold">Date Posted:  </Card.Text>
+                        {review.date}
+                    </Col>
+                </Row>
+
+
+                <Col>
+                    <Accordion defaultactiveaey="0">
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>Review</Accordion.Header>
+                            <Accordion.Body>
+                                <Card.Text className="fw-bold">Company Name: </Card.Text>
+                                <Card.Text>{review.company.name}</Card.Text>
+
+                                <Card.Text className="fw-bold">Job role: </Card.Text>
+                                <Card.Text>{review.jobType.jobRole}</Card.Text>
+                                <Card.Text className="fw-bold">Do you tip out?: </Card.Text>
+                                <Card.Text>{review.doYouTipOut}</Card.Text>
+                                <Card.Text className="fw-bold">Tip out method: </Card.Text>
+                                <Card.Text>{review.tipOutType.tipOutMethod}</Card.Text>
+                                <Card.Text className="fw-bold">Hourly rate: </Card.Text>
+                                <Card.Text>${review.hourlyRate}</Card.Text>
+                                <Card.Text className="fw-bold">Pros: </Card.Text>
+                                <Card.Text>{review.pros}</Card.Text>
+                                <Card.Text className="fw-bold">Cons: </Card.Text>
+                                <Card.Text>{review.cons}</Card.Text>
+                                <Card.Text className="fw-bold">Additional Comments: </Card.Text>
+                                <Card.Text>{review.additionalComments}</Card.Text>
+                                
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
                 </Col>
+
+
+
             </Row>
         </Container>
     ));
 
     const handleWriteReviewClick = () => {
-        navigate("/review-form", {state: {companyName: oneCompany.name}})
+        navigate("/review-form", { state: { companyName: oneCompany.name } })
     }
 
     const handleCompareClick = () => {
         navigate(`/companies/${id}/company-comparison`)
     }
 
-    
+
     const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
-    
+
 
 
     return (
         <>
-            <Image 
-                        variant="top" 
-                        src={oneCompany.imageUrl} 
-                        alt="this is a company picture"
-                        style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
-                        className="img-fluid"
-                        />
+            <Image
+                variant="top"
+                src={oneCompany.imageUrl}
+                alt="this is a company picture"
+                style={{ maxWidth: "250px", maxHeight: "250px", minWidth: "50px", minHeight: "50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
+                className="img-fluid"
+            />
             <Tabs
                 id="uncontrolled-tab-example"
                 className="mb-3"
@@ -101,9 +136,8 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         <Row>
 
                             <Col>
-                                
-                                {oneCompany.name} <br></br>
-                                {oneCompany.town} <br></br>
+                                <Card.Text className="fw-bold">{oneCompany.name}</Card.Text>
+                                <Card.Text className="fst-italic">{oneCompany.town}</Card.Text>
                                 {oneCompany.description} <br></br>
                                 Website: <br></br>
                                 Email:
@@ -112,13 +146,13 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                             <Col> Overall Rating:
                                 <Card>
                                     <ReactStars
-                                    count={5}
-                                    value={averageRating}
-                                    name="rating"
-                                    size={24}
-                                    position="center"
-                                    activeColor="#ffd700"
-                                    edit ={false}
+                                        count={5}
+                                        value={averageRating}
+                                        name="rating"
+                                        size={24}
+                                        position="center"
+                                        activeColor="#ffd700"
+                                        edit={false}
                                     />
                                     ({currentCompanyReviews.length})
                                 </Card>

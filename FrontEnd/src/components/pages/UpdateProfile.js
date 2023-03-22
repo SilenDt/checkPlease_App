@@ -30,8 +30,6 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
             }
             console.log(userDetails)
             await updateUser(currentUser.uid, userDetails)
-            console.log("this is the user details  " + currentUser.uid + " and " + userDetails.firstName)
-            
             navigate("/")
         } catch {
             setError("failed to update user details")

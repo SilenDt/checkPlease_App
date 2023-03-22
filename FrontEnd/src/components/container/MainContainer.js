@@ -19,6 +19,7 @@ import { getJobTypesInfo } from "../../services/JobTypeServices";
 import CompanyComparison from "../pages/CompanyComparison";
 import UpdateProfile from "../pages/UpdateProfile";
 import { getTipOutTypes } from "../../services/TipOutTypeServices";
+import UpdateReview from "../pages/UpdateReview";
 
 const MainContainer = () => {
 
@@ -144,6 +145,13 @@ const MainContainer = () => {
             reviews={reviews}
           />}
           /> : ""}
+          {userDetailsByUid ?
+            <Route exact path="/update-review/:id"
+              element={
+                <ProtectedRoute>
+                  <UpdateReview userDetailsByUid={userDetailsByUid}/>
+                </ProtectedRoute>} />
+            : ""}
         </Routes>
       </Container>
     </Router>
