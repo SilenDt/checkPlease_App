@@ -52,6 +52,14 @@ public class DataLoader  implements  ApplicationRunner{
         userRepository.save(user1);
         User user2 = new User("gdhdhjjd8848484848","Jane","Lee", "Stirling", "Burger King", "Stirling","jane@email.com", server);
         userRepository.save(user2);
+        User user3 = new User("gdhdhjjd8848484999","Sam","Smith", "London", "LongHorn", "London","samsmith@email.com", busser);
+        userRepository.save(user3);
+        User user4 = new User("gdhdhjjd8812344999","Sam","Smith", "London", "LongHorn", "Stirling","jane@email.com", server);
+        userRepository.save(user4);
+        User user5 = new User("abjdhjjd8812344999","Betsy","Boopy", "Glasgow","polloLoco", "Glasgow","betsy@email.com", server);
+        userRepository.save(user5);
+
+
 
         Company tgiFridays = new Company("TGI Fridays", "New York", "TGI Fridays is an American classic, known for its fast casual eats, from burgers and sandwiches to steaks and seafood", 5, "https://1000logos.net/wp-content/uploads/2020/09/TGI-Fridays-Logo-2004.jpg");
         companyRepository.save(tgiFridays);
@@ -108,10 +116,15 @@ public class DataLoader  implements  ApplicationRunner{
         Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", burgerKing, user2, dishwasher, "yes", totalTips, 7.25, "", 4.0);
         reviewRepository.save(review3);
         Review review4 = new Review("01-11-2020", "All the tacos you can eat", "no tips", polloLoco, user1, server, "no", na, 9.50, "fun environment, but not easy to get days off", 3.7);
+        reviewRepository.save(review4);
         Review review5 = new Review("05-06-2022", "shifts are short", "scraping food off plates is really hard", bonefishGrill, user1, dishwasher, "no", na, 11.25, "not the best place to work but not the worst", 4.2);
+        reviewRepository.save(review5);
         Review review6 = new Review("03-03-2032", "staff is really friendly", "management is hard to get along with", quiznos, user2, busser, "no", na, 8.50, "heavy lifting involved, everyone goes out after and hangs out", 4.5);
+        reviewRepository.save(review6);
         Review review7 = new Review("01-28-2023", "really good tips", "really gross customers and low hourly pay", hooters, user1, server, "yes", totalSales, 2.15, "theres a lot to put up with but you can make good money", 4.0);
+        reviewRepository.save(review7);
         Review review8 = new Review("08-30-2022", "we get breaks and bonuses", "corporate run restaurant so not much freedom to come up with your own recipes or specials. you have to stick with whats given to you", tgiFridays, user1, cook, "no", na, 13.25, "be ready to sweat if you take a job here", 4.0);
+        reviewRepository.save(review8);
 
 
     }
