@@ -59,10 +59,10 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                         src={twoCompany.imageUrl}
                         fluid
                     />
-                    <Card.Title>
+                    <Card.Title className="m-1">
                         {twoCompany.name}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Text className="m-1">
                         {twoCompany.description}
                     </Card.Text>
                 </Card.Body>
@@ -100,29 +100,28 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                                     src={oneCompany.imageUrl}
                                     fluid
                                 />
-                                <Card.Title>
+                                <Card.Title className="m-1">
                                     {oneCompany.name}
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text className="m-1">
                                     {oneCompany.description}
                                 </Card.Text>
-                            </Card>
-                            <Card>
+                            <Card.Body>
                                 <Card.Title>Job Role (wages):</Card.Title>
                                 <Card.Text>{currentJobTypes}</Card.Text>
+                            </Card.Body>
                             </Card>
                         </Card.Body>
                     </Col>
                     <Col>
                     {!showComparison ?
-                        <p>Search a comparison company and it'll display here!</p>
+                        <Card.Text>Search a comparison company and it'll display here!</Card.Text>
                     : null}
                     {showComparison ? displayComparisonJobTypes() : null}
                     </Col>
                 </Row>
 
             </Container>
-
         </>
     )
 
