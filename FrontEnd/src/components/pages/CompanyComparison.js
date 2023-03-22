@@ -91,7 +91,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                         {error && <p>{error}</p>}
         </Form.Group>
         </Row>
-            <Container className="mt-3">
+            <Container className="mt-3 mb-3">
                 <Row>
                     <Col>
                         <Card.Body>
