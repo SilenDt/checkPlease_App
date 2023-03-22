@@ -96,11 +96,12 @@ public class DataLoader  implements  ApplicationRunner{
         TipOutType na = new TipOutType("I do not tip out");
         tipOutTypeRepository.save(na);
 
-        Review review1 = new Review("12-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", tgiFridays, user1, cook, "yes", totalSales, 2.15, "n/a", 3.5);
+
+        Review review1 = new Review("3-12-2023", "You get fed on your shift, which is nice", "The uniforms are so uncomfortable, and NOT good looking", tgiFridays, user1, cook, "yes", totalSales, 2.15, "n/a", 3.5);
         reviewRepository.save(review1);
-        Review review2 = new Review("12-12-2023", "Decent tips", "Management are an absolute joke", burgerKing, user1, busser, "yes", discretion, 3.50, "", 5.0);
+        Review review2 = new Review("1-10-2023", "Decent tips", "Management are an absolute joke", burgerKing, user1, busser, "yes", discretion, 3.50, "", 5.0);
         reviewRepository.save(review2);
-        Review review3 = new Review("12-11-2023", "Fries every day", "You come home absolutely stinkin' of fry", burgerKing, user2, dishwasher, "yes", totalTips, 7.25, "", 4.0);
+        Review review3 = new Review("2-17-2023", "Fries every day", "You come home absolutely stinkin' of fry", burgerKing, user2, dishwasher, "yes", totalTips, 7.25, "", 4.0);
         reviewRepository.save(review3);
         Review review4 = new Review("01-11-2020", "All the tacos you can eat", "no tips", polloLoco, user1, server, "no", na, 9.50, "fun environment, but not easy to get days off", 3.7);
         reviewRepository.save(review4);
@@ -112,6 +113,21 @@ public class DataLoader  implements  ApplicationRunner{
         reviewRepository.save(review7);
         Review review8 = new Review("08-30-2022", "we get breaks and bonuses", "corporate run restaurant so not much freedom to come up with your own recipes or specials. you have to stick with whats given to you", tgiFridays, user1, cook, "no", na, 13.25, "be ready to sweat if you take a job here", 4.0);
         reviewRepository.save(review8);
+        Review review9 = new Review("1-10-2023", "Plenty of nice regulars, decent tips", "music is awful, gets to you after a while", tgiFridays, user2, server, "yes", totalSales, 3.0, "n/a", 4.0);
+        reviewRepository.save(review9);
+        Review review10 = new Review("03-10-2023", "Great staff team, really good atmosphere", " back of house were always super pushy about tipping out ", tgiFridays, user3, server, "yes", totalSales, 2.60, "n/a", 3.5);
+        reviewRepository.save(review10);
+        Review review11 = new Review("03-17-2023", "Easy work and generally got left to get on with it", "long shifts were a real drag when it was quiet", hooters, user4, busser, "no", na, 3.0, "n/a", 2.5);
+        reviewRepository.save(review11);
+        Review review12 = new Review("06-30-2022", "Had a great manager that actually seemed to care", "Pretty poor wage and never seemed to do that well on tips", tgiFridays, user5, server, "yes", totalSales, 2.40, "n/a", 3.0);
+        reviewRepository.save(review12);
+        Review review13 = new Review("10-25-2022", "Fun team to work with", "awful manager, sleazier than the customers", hooters, user2, busser, "no", na, 2.80, "wonder if they ever did fix the drains", 2.5);
+        reviewRepository.save(review13);
+        Review review14 = new Review("11-22-2022", "Customers were pretty generous", "back of house stank, something weird with the drains that they never sorted", hooters, user4, busser, "no", na, 2.85, "na", 3.5);
+        reviewRepository.save(review14);
+        Review review15 = new Review("05-10-2022", "not much but pay was decent", "hard graft, weekends were relentless", bonefishGrill, user3, dishwasher, "no", na, 9.25, "na", 4.2);
+        reviewRepository.save(review15);
+
 
 
     }

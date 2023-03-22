@@ -7,7 +7,7 @@ import { getReviewByCompanyId } from "../../services/ReviewService";
 
 
 
-const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
+const CompanyDetail = ({ companiesInfo, reviews}) => {
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -41,7 +41,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const jobTitlesAndAvgRate = jobPayArray.map((jobAvgPayObj) => (
         <Row key={jobAvgPayObj.jobTitle}>
             <Col>{jobAvgPayObj.jobTitle}</Col>
-            <Col>{jobAvgPayObj.avgPay}</Col>
+            <Col>${jobAvgPayObj.avgPay}</Col>
         </Row>
     ))
     
@@ -162,7 +162,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         Average hourly rate</h6>
                         </Col>
                     </Row>
-                    {/* {currentJobTypes} */}
                     {jobTitlesAndAvgRate}
                 </Tab>
             </Tabs>
