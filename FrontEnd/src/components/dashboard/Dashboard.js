@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CompanyList from "../pages/CompanyList";
 import {Form, Row, Col, FloatingLabel} from "react-bootstrap"
 import SearchDropdown from "./SearchDropdown";
@@ -14,6 +14,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
   const isLoggedIn = useAuth()
   let hideReviews = true
 
+  
   const handleChange = (e) => {
     const searchInput = e.target.value
     setSearchbarInput(searchInput)
@@ -38,9 +39,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
         </Row>
         <Row>
         {searchResults.length > 0 ?
-          <ul>
             <SearchDropdown searchResults={searchResults} resetSearchResults={resetSearchResults} onSelect={onSelect}/>
-          </ul>
         : ""}
     </Row>
     </Form>

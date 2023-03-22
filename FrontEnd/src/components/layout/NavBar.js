@@ -4,20 +4,20 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { useAuth } from '../../contexts/AuthContext';
 import {Image, Navbar, Container} from 'react-bootstrap';
-import logo from '../images/logo.png'
+import new_logo from '../images/new_logo.png'
 
 const NavBar = () => {
   const isLoggedIn = useAuth();
 
   return (
-    <Navbar bg="light" expand="xl">
+    <Navbar bg="light"  expand="xl">
       <Container>
         <Navbar.Brand 
           as={Link} 
           to="/"
           >
           <Image 
-          src={logo} 
+          src={new_logo} 
           width="100" 
           height="70" 
           style={{float: "left"}}
