@@ -1,6 +1,6 @@
-import { Button, Container, Form, Card } from "react-bootstrap"
+import { Button, Container, Form, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { updateUser } from "../../services/UserServices"
 import { useNavigate } from "react-router-dom"
 
@@ -15,9 +15,13 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
     const [error, setError] = useState()
     const navigate = useNavigate()
 
+    useEffect(() => {
+        const findObj=jobTypes.find(job=>job.jobRole == userDetailsByUid.jobType.jobRole)
+        setSelectJob(findObj) 
+    }, [])
+
     async function handleSubmit(e) {
         e.preventDefault();
-
         try {
             setError("")
             setLoading(true)
@@ -53,12 +57,14 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
     console.log(userDetailsByUid)
     console.log(selectJob)
 
+
     return (
         <div>
             <Container className="mt-3 d-flex align-items-center justify-content-center">
                 <Card>
                     <Card.Body>
                         <h2>Update your profile</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
                         <Card.Title>Email:</Card.Title>
                         <Card.Text>{currentUser.email}</Card.Text>
                         <Form onSubmit={handleSubmit}>
@@ -82,7 +88,7 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
                             <Form.Group>
                                 <Form.Label>Job Role:</Form.Label>
                                 <Form.Select onChange={handleClick}  >
-                                    <option value={userDetailsByUid.jobType.jobRole}>{userDetailsByUid.jobType.jobRole}</option>
+                                    <option key="currentJobType" value={userDetailsByUid.jobType.jobRole}>{userDetailsByUid.jobType.jobRole}</option>
                                     {currentJobTypes}
                                 </Form.Select>
                             </Form.Group>
@@ -93,4 +99,4 @@ export default function UpdateProfile({ userDetailsByUid, jobTypes }) {
             </Container>
         </div>
     )
-}
+} 
