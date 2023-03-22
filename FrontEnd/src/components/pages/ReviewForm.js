@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FloatingLabel, Form, Alert } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
+import { Alert } from 'react-bootstrap';
 
 
 const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) => {
@@ -25,12 +26,12 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
     async function handleSubmit(e) {
         e.preventDefault();
-        if(!jobType) {
+        if (!jobType) {
             return setError("Please select a job type from the dropdown, if none apply choose closest match")
-         }
-         if(!tipOutType) {
+        }
+        if (!tipOutType) {
             return setError("Please select a tip out type from the dropdown, if none apply chose closest match")
-         }
+        }
         // if(prosRef > 255 || consRef > 255 || additionalCommentsRef > 255){
         //     setError("Comments cannot be greater than 255 characters")
         //     console.log(error)
@@ -68,6 +69,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
             console.log(reviewDetails)
             await postReview(reviewDetails)
             navigate("/")
+            alert("Review posted successfully!")
         } catch {
             setError("failed to post review")
         }
@@ -88,7 +90,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
     })
 
     const prePopCompanyName = location.state?.companyName
-    
+
     useEffect(() => {
         const findObj = companiesInfo.find(company => company.name === prePopCompanyName)
         setCompany(findObj)
@@ -156,7 +158,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>What is your hourly rate?</Form.Label>
-                    <Form.Control type='text' ref={hourlyRateRef}></Form.Control>
+                    <Form.Control type='number' ref={hourlyRateRef}></Form.Control>
                 </Form.Group>
 
                 <Form.Group>
@@ -182,7 +184,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>What is your overall rating for this company? (Out of 5 stars)</Form.Label>
-                    <Form.Control type='text' ref={overallRatingRef}></Form.Control>
+                    <Form.Control type='range' min="0" max="5" step="0.5" ref={overallRatingRef}></Form.Control>
                 </Form.Group>
 
                 <input type="submit" value="Submit" />
