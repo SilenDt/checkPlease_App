@@ -17,8 +17,12 @@ const SignUpForm = ({jobTypes}) => {
     const [selectJob, setSelectJob] = useState()
     const navigate = useNavigate()
 
+    console.log(selectJob)
     async function handleSubmit(e) {
         e.preventDefault();
+        if(!selectJob) {
+           return setError("Please select a job type from the dropdown, if none apply choose closest match")
+        }
         try {
             setError("")
             setLoading(true)
@@ -80,7 +84,7 @@ const SignUpForm = ({jobTypes}) => {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Job Role:</Form.Label>
-                                <Form.Select onChange={handleClick} >
+                                <Form.Select onChange={handleClick}>
                                     <option>Choose an option (Leave blank for none)..</option>
                                     {currentJobTypes}
                                 </Form.Select>

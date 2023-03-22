@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FloatingLabel, Form } from 'react-bootstrap'
+import { FloatingLabel, Form, Alert } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
@@ -25,6 +25,12 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if(!jobType) {
+            return setError("Please select a job type from the dropdown, if none apply choose closest match")
+         }
+         if(!tipOutType) {
+            return setError("Please select a tip out type from the dropdown, if none apply chose closest match")
+         }
         // if(prosRef > 255 || consRef > 255 || additionalCommentsRef > 255){
         //     setError("Comments cannot be greater than 255 characters")
         //     console.log(error)
@@ -114,8 +120,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
             <h1>Leave your review here</h1>
 
             <Form onSubmit={handleSubmit} className="p-3 border rounded">
-
-
+                {error && <Alert variant="danger">{error}</Alert>}
                 <Form.Group>
                     <Form.Label>What company are you leaving a review for?</Form.Label>
                     <Form.Select onChange={handleCompanyChoiceChange}>
