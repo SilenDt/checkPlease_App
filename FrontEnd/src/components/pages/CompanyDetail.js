@@ -90,9 +90,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         </Accordion.Item>
                     </Accordion>
                 </Col>
-
-
-
             </Row>
         </Container>
     ));
