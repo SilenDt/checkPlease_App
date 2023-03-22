@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getOneCompany } from "../../services/CompanyServices";
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container } from "react-bootstrap";
 import ReactStars from "react-stars";
+import { getReviewByCompanyId } from "../../services/ReviewService";
 
 
 
@@ -12,10 +13,45 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const navigate = useNavigate()
 
 
+
+
+
     const oneCompany = companiesInfo.find((company) => company.id == id);
 
     // filter through reviews to display the ones that match current company id.
     const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
+    
+
+    const jobPayObj = {}
+    currentCompanyReviews.forEach(review => {
+        const name = review.jobType.jobRole 
+        const rate = review.hourlyRate
+
+        if(jobPayObj[name]){
+            jobPayObj[name].push(rate)
+        } else {
+            jobPayObj[name] = [rate]
+        }
+    });
+    console.log(jobPayObj)
+
+    const jobPayArray = []
+    for (let jobTitleKey in jobPayObj ){
+        const total = jobPayObj[jobTitleKey].reduce((prevNumb, currentNumb ) =>  prevNumb + currentNumb)
+        const avg = total / jobPayObj[jobTitleKey].length
+        const jobAvgPayObj = {jobTitle : jobTitleKey, avgPay : avg}
+        jobPayArray.push(jobAvgPayObj)
+    }
+    console.log(jobPayArray)
+
+    const jobTitlesAndAvgRate = jobPayArray.map((jobAvgPayObj) => (
+        <Row>
+            <Col>{jobAvgPayObj.jobTitle}</Col>
+            <Col>{jobAvgPayObj.avgPay}</Col>
+        </Row>
+    ))
+    
+
 
     const mappedReviews = currentCompanyReviews.map((review) => (
         <Container key={review.id}>
@@ -36,16 +72,18 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
         </Container>
     ));
 
+    
 
-    const currentJobTypes = jobTypes.map((jobType) => (
-        <Container key={jobType.id}>
-            <Row>
-                <Col>Job Role: {jobType.jobRole}</Col>
-                <Col>Hourly Rate: ${jobType.hourlyRate}</Col>
-            </Row>
-        </Container>
-    ));
-    console.log(jobTypes)
+// // DO NOT DELETE THIS IS THE ONE WE WANT!
+//     const currentJobTypes = jobTypes.map((jobType) => (
+//         <Container key={jobType.id}>
+//             <Row>
+//                 <Col>{oneCompany.jobType}</Col>
+//                 {/* <Col>${currentCompanyReviews.hourly_rate}</Col> */}
+//             </Row>
+//         </Container>
+//     ));
+//     console.log(jobTypes)
 
 
     const handleWriteReviewClick = () => {
@@ -114,7 +152,17 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                     {mappedReviews}
                 </Tab>
                 <Tab eventKey="wages" title="Wages">
-                    {currentJobTypes}
+                    <Row>
+                        <Col>
+                        <h6 className="font-weight-bold text-uppercase mb-3">Job title</h6>
+                        </Col>
+                        <Col>
+                        <h6 className="font-weight-bold text-uppercase mb-3">
+                        Average hourly rate</h6>
+                        </Col>
+                    </Row>
+                    {/* {currentJobTypes} */}
+                    {jobTitlesAndAvgRate}
                 </Tab>
             </Tabs>
             <Button className="m-2" onClick={handleWriteReviewClick}>Write a Review</Button>

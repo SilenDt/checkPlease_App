@@ -28,6 +28,11 @@ export const postReview = async (payload) => {
     return await res.json()
 }
 
+export async function getReviewByCompanyId(companyId){
+     return await fetch (baseURL+ `?company_id=${companyId}`)
+    .then(res => res.json)
+}
+
 
 
 // export async function getReviewsByCompany(chosenCompanyId){
