@@ -1,17 +1,15 @@
 import React, {useState} from "react";
 import CompanyList from "../pages/CompanyList";
-import {Dropdown, Form, Card, Button, Alert, Row, Col, FloatingLabel, Image, Container} from "react-bootstrap"
-import ReviewForm from "../pages/ReviewForm";
+import {Form, Row, Col, FloatingLabel} from "react-bootstrap"
 import SearchDropdown from "./SearchDropdown";
 import Profile from "../pages/Profile";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, companiesInfo, onCompanyClicked, userDetailsByUid, reviews}) => {
 
   // state pertaining to forms can live outwith the top-level, because forms are special
   const [searchbarInput, setSearchbarInput] = useState("")
-  const { id } = useParams()
   const navigate = useNavigate()
   const isLoggedIn = useAuth()
   let hideReviews = true
@@ -61,7 +59,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
                   reviews={reviews}
                   hideReviews={hideReviews}
           />) 
-        : "loading"} 
+        : ""} 
       </Col>
       </Row> 
   </>

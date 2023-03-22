@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-import {Image, Card, Button} from "react-bootstrap"
+import {Card} from "react-bootstrap"
 import ReactStars from "react-stars"
 
 const CompanyItem = ({company, onCompanyClicked, reviews}) => {

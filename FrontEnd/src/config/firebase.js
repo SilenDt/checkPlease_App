@@ -7,7 +7,6 @@ import firebase from "firebase/compat/app";
 // Your web app's Firebase configuration
 // Initialize Firebase
 const app = firebase.initializeApp({
-  // apiKey: "AIzaSyB0mtjHGhXMAUOgz5S1ZRu-4HV-KAm9X18",
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,

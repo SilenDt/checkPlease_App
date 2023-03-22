@@ -70,13 +70,7 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                         style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
                         className="img-fluid"
                         />
-            
-            {/* <Image
-                src="https://picsum.photos/900/400"
-                fluid
-            /> */}
             <Tabs
-                // defaultActiveKey="Overview"
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >

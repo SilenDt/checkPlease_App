@@ -80,8 +80,6 @@ const MainContainer = () => {
   }
 
 
-
-
   return (
     <Router>
       <NavBar />
@@ -122,7 +120,7 @@ const MainContainer = () => {
                     userDetailsByUid={userDetailsByUid}
                     reviews={reviews}/>
                 </ProtectedRoute>} />
-            : "loading"}   
+            : ""}   
                     
             {userDetailsByUid ?
             <Route path="/update-profile/:id"
@@ -130,7 +128,7 @@ const MainContainer = () => {
                 <ProtectedRoute>
                   <UpdateProfile userDetailsByUid={userDetailsByUid}/>
                 </ProtectedRoute>} />
-            : "loading"}
+            : ""}
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/review-form" element={<ProtectedRoute><ReviewForm
           jobTypes={jobTypes}
@@ -144,7 +142,7 @@ const MainContainer = () => {
             searchResults={searchResults}
             resetSearchResults={resetSearchResults}
           />}
-          /> : "loading"}
+          /> : ""}
         </Routes>
       </Container>
     </Router>

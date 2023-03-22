@@ -1,8 +1,4 @@
-import { Button, Dropdown, DropdownButton, Container, Card } from "react-bootstrap"
-import { ListGroup } from "react-bootstrap"
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import {Dropdown, Card } from "react-bootstrap"
 
 const SearchDropdown = ({searchResults, onSelect }) => {
 
@@ -23,8 +19,6 @@ const SearchDropdown = ({searchResults, onSelect }) => {
         onSelect(id)
     }
 
-    //dropdownDisplay is the list with all companies by name
-    //look inside companiesInfo for a company which name matches the dropsownDisp
 
     return (
         <div className="search-results-dropdown">

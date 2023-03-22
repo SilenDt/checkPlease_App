@@ -17,8 +17,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
         setSearchbarInput(searchInput)
         saveSearchDetail(searchInput)
         console.log(saveSearchDetail)
-
-        //add a condition for the company you're on to not be displayed as comparison
     }
 
 
@@ -28,8 +26,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             resetSearchResults()
             const twoCompany = companiesInfo.find((company) => company.id == companyId)
             setTwoCompany(twoCompany)
-        //when the user has selected the company and clicked the button
-        //display the comparisonJobTypes()
+    
     }
 
     const oneCompany = companiesInfo.find((company) => company.id == id);
@@ -83,8 +80,6 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
             </FloatingLabel>
                         <SearchDropdown 
                         searchResults={searchResults} 
-                        // showComparison = {showComparison}
-                        // shouldNavigate = {shouldNavigate}
                         displayComparisonJobTypes={displayComparisonJobTypes} 
                         onSelect={onSelect}
                         />

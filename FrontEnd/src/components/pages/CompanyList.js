@@ -6,7 +6,7 @@ import CompanyItem from "./CompanyItem"
         // The Fisher-Yates algorithm
         const shuffledCompanies = companiesInfo => {
             for (let i = companiesInfo.length - 1; i > 0; i--){
-                // Math.random finds a number between 0 and 1. Take this number and multiply by length of list. Math.floor rounds this number down to the nearest whole number, and that is the value of j
+                // Math.random finds a number between 0 and 1. Take this number and multiplies it by length of list. Math.floor rounds this number down to the nearest whole number, and that is the value of j
                 const j = Math.floor(Math.random() * (i + 1));
                 // go to the ith position in the list
                 const temp = companiesInfo[i];
@@ -34,24 +34,5 @@ import CompanyItem from "./CompanyItem"
         );
     }
 
-    
-
-    // const mappedCompaniesInfo = companiesInfo.map((company) => {
-    //     return <CompanyItem
-    //     key={company.id}
-    //     company={company} 
-    //     onCompanyClicked={onCompanyClicked}
-    //     />
-    // })
-
-
-    // return(
-    //     <div>
-    //         <ul>
-    //         {mappedCompaniesInfo}
-    //         </ul>
-    //     </div>
-    // )
-// }
 
 export default CompanyList
