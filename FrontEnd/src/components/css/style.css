@@ -1,0 +1,30 @@
+h2 {
+    color:#2a6592;
+}
+.profile-container {
+    background-color: aquamarine;
+}
+
+.profile-card {
+    border: solid #8ec3eb;
+    background-color: #f6d8ac;
+}
+
+.review-container {
+    margin: 10px;
+}
+
+.profile-details-container {
+    border: #8ec3eb;
+    background-color: #ec7813;
+}
+
+.profile-image {
+    border:#8ec3eb;
+    border-radius: 10rem;
+}
+
+.review-item-container {
+    border: solid #8ec3eb;
+    background-color: #f6d8ac;
+}
