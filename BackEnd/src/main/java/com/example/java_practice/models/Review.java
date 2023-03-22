@@ -34,14 +34,14 @@ public class Review {
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "jobType_id")
+    @JoinColumn(name = "jobType_id", nullable = false)
     private JobType jobType;
 
     @Column (name = "doYouTipOut")
     private String doYouTipOut;
 
     @OneToOne
-    @JoinColumn(name = "tipOutType_id")
+    @JoinColumn(name = "tipOutType_id", nullable = false)
     private TipOutType tipOutType;
 
     @Column(name = "hourlyRate")

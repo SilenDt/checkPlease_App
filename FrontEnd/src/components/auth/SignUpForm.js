@@ -19,6 +19,9 @@ const SignUpForm = ({jobTypes}) => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if(!selectJob) {
+           return setError("Please select a job type from the dropdown, if none apply choose closest match")
+        }
         try {
             setError("")
             setLoading(true)
@@ -41,7 +44,7 @@ const SignUpForm = ({jobTypes}) => {
     }
 
     const currentJobTypes = jobTypes.map((jobType) => (
-            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+            <option key={jobType.id} value={jobType.jobRole}>{jobType.jobRole}</option>
     ));
 
     const handleClick = (e) => {
@@ -80,8 +83,8 @@ const SignUpForm = ({jobTypes}) => {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Job Role:</Form.Label>
-                                <Form.Select onChange={handleClick} >
-                                    <option>Choose an option (Leave blank for none)..</option>
+                                <Form.Select onChange={handleClick}>
+                                    <option key="chooseOption">Choose an option (Leave blank for none)..</option>
                                     {currentJobTypes}
                                 </Form.Select>
                             </Form.Group>
