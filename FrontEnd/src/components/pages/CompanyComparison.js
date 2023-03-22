@@ -86,10 +86,10 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                         src={twoCompany.imageUrl}
                         fluid
                     />
-                    <Card.Title>
+                    <Card.Title className="m-1">
                         {twoCompany.name}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Text className="m-1">
                         {twoCompany.description}
                     </Card.Text>
                 </Card.Body>
@@ -126,7 +126,7 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                         {error && <p>{error}</p>}
         </Form.Group>
         </Row>
-            <Container className="mt-3">
+            <Container className="mt-3 mb-3">
                 <Row>
                     <Col>
                         <Card.Body>
@@ -135,10 +135,10 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                                     src={oneCompany.imageUrl}
                                     fluid
                                 />
-                                <Card.Title>
+                                <Card.Title className="m-1">
                                     {oneCompany.name}
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text className="m-1">
                                     {oneCompany.description}
                                 </Card.Text>
                             </Card>
@@ -158,14 +158,13 @@ const CompanyComparison = ({ resetSearchResults, companiesInfo, jobTypes, saveSe
                     </Col>
                     <Col>
                     {!showComparison ?
-                        <p>Search a comparison company and it'll display here!</p>
+                        <Card.Text>Search a comparison company and it'll display here!</Card.Text>
                     : null}
                     {showComparison ? displayComparisonJobTypes() : null}
                     </Col>
                 </Row>
 
             </Container>
-
         </>
     )
 
