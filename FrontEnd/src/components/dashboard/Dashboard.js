@@ -51,7 +51,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
                   reviews={reviews}
                   hideReviews={hideReviews}
           />) 
-        : "loading"}
+        : ""}
       </Col>
       <Col sm={9}>
           <CompanyList
