@@ -27,6 +27,7 @@ console.log(userDetailsByUid)
   }
 
   const onSelect = (companyId) => {
+    resetSearchResults()
     navigate(`/companies/${companyId}`)
   }
   
@@ -49,19 +50,19 @@ console.log(userDetailsByUid)
     </Row>
     </Form>
     <Row className="mt-3">
+    <Col sm={3}>
+        {isLoggedIn.currentUser && userDetailsByUid && reviews? 
+        (<Profile userDetailsByUid={userDetailsByUid}
+                  reviews={reviews}
+          />) 
+        : "loading"}
+      </Col>
       <Col sm={9}>
           <CompanyList
           companiesInfo={companiesInfo}
           onCompanyClicked={onCompanyClicked}
           reviews = {reviews}
           />
-      </Col>
-      <Col sm={3}>
-        {isLoggedIn.currentUser && userDetailsByUid && reviews? 
-        (<Profile userDetailsByUid={userDetailsByUid}
-                  reviews={reviews}
-          />) 
-        : "loading"}
       </Col>
       </Row> 
   </>
