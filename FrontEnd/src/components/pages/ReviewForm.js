@@ -4,8 +4,6 @@ import { FloatingLabel, Form, Alert } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
 
-
-
 const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) => {
     //Initialize form state with useState:
     //The useState hook returns an array containing the current state value and a function to update the state
@@ -125,7 +123,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form.Group>
                     <Form.Label>What company are you leaving a review for?</Form.Label>
-                    <Form.Select onChange={handleCompanyChoiceChange}>
+                    <Form.Select onChange={handleCompanyChoiceChange} required>
                         <option value={prePopCompanyName}>{prePopCompanyName}</option>
                         {companyOptions}
                     </Form.Select>
@@ -133,7 +131,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>Job Title</Form.Label>
-                    <Form.Select onChange={handleJobTitleChoiceChange}>
+                    <Form.Select onChange={handleJobTitleChoiceChange} required>
                         <option key="chooseOption" value="">Please choose</option>
                         {jobTypeOptions}
                     </Form.Select>
@@ -141,7 +139,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>Do you tip out other staff members?</Form.Label>
-                    <Form.Select onChange={handleDoYouTipOutChange}>
+                    <Form.Select onChange={handleDoYouTipOutChange} required>
                         <option key="chooseOption" value="">Please choose</option>
                         <option key="yes" value="yes">Yes</option>
                         <option key="no" value="no">No</option>
@@ -150,7 +148,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>How do you tip out?</Form.Label>
-                    <Form.Select onChange={handleTipOutChoiceChange}>
+                    <Form.Select onChange={handleTipOutChoiceChange} required>
                         <option key="chooseOption" value="">Please choose</option>
                         {tipOutTypeOptions}
                     </Form.Select>
@@ -158,27 +156,27 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>What is your hourly rate?</Form.Label>
-                    <Form.Control type='number' ref={hourlyRateRef}></Form.Control>
+                    <Form.Control type='number' ref={hourlyRateRef} required></Form.Control>
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Pros of working there</Form.Label>
                     <FloatingLabel label="Tell us the good stuff">
-                        <Form.Control type='text' ref={prosRef}></Form.Control>
+                        <Form.Control type='text' ref={prosRef} required></Form.Control>
                     </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Cons of working there</Form.Label>
                     <FloatingLabel label="Tell us the not so good stuff">
-                        <Form.Control type='text' ref={consRef}></Form.Control>
+                        <Form.Control type='text' ref={consRef} required></Form.Control>
                     </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Any other comments you want to leave?</Form.Label>
                     <FloatingLabel label="e.g. Advice for management, thoughts about uniforms...">
-                        <Form.Control type='text' ref={additionalCommentsRef}></Form.Control>
+                        <Form.Control type='text' ref={additionalCommentsRef} required></Form.Control>
                     </FloatingLabel>
                 </Form.Group>
 
