@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Container, Form, Card, Button, Alert, FormText } from "react-bootstrap"
+import { Container, Form, Card, Button, Alert } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext"
-import SignUp from "./SignUp";
 
 const ForgotPassword = () => {
 
@@ -20,7 +19,6 @@ const ForgotPassword = () => {
             setLoading(true)
             await resetPassword(emailRef.current.value)
             setMessage("Check your inbox for further instructions")
-            // clear()
         } catch {
             setError("Failed to reset password")
         }

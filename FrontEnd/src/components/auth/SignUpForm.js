@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Container, Form, Card, Button, Alert, Dropdown } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
-import { db } from "../../config/firebase";
 import { postUser } from "../../services/UserServices";
 
 const SignUpForm = ({jobTypes}) => {
@@ -11,10 +10,7 @@ const SignUpForm = ({jobTypes}) => {
     const lastNameRef = useRef()
     const userTownRef = useRef()
     const placeOfWorkRef = useRef()
-    const selectJobRef = useRef()
     const locationOfPlaceOfWorkRef = useRef()
-    const companyOfWorkRef = useRef()
-    const jobTypeRef = useRef()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     const { currentUser, setCurrentUser } = useAuth()
@@ -23,9 +19,6 @@ const SignUpForm = ({jobTypes}) => {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // if(firstNameRef === null || lastNameRef === null){
-        //     setError("All fields are required")
-        // }
         try {
             setError("")
             setLoading(true)
@@ -53,7 +46,6 @@ const SignUpForm = ({jobTypes}) => {
 
     const handleClick = (e) => {
         const findObj=jobTypes.find(job=>job.jobRole===e.target.value)
-        // setSelectJob(Number(chosenJob)) 
         setSelectJob(findObj) 
     }
 

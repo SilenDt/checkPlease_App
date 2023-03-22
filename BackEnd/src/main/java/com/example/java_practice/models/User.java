@@ -55,6 +55,7 @@ public class User {
         this.jobType = jobType;
     }
 
+
     public String getFirstName() {
         return firstName;
     }

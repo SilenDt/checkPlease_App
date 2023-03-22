@@ -3,7 +3,7 @@ package com.example.java_practice.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "JobType")
+@Table(name = "job_types")
 public class JobType {
 
     //INSTANCE VARIABLES:
