@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FloatingLabel, Form, Alert } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { postReview } from '../../services/ReviewService';
-import { Alert } from 'react-bootstrap';
+
 
 
 const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) => {
@@ -184,7 +184,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
 
                 <Form.Group>
                     <Form.Label>What is your overall rating for this company? (Out of 5 stars)</Form.Label>
-                    <Form.Control type='range' min="0" max="5" step="0.5" ref={overallRatingRef}></Form.Control>
+                    <Form.Control type='number' min="0" max="5" step="0.5" ref={overallRatingRef}></Form.Control>
                 </Form.Group>
 
                 <input type="submit" value="Submit" />

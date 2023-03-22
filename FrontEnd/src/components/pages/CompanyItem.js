@@ -1,17 +1,17 @@
 import {Card} from "react-bootstrap"
 import ReactStars from "react-stars"
 
-const CompanyItem = ({company, onCompanyClicked, reviews}) => {
+const CompanyItem = ({company, onCompanyClicked, reviews, shuffledCompanies}) => {
 
     const currentCompanyReviews = reviews.filter((review) => review.company.id == company.id)
 
     const averageRating = currentCompanyReviews.reduce((sum, review) => sum + review.overallRating, 0) / currentCompanyReviews.length
 
 
-
-
     const handleClick = () => {
-    onCompanyClicked(company.id)
+        window.location.href = `/companies/${company.id}`
+        shuffledCompanies()
+        onCompanyClicked(company.id)
     }
 
         return(
@@ -20,13 +20,15 @@ const CompanyItem = ({company, onCompanyClicked, reviews}) => {
             <div onClick={handleClick}>
                     <Card style={{borderRadius: "15px"}} >
                         <div style={{ display: "flex", alignItems: "flex-start"}}>
+                        <a href={`/companies/${company.id}`}>
                         <Card.Img 
                         variant="top" 
                         src={company.imageUrl} 
                         alt="this is a company picture"
                         style={{ maxWidth: "250px", maxHeight: "250px", minWidth:"50px", minHeight:"50px", float: "left", margin: "0.25rem", borderRadius: "15px" }}
                         className="img-fluid"
-                        />
+                        
+                        /></a>
                         <Card.Body>
                                 <Card.Title>{company.name}</Card.Title>
                                 <Card.Subtitle>{company.town}</Card.Subtitle>
