@@ -17,7 +17,6 @@ const SignUpForm = ({jobTypes}) => {
     const [selectJob, setSelectJob] = useState()
     const navigate = useNavigate()
 
-    console.log(selectJob)
     async function handleSubmit(e) {
         e.preventDefault();
         if(!selectJob) {
@@ -45,7 +44,7 @@ const SignUpForm = ({jobTypes}) => {
     }
 
     const currentJobTypes = jobTypes.map((jobType) => (
-            <option value={jobType.jobRole}>{jobType.jobRole}</option>
+            <option key={jobType.id} value={jobType.jobRole}>{jobType.jobRole}</option>
     ));
 
     const handleClick = (e) => {
@@ -85,7 +84,7 @@ const SignUpForm = ({jobTypes}) => {
                             <Form.Group>
                                 <Form.Label>Job Role:</Form.Label>
                                 <Form.Select onChange={handleClick}>
-                                    <option>Choose an option (Leave blank for none)..</option>
+                                    <option key="chooseOption">Choose an option (Leave blank for none)..</option>
                                     {currentJobTypes}
                                 </Form.Select>
                             </Form.Group>

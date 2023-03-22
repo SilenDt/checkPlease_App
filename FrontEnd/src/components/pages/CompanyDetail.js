@@ -12,10 +12,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-
-
-
-
     const oneCompany = companiesInfo.find((company) => company.id == id);
 
     // filter through reviews to display the ones that match current company id.
@@ -33,7 +29,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
             jobPayObj[name] = [rate]
         }
     });
-    console.log(jobPayObj)
 
     const jobPayArray = []
     for (let jobTitleKey in jobPayObj ){
@@ -42,17 +37,14 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
         const jobAvgPayObj = {jobTitle : jobTitleKey, avgPay : avg}
         jobPayArray.push(jobAvgPayObj)
     }
-    console.log(jobPayArray)
 
     const jobTitlesAndAvgRate = jobPayArray.map((jobAvgPayObj) => (
-        <Row>
+        <Row key={jobAvgPayObj.jobTitle}>
             <Col>{jobAvgPayObj.jobTitle}</Col>
             <Col>{jobAvgPayObj.avgPay}</Col>
         </Row>
     ))
     
-
-
     // const handleEdit 
 
     const mappedReviews = currentCompanyReviews.map((review) => (

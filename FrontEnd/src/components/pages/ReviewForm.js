@@ -75,7 +75,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
     }
 
     const jobTypeOptions = jobTypes.map((jobType) => (
-        <option value={jobType.jobRole}>{jobType.jobRole}</option>
+        <option key={jobType.id} value={jobType.jobRole}>{jobType.jobRole}</option>
     ));
 
     const handleJobTitleChoiceChange = (e) => {
@@ -106,7 +106,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
     };
 
     const tipOutTypeOptions = tipOutTypes.map((tipOutType) => {
-        return <option value={tipOutType.tipOutMethod}>{tipOutType.tipOutMethod}</option>
+        return <option key={tipOutType.tipOutMethod} value={tipOutType.tipOutMethod}>{tipOutType.tipOutMethod}</option>
     })
 
     const handleTipOutChoiceChange = (e) => {
@@ -132,7 +132,7 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
                 <Form.Group>
                     <Form.Label>Job Title</Form.Label>
                     <Form.Select onChange={handleJobTitleChoiceChange}>
-                        <option>Please choose</option>
+                        <option key="chooseOption" value="">Please choose</option>
                         {jobTypeOptions}
                     </Form.Select>
                 </Form.Group>
@@ -140,16 +140,16 @@ const ReviewForm = ({ jobTypes, companiesInfo, tipOutTypes, userDetailsByUid }) 
                 <Form.Group>
                     <Form.Label>Do you tip out other staff members?</Form.Label>
                     <Form.Select onChange={handleDoYouTipOutChange}>
-                        <option value="">Please choose</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        <option key="chooseOption" value="">Please choose</option>
+                        <option key="yes" value="yes">Yes</option>
+                        <option key="no" value="no">No</option>
                     </Form.Select>
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>How do you tip out?</Form.Label>
                     <Form.Select onChange={handleTipOutChoiceChange}>
-                        <option value="">Please choose</option>
+                        <option key="chooseOption" value="">Please choose</option>
                         {tipOutTypeOptions}
                     </Form.Select>
                 </Form.Group>
