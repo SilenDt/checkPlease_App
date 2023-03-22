@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { Link, useParams} from 'react-router-dom'
 
 
-export default function Profile({userDetailsByUid, reviews}) {
+export default function Profile({userDetailsByUid, reviews, hideReviews}) {
   //   const [error, setError] = useState()
     const {currentUser, setCurrentUser} = useAuth()
   
@@ -37,56 +37,47 @@ export default function Profile({userDetailsByUid, reviews}) {
   ));
   
     return (    
-    <Container>
-      <Row>
-        <Col>
-
-  {/* Profile Card Container */}
-          <Card className='profile-container'>
-          <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
+        <Container>
             <Row>
-              <Col sm={3}>
-            {/* Profile Details Card*/}
-              <Card style={{ maxWidth: '18rem' }}>
-                <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
-                <Card.Body>
-                <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
-                          {/* <Card.Title>Email:</Card.Title> */}
-                <Card.Text>{currentUser.email}</Card.Text>
-                  <Row>
-                    <Card.Title>Current City:</Card.Title> 
-                    <Card.Text>{userDetailsByUid.userTown}</Card.Text>
-                  </Row>
-                  <Row>
-                    <Card.Title>Town you work in:</Card.Title>
-                    <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
-                  </Row>    
-                    <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
-                    Update profile
-                    </Link>
+                <Col>
+                <Card className='profile-container' style={{ maxWidth: '40rem' }}>
+                        <Card.Header><h2 className="text-center mb-4">Profile</h2></Card.Header>
+                            {/* Profile Details Card*/}
+                                <Card.Body style={{maxWidth: '18rem'}}>
+                                <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWa7dpWBjhQVy7rFc2ETvnSJ1iMuZXyEAgw&usqp=CAU"/>
+                                </Card.Body>
+                                <Card.Body>
+                                <Card.Title><h2>{userDetailsByUid.firstName}  {userDetailsByUid.lastName}</h2></Card.Title>
+                                        {/* <Card.Title>Email:</Card.Title> */}
+                                <Card.Text>{currentUser.email}</Card.Text>
+                                    <Card.Title>Current City:</Card.Title> 
+                                    <Card.Text>{userDetailsByUid.userTown}</Card.Text>
+                                    <Card.Title>Town you work in:</Card.Title>
+                                    <Card.Text>{userDetailsByUid.locationOfPlaceOfWork}</Card.Text>
+                                    <Card.Title>Your current job title:</Card.Title>
+                                    <Card.Text>{userDetailsByUid.jobType.jobRole}</Card.Text>     
+                            <Link to="/update-profile/:id" className="btn btn-primary w-100 mt-3">
+                            Update profile
+                            </Link>
                         </Card.Body>
-              </Card>
-                  </Col>
-            {/* Profile Details Card */}
-            {/* Review Card Container - start*/}
-                  <Col>
-                    <Card>
-
-                      <Card.Body>
-                        <Card.Title>Reviews</Card.Title>
-                          <ListGroup variant="flush">
-                          <ListGroup.Item>{mappedReviews}</ListGroup.Item>
-                          </ListGroup>
-                      </Card.Body>
+                    {/* Profile Details Card */}
+                    {/* Review Card Container - start*/}
                     </Card>
-                  </Col>
-            {/* Review Card Container -end */}
-              </Row>
-        </Card>
-  {/*Profile Card Container */}
-        </Col>
-      </Row>
-    </Container>
+                </Col>   
+                {hideReviews ? "" :   
+                <Col>
+                    <Card>
+                    <Card.Header><h2 className="text-center mb-4">Your reviews</h2></Card.Header>
+                    <Card.Body>
+                        <ListGroup variant="flush">
+                        <ListGroup.Item>{mappedReviews}</ListGroup.Item>
+                        </ListGroup>
+                    </Card.Body>
+                    </Card>
+                    </Col>
+                }   
+                </Row>
+        </Container>
     )
   }
 

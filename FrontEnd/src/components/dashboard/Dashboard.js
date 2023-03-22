@@ -14,6 +14,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
   const { id } = useParams()
   const navigate = useNavigate()
   const isLoggedIn = useAuth()
+  let hideReviews = true
 
 console.log("this is dashboard user details")
 console.log(userDetailsByUid)
@@ -54,6 +55,7 @@ console.log(userDetailsByUid)
         {isLoggedIn.currentUser && userDetailsByUid && reviews? 
         (<Profile userDetailsByUid={userDetailsByUid}
                   reviews={reviews}
+                  hideReviews={hideReviews}
           />) 
         : "loading"}
       </Col>
