@@ -19,7 +19,7 @@ import CompanyItem from "./CompanyItem"
         }
 
         // the first 4 entries in the array of shuffledCompanies
-        const shuffled = shuffledCompanies(companiesInfo).slice(0, 4);
+        const shuffled = shuffledCompanies(companiesInfo).slice(0, 6);
 
 
         return (
@@ -28,7 +28,9 @@ import CompanyItem from "./CompanyItem"
                     <CompanyItem key={company.id} 
                     company={company} 
                     onCompanyClicked={onCompanyClicked}
-                    reviews={reviews}/>
+                    reviews={reviews}
+                        shuffledCompanies={shuffledCompanies}
+                    />
                 ))}
             </ul>
         );
