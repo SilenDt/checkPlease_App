@@ -2,6 +2,8 @@ import { useLocation, useNavigate, useParams } from "react-router"
 import { Tab, Tabs, Image, Button, Card, Col, Row, Container, Accordion } from "react-bootstrap";
 import ReactStars from "react-stars";
 import { Link } from "react-router-dom";
+import { getReviewByCompanyId } from "../../services/ReviewService";
+
 
 
 
@@ -11,10 +13,45 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
     const navigate = useNavigate()
 
 
+
+
+
     const oneCompany = companiesInfo.find((company) => company.id == id);
 
     // filter through reviews to display the ones that match current company id.
     const currentCompanyReviews = reviews.filter((review) => review.company.id == id)
+    
+
+    const jobPayObj = {}
+    currentCompanyReviews.forEach(review => {
+        const name = review.jobType.jobRole 
+        const rate = review.hourlyRate
+
+        if(jobPayObj[name]){
+            jobPayObj[name].push(rate)
+        } else {
+            jobPayObj[name] = [rate]
+        }
+    });
+    console.log(jobPayObj)
+
+    const jobPayArray = []
+    for (let jobTitleKey in jobPayObj ){
+        const total = jobPayObj[jobTitleKey].reduce((prevNumb, currentNumb ) =>  prevNumb + currentNumb)
+        const avg = total / jobPayObj[jobTitleKey].length
+        const jobAvgPayObj = {jobTitle : jobTitleKey, avgPay : avg}
+        jobPayArray.push(jobAvgPayObj)
+    }
+    console.log(jobPayArray)
+
+    const jobTitlesAndAvgRate = jobPayArray.map((jobAvgPayObj) => (
+        <Row>
+            <Col>{jobAvgPayObj.jobTitle}</Col>
+            <Col>{jobAvgPayObj.avgPay}</Col>
+        </Row>
+    ))
+    
+
 
     // const handleEdit 
 
@@ -67,17 +104,6 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
             </Row>
         </Container>
     ));
-
-
-    const currentJobTypes = jobTypes.map((jobType) => (
-        <Container key={jobType.id}>
-            <Row>
-                <Col>Job Role: {jobType.jobRole}</Col>
-                <Col>Hourly Rate: ${jobType.hourlyRate}</Col>
-            </Row>
-        </Container>
-    ));
-
 
     const handleWriteReviewClick = () => {
         navigate("/review-form", { state: { companyName: oneCompany.name } })
@@ -138,7 +164,17 @@ const CompanyDetail = ({ companiesInfo, reviews, jobTypes }) => {
                     {mappedReviews}
                 </Tab>
                 <Tab eventKey="wages" title="Wages">
-                    {currentJobTypes}
+                    <Row>
+                        <Col>
+                        <h6 className="font-weight-bold text-uppercase mb-3">Job title</h6>
+                        </Col>
+                        <Col>
+                        <h6 className="font-weight-bold text-uppercase mb-3">
+                        Average hourly rate</h6>
+                        </Col>
+                    </Row>
+                    {/* {currentJobTypes} */}
+                    {jobTitlesAndAvgRate}
                 </Tab>
             </Tabs>
             <Button className="m-2" onClick={handleWriteReviewClick}>Write a Review</Button>
