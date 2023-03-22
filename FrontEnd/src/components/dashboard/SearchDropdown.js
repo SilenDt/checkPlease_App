@@ -3,11 +3,9 @@ import {Dropdown, Card } from "react-bootstrap"
 const SearchDropdown = ({searchResults, onSelect }) => {
 
     const dropdownDisplay = searchResults.map((result) => (
-        <div>
-                <Card.Body >
+                <Card.Body key={result.id}>
                     <Dropdown.Item eventKey={result.id} >{result.name}</Dropdown.Item>
                 </Card.Body>
-        </div>
     ))
 
     const curentSearchResults = searchResults.map((result) => (

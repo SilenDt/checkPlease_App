@@ -39,9 +39,7 @@ const Dashboard = ({ resetSearchResults, saveSearchDetail,  searchResults, compa
         </Row>
         <Row>
         {searchResults.length > 0 ?
-          <ul>
             <SearchDropdown searchResults={searchResults} resetSearchResults={resetSearchResults} onSelect={onSelect}/>
-          </ul>
         : ""}
     </Row>
     </Form>
